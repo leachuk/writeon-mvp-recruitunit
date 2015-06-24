@@ -44,27 +44,12 @@
 			<div flex="10"></div>
 			<div flex="80">
 				<form name="submitJobFromRecruiter">
-				
 					<div layout="row">
 						<div flex="10" layout="row" layout-align="center center">
-							<label>Description</label>
+							<span>Job Description</span>
 						</div>
 						<div flex="90">
-							<section layout="row" layout-sm="column" layout-align="center center">
-								<md-button class="md-raised">Button</md-button>
-								<md-button class="md-raised md-primary">Primary</md-button>
-								<md-button ng-disabled="true" class="md-raised md-primary">Disabled</md-button>
-								<md-button class="md-raised md-warn">Warn</md-button>
-							</section>
-						</div>
-					</div>
-
-					<div layout="row">
-						<div flex="10" layout="row" layout-align="center center">
-							<label>Job Description</label>
-						</div>
-						<div flex="90">
-							<section layout="row" layout-sm="column" layout-align="start center">
+							<section layout="row">
 								<md-input-container flex>
 									<label>Job Description</label>
 									<input ng-model="user.title">
@@ -73,42 +58,71 @@
 						</div>
 					</div>
 
+					<div layout="row">
+						<div flex="10" layout="row" layout-align="center center">
+							<span>Role Type</span>
+						</div>
+						<div flex="90">
+							<section layout="column" layout-sm="column" layout-align="center start">
+								<md-radio-group ng-model="data.group1">
+								  <md-radio-button value="Permanent" class="md-primary">Permanent</md-radio-button>
+								  <md-radio-button value="Contract"> Contract </md-radio-button>
+								</md-radio-group>
+							</section>
+						</div>
+					</div>
 
-					<section layout="column" layout-sm="column" layout-align="center center">
-						<md-radio-group ng-model="data.group1">
-						  <md-radio-button value="Permanent" class="md-primary">Permanent</md-radio-button>
-						  <md-radio-button value="Contract"> Contract </md-radio-button>
-						</md-radio-group>
-						<div class="label">Role Type</div>
-					</section>
+					<div layout="row">
+						<div flex="10" layout="row" layout-align="center center">
+							<span>Pay Bracket Description</span>
+						</div>
+						<div flex="90">
+							<section layout="row">
+								<md-input-container flex>
+								  <label>Pay Bracket</label>
+								  <input ng-model="user.email" type="email">
+								</md-input-container>
+							</section>
+						</div>
+					</div>
 
-					<section layout="column" layout-sm="column" layout-align="center center">
-						<md-input-container>
-						  <label>Pay Bracket</label>
-						  <input ng-model="user.email" type="email">
-						</md-input-container>
-					</section>
+					<div layout="row">
+						<div flex="10" layout="row" layout-align="center center">
+							<span>Location Description</span>
+						</div>
+						<div flex="90">
+							<section layout="row">
+								<md-input-container flex>
+								  <label>Location</label>
+								  <input ng-model="user.email" type="email">
+								</md-input-container>
+							</section>
+						</div>
+					</div>
 
-					<section layout="column" layout-sm="column" layout-align="center center">
-						<md-input-container>
-						  <label>Location</label>
-						  <input ng-model="user.email" type="email">
-						</md-input-container>
-					</section>
+					<div layout="row">
+						<div flex="10" layout="row" layout-align="center center">
+							<span>Required Skills Description</span>
+						</div>
+						<div flex="90">
+							<section layout="row">
+								<md-chips>
+									<input type="text" placeholder="Enter info">
+								</md-chips>
+								<div class="label">Required Skills</div>
+							</section>
+						</div>
+					</div>
 
-					<section layout="column" layout-sm="column" layout-align="center center">
-						<md-chips>
-							<input type="text" placeholder="Enter info">
-						</md-chips>
-						<div class="label">Required Skills</div>
-					</section>
+					<div layout="row">
+						<div flex="10" layout="row" layout-align="center center"></div>
+						<div flex="90">
+							<section layout="row" layout-align="start center">
+								<md-button class="md-raised md-primary">Submit</md-button>
+							</section>
+						</div>
+					</div>
 
-					<section layout="column" layout-sm="column" layout-align="center center">
-						<md-button type="submit" class="md-primary" 
-							aria-label="Submit">
-							Send
-						</md-button>
-					</section>
 				</form>
 			</div>
 			<div flex="10"></div>
