@@ -2,7 +2,8 @@
 
 angular.module('recruitUnitApp')
   .controller('SubmitJobCtrl', function ($scope, $http) {
-  	$scope.tags = { foo: "bar" };
+	var self = this;
+  	self.tags = ['foo', 'bar'];
 
   	$scope.submitJob = function(){
 		console.log("submitJob");

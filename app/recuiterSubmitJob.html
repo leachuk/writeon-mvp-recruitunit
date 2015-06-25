@@ -43,7 +43,7 @@
 	    <md-content layout="row" class="md-padding buttondemoBasicUsage">
 			<div flex="10"></div>
 			<div flex="80">
-				<form name="submitJobFromRecruiter" ng-controller="SubmitJobCtrl">
+				<form name="submitJobFromRecruiter" ng-controller="SubmitJobCtrl as ctrl">
 					<div layout="row">
 						<div flex="10" layout="row" layout-align="center center">
 							<span>Job Description</span>
@@ -52,7 +52,7 @@
 							<section layout="row">
 								<md-input-container flex>
 									<label>Job Description</label>
-									<input ng-model="user.title">
+									<input>
 								</md-input-container>
 							</section>
 						</div>
@@ -80,7 +80,7 @@
 							<section layout="row">
 								<md-input-container flex>
 								  <label>Pay Bracket</label>
-								  <input ng-model="user.email" type="email">
+								  <input type="email">
 								</md-input-container>
 							</section>
 						</div>
@@ -94,7 +94,7 @@
 							<section layout="row">
 								<md-input-container flex>
 								  <label>Location</label>
-								  <input ng-model="user.email" type="email">
+								  <input type="email">
 								</md-input-container>
 							</section>
 						</div>
@@ -105,16 +105,14 @@
 							<span>Required Skills Description</span>
 						</div>
 						<div flex="90">
-							<section layout="row">
+							<section layout="column">
 								<md-chips
 									ng-model="ctrl.tags"
-									readonly=false
 									placeholder="Enter a tag"
 									delete-button-label="Remove Tag"
 									delete-hint="Press delete to remove tag"
 									secondary-placeholder="+Tag">
 								</md-chips>
-								<div class="label">Required Skills</div>
 							</section>
 						</div>
 					</div>
