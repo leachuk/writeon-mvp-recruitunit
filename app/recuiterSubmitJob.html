@@ -43,7 +43,7 @@
 	    <md-content layout="row" class="md-padding buttondemoBasicUsage">
 			<div flex="10"></div>
 			<div flex="80">
-				<form name="submitJobFromRecruiter">
+				<form name="submitJobFromRecruiter" ng-controller="SubmitJobCtrl">
 					<div layout="row">
 						<div flex="10" layout="row" layout-align="center center">
 							<span>Job Description</span>
@@ -106,8 +106,13 @@
 						</div>
 						<div flex="90">
 							<section layout="row">
-								<md-chips>
-									<input type="text" placeholder="Enter info">
+								<md-chips
+									ng-model="ctrl.tags"
+									readonly=false
+									placeholder="Enter a tag"
+									delete-button-label="Remove Tag"
+									delete-hint="Press delete to remove tag"
+									secondary-placeholder="+Tag">
 								</md-chips>
 								<div class="label">Required Skills</div>
 							</section>
@@ -128,13 +133,13 @@
 			<div flex="10"></div>
 	    </md-content>
 
-		<script src="./bower_components/angular/angular.js"></script>
-		<script src="./bower_components/angular-animate/angular-animate.js"></script>
-		<script src="./bower_components/angular-aria/angular-aria.js"></script>
+		<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+		<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+		<script type="text/javascript" src="./bower_components/angular-aria/angular-aria.js"></script>
 		<script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
 		
-		<script type="text/javascript">
-          angular.module('recruitUnitApp', ['ngMaterial']);
-    	</script>
+		<script type="text/javascript" src="./src/angular/recruitUnitApp.js"></script>
+		<script type="text/javascript" src="./src/angular/controllers/SubmitJobCtrl.js"></script>
+		
   	</body>
 </html>
