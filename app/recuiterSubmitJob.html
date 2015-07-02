@@ -64,7 +64,7 @@
 						</div>
 						<div flex="90">
 							<section layout="column" layout-sm="column" layout-align="center start">
-								<md-radio-group ng-model="data.group1">
+								<md-radio-group>
 								  <md-radio-button value="Permanent" class="md-primary">Permanent</md-radio-button>
 								  <md-radio-button value="Contract"> Contract </md-radio-button>
 								</md-radio-group>
@@ -131,10 +131,15 @@
 			<div flex="10"></div>
 	    </md-content>
 
+	    <!--Angular Material-->
 		<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
 		<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
 		<script type="text/javascript" src="./bower_components/angular-aria/angular-aria.js"></script>
 		<script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+
+		<!--Loom API-->
+		<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
+		<script type="text/javascript" src="./bower_components/loom-api-angular/loom.api.ng.1.0.0.js"></script>
 		
 		<script type="text/javascript" src="./src/angular/recruitUnitApp.js"></script>
 		<script type="text/javascript" src="./src/angular/controllers/SubmitJobCtrl.js"></script>
