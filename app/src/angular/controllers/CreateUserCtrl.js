@@ -7,19 +7,25 @@ CreateUserCtrl.$inject = ['$http', 'loomApi'];
 
 function CreateUserCtrl($http, loomApi) {
 	console.log("in CreateUserCtrl");
+	
+	this.user = {
+		name: "",
+		email: "",
+		password: ""
+	};
+	this.submitmessage = "";
 
-	this.loomApi = loomApi;
-
-	this.name = "John Smith";
-	this.contacts = [
-		{type: 'phone', value: '408 555 1212'},
-		{type: 'email', value: 'john.smith@example.org'} 
-	];
-
+	//todo: test this still works when minified.
 	CreateUserCtrl.prototype.createNewUser = function(){
 		console.log("in createNewUser");
-		console.log(this.loomApi);
-		this.loomApi.User.createNewUser("recruitunit-2@test.com", "recruitunit user 2", "12345678");
+		console.log(this.user);
+
+		if(createUser.checkValidity()){ //createUser is form name
+			loomApi.User.createNewUser(this.user.email, this.user.name, this.user.password).then(angular.bind(this,function(result){
+				console.log(result);
+				result.success ? this.submitmessage = "User created" : this.submitmessage = "Error. " + result.message;
+			}));
+		}
 	};
 }
 
