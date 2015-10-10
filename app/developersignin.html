@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 	<head>
-		<title>RecruitUnit - Sign Up New User</title>
+		<title>RecruitUnit - Sign In</title>
 
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -37,27 +37,13 @@
 	      <md-button class="menu">
 	        <md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
 	      </md-button>
-	      <h1>Recruit Unit - Sign Up New User</h1>
+	      <h1>Recruit Unit - Sign In</h1>
 	    </md-toolbar>
 	    
 	    <md-content layout="row" class="md-padding buttondemoBasicUsage">
 			<div flex="10"></div>
 			<div flex="80">
-				<form name="createUser" ng-controller="CreateUserCtrl as ctrl">
-					<div layout="row">
-						<div flex="10" layout="row" layout-align="center center">
-							<span>User Name</span>
-						</div>
-						<div flex="90">
-							<section layout="row">
-								<md-input-container flex>
-									<label>name</label>
-									<input 
-										ng-model="ctrl.user.name">
-								</md-input-container>
-							</section>
-						</div>
-					</div>
+				<form name="signInUser" ng-controller="SignInUserCtrl as ctrl">
 					<div layout="row">
 						<div flex="10" layout="row" layout-align="center center">
 							<span>Email Address</span>
@@ -92,7 +78,7 @@
 						<div flex="10" layout="row" layout-align="center center"></div>
 						<div flex="90">
 							<section layout="row" layout-align="start center">
-								<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
+								<md-button class="md-raised md-primary" ng-click="ctrl.signInUser()">Let me in</md-button>
 							</section>
 						</div>
 					</div>
@@ -116,7 +102,7 @@
 		<script type="text/javascript" src="./bower_components/loom-api-angular/loom.api.ng.1.0.0.js"></script>
 		
 		<script type="text/javascript" src="./src/angular/recruitUnitApp.js"></script>
-		<script type="text/javascript" src="./src/angular/controllers/CreateUserCtrl.js"></script>
+		<script type="text/javascript" src="./src/angular/controllers/SignInUserCtrl.js"></script>
 		
   	</body>
 </html>
