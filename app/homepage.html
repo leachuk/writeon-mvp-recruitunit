@@ -12,6 +12,9 @@
 		<link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
 		<link rel="stylesheet" href="assets/app.css"/>
 		<style type="text/css">
+			md-content {
+				background-color: #EEEEEE;
+			}
 			.buttondemoBasicUsage section {
 				background: #f7f7f7;
 				border-radius: 3px;
@@ -54,65 +57,62 @@
 						</div>
 					</div>
 				</div>
-				<form name="createUser" ng-controller="CreateUserCtrl as ctrl">
-					<div layout="row">
-						<div flex="10" layout="row" layout-align="center center">
-							<span>User Name</span>
-						</div>
-						<div flex="90">
-							<section layout="row">
-								<md-input-container flex>
-									<label>name</label>
-									<input 
-										ng-model="ctrl.user.name">
-								</md-input-container>
-							</section>
-						</div>
+				<div layout="row">
+					<div flex="15"></div>
+					<div flex="70">
+						<form name="createUser" ng-controller="HomepageCtrl as ctrl">
+							<div layout="row">
+								<div flex="10" layout="row" layout-align="center center">
+									<span>Email Address</span>
+								</div>
+								<div flex="90">
+									<section layout="row">
+										<md-input-container flex>
+											<label>email</label>
+											<input 
+												ng-model="ctrl.user.email" 
+												type="email">
+										</md-input-container>
+									</section>
+								</div>
+							</div>
+							<div layout="row">
+								<div flex="10" layout="row" layout-align="center center">
+									<span>Password</span>
+								</div>
+								<div flex="90">
+									<section layout="row">
+										<md-input-container flex>
+											<label>password</label>
+											<input 
+												ng-model="ctrl.user.password"
+												type="password">
+										</md-input-container>
+									</section>
+								</div>
+							</div>
+							<div layout="row">
+								<div flex="10" layout="row" layout-align="center center"></div>
+								<div flex="90">
+									<section layout="row" layout-align="start center">
+										<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
+									</section>
+								</div>
+							</div>
+							<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
+								{{ctrl.submitmessage}}
+							</div>
+						</form>
 					</div>
-					<div layout="row">
-						<div flex="10" layout="row" layout-align="center center">
-							<span>Email Address</span>
-						</div>
-						<div flex="90">
-							<section layout="row">
-								<md-input-container flex>
-									<label>email</label>
-									<input 
-										ng-model="ctrl.user.email" 
-										type="email">
-								</md-input-container>
-							</section>
-						</div>
-					</div>
-					<div layout="row">
-						<div flex="10" layout="row" layout-align="center center">
-							<span>Password</span>
-						</div>
-						<div flex="90">
-							<section layout="row">
-								<md-input-container flex>
-									<label>password</label>
-									<input 
-										ng-model="ctrl.user.password"
-										type="password">
-								</md-input-container>
-							</section>
-						</div>
-					</div>
-					<div layout="row">
-						<div flex="10" layout="row" layout-align="center center"></div>
-						<div flex="90">
-							<section layout="row" layout-align="start center">
-								<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
-							</section>
-						</div>
-					</div>
-					<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
-						{{ctrl.submitmessage}}
-					</div>
-
-				</form>
+					<div flex="15"></div>
+				</div>
+				<div layout="row">
+					<div flex="33">Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus.</div>
+					<div flex="33">Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus.</div>
+					<div flex="33">Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus.</div>
+				</div>
 			</div>
+
 			<div flex="10"></div>
 	    </md-content>
 
@@ -127,7 +127,7 @@
 		<script type="text/javascript" src="./bower_components/loom-api-angular/loom.api.ng.1.0.0.js"></script>
 		
 		<script type="text/javascript" src="./src/angular/recruitUnitApp.js"></script>
-		<script type="text/javascript" src="./src/angular/controllers/CreateUserCtrl.js"></script>
+		<script type="text/javascript" src="./src/angular/controllers/HomepageCtrl.js"></script>
 		
   	</body>
 </html>
