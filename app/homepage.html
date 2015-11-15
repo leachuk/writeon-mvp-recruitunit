@@ -15,6 +15,7 @@
 			md-content {
 				background-color: #EEEEEE;
 			}
+			.blue { background: #A2C9F6;}
 			.buttondemoBasicUsage section {
 				background: #f7f7f7;
 				border-radius: 3px;
@@ -106,11 +107,26 @@
 					</div>
 					<div flex="15"></div>
 				</div>
-				<div layout="row">
-					<div flex="33">Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus.</div>
-					<div flex="33">Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus.</div>
-					<div flex="33">Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus.</div>
-				</div>
+				<md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter="12px" md-row-height="2:1">
+				    <md-grid-tile class="blue">
+				      <md-grid-tile-header>
+				        <h3>Heading</h3>
+				      </md-grid-tile-header>
+				      <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+				    </md-grid-tile>
+				    <md-grid-tile class="blue">
+				      <md-grid-tile-header>
+				        <h3>Heading</h3>
+				      </md-grid-tile-header>
+				      <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+				    </md-grid-tile>
+				    <md-grid-tile class="blue">
+				      <md-grid-tile-header>
+				        <h3>Heading</h3>
+				      </md-grid-tile-header>
+				      <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+				    </md-grid-tile>
+				 </md-grid-list>
 			</div>
 
 			<div flex="10"></div>
