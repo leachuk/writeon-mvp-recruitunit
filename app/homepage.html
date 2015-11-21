@@ -13,11 +13,10 @@
 		<link rel="stylesheet" href="assets/app.css"/>
 		<style type="text/css">
 			md-content {
-				background-color: #EEEEEE;
+				background: transparent;
 			}
 			.blue { background: #A2C9F6;}
 			.buttondemoBasicUsage section {
-				background: #f7f7f7;
 				border-radius: 3px;
 				margin: 1em;
 				position: relative !important;
@@ -33,106 +32,104 @@
 				font-size: 14px;
 				opacity: 0.54; 
 				top: 40%;}
+
+			.move-up {
+			  position: relative;
+			  top: -250px;
+			  z-index: 99;
+			}
 		</style>
 	</head>
 
-  	<body ng-app="recruitUnitApp">
-	    <md-toolbar layout="row" class="md-whiteframe-z1">
-	      <md-button class="menu">
-	        <md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
-	      </md-button>
-	      <h1>Recruit Unit - Homepage</h1>
-	    </md-toolbar>
-	    
-	    <md-content layout="row" class="md-padding buttondemoBasicUsage">
-			<div flex="10"></div>
-			<div flex="80">
-				<div layout="row">
-						<h1 class="md-display-3">Recruit Unit</h1>
-				</div>
-				<div layout="row" layout-align="end center">
-					<div flex="25"></div>
-					<div flex="75">
-						<div layout="row" layout-align="end center">
-							<h2 class="md-headline">Connecting developers and recruiters, simply</h2>
-						</div>
-					</div>
-				</div>
-				<div layout="row">
-					<div flex="15"></div>
-					<div flex="70">
-						<form name="createUser" ng-controller="HomepageCtrl as ctrl">
-							<div layout="row">
-								<div flex="10" layout="row" layout-align="center center">
-									<span>Email Address</span>
-								</div>
-								<div flex="90">
-									<section layout="row">
-										<md-input-container flex>
-											<label>email</label>
-											<input 
-												ng-model="ctrl.user.email" 
-												type="email">
-										</md-input-container>
-									</section>
-								</div>
-							</div>
-							<div layout="row">
-								<div flex="10" layout="row" layout-align="center center">
-									<span>Password</span>
-								</div>
-								<div flex="90">
-									<section layout="row">
-										<md-input-container flex>
-											<label>password</label>
-											<input 
-												ng-model="ctrl.user.password"
-												type="password">
-										</md-input-container>
-									</section>
-								</div>
-							</div>
-							<div layout="row">
-								<div flex="10" layout="row" layout-align="center center"></div>
-								<div flex="90">
-									<section layout="row" layout-align="start center">
-										<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
-									</section>
-								</div>
-							</div>
-							<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
-								{{ctrl.submitmessage}}
-							</div>
-						</form>
-					</div>
-					<div flex="15"></div>
-				</div>
-				<md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter="12px" md-row-height="2:1">
-				    <md-grid-tile class="blue">
-				      <md-grid-tile-header>
-				        <h3>Heading</h3>
-				      </md-grid-tile-header>
-				      <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-				    </md-grid-tile>
-				    <md-grid-tile class="blue">
-				      <md-grid-tile-header>
-				        <h3>Heading</h3>
-				      </md-grid-tile-header>
-				      <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-				    </md-grid-tile>
-				    <md-grid-tile class="blue">
-				      <md-grid-tile-header>
-				        <h3>Heading</h3>
-				      </md-grid-tile-header>
-				      <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-				    </md-grid-tile>
-				 </md-grid-list>
-			</div>
+	<body ng-app="recruitUnitApp" layout="column">
+		<md-toolbar flex="40" class="md-whiteframe-z2">
+		  <md-button class="menu">
+			<md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
+		  </md-button>
+		</md-toolbar>
+		
+		<div layout-align="center start" layout="row">
+			<md-content class="buttondemoBasicUsage move-up" flex="66">
 
-			<div flex="10"></div>
-	    </md-content>
+					<md-card class="md-whiteframe-z4">
+							 <img src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">
+							 <md-card-content>
+								<form name="createUser" ng-controller="HomepageCtrl as ctrl">
+									<div layout="row">
+										<div flex="10" layout="row" layout-align="center center">
+											<span>Email Address</span>
+										</div>
+										<div flex="90">
+											<section layout="row">
+										 		<md-input-container flex>
+													<label>email</label>
+													<input 
+														ng-model="ctrl.user.email" 
+														type="email">
+												</md-input-container>
+											</section>
+										</div>
+									</div>
+									<div layout="row">
+										<div flex="10" layout="row" layout-align="center center">
+											<span>Password</span>
+										</div>
+										<div flex="90">
+											<section layout="row">
+												<md-input-container flex>
+													<label>password</label>
+													<input 
+														ng-model="ctrl.user.password"
+														type="password">
+												</md-input-container>
+											</section>
+										</div>
+									</div>
+									<div layout="row">
+										<div flex="10" layout="row" layout-align="center center"></div>
+										<div flex="90">
+											<section layout="row" layout-align="start center">
+												<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
+											</section>
+										</div>
+									</div>
+									<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
+										{{ctrl.submitmessage}}
+									</div>
+								</form>
+							 </md-card-content>
+							 <md-card-footer>
+							   Card footer
+							 </md-card-footer>
+					</md-card>
+				
+					<md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter="12px" md-row-height="2:1">
+						<md-grid-tile class="blue">
+						  <md-grid-tile-header>
+							<h3>Heading</h3>
+						  </md-grid-tile-header>
+						  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+						</md-grid-tile>
+						<md-grid-tile class="blue">
+						  <md-grid-tile-header>
+							<h3>Heading</h3>
+						  </md-grid-tile-header>
+						  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+						</md-grid-tile>
+						<md-grid-tile class="blue">
+						  <md-grid-tile-header>
+							<h3>Heading</h3>
+						  </md-grid-tile-header>
+						  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+						</md-grid-tile>
+					</md-grid-list>
+		
 
-	    <!--Angular Material-->
+	
+			</md-content>
+		</div>
+
+		<!--Angular Material-->
 		<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
 		<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
 		<script type="text/javascript" src="./bower_components/angular-aria/angular-aria.js"></script>
@@ -145,5 +142,5 @@
 		<script type="text/javascript" src="./src/angular/recruitUnitApp.js"></script>
 		<script type="text/javascript" src="./src/angular/controllers/HomepageCtrl.js"></script>
 		
-  	</body>
+	</body>
 </html>
