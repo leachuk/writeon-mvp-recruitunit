@@ -34,100 +34,105 @@
 				top: 40%;}
 
 			.move-up {
+			  width: 100%;
 			  position: relative;
-			  top: -250px;
-			  z-index: 99;
+			  top: 150px;
+			  /*z-index: 99;*/
 			}
 		</style>
 	</head>
 
 	<body ng-app="recruitUnitApp" layout="column">
-		<md-toolbar flex="40" class="md-whiteframe-z2">
+		<md-toolbar flex="5" class="md-whiteframe-z2">
 		  <md-button class="menu">
 			<md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
 		  </md-button>
 		</md-toolbar>
 		
-		<div layout-align="center start" layout="row">
-			<md-content class="buttondemoBasicUsage move-up" flex="66">
-
-					<md-card class="md-whiteframe-z4">
-							 <img src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">
-							 <md-card-content>
-								<form name="createUser" ng-controller="HomepageCtrl as ctrl">
-									<div layout="row">
-										<div flex="10" layout="row" layout-align="center center">
-											<span>Email Address</span>
-										</div>
-										<div flex="90">
-											<section layout="row">
-										 		<md-input-container flex>
-													<label>email</label>
-													<input 
-														ng-model="ctrl.user.email" 
-														type="email">
-												</md-input-container>
-											</section>
-										</div>
-									</div>
-									<div layout="row">
-										<div flex="10" layout="row" layout-align="center center">
-											<span>Password</span>
-										</div>
-										<div flex="90">
-											<section layout="row">
-												<md-input-container flex>
-													<label>password</label>
-													<input 
-														ng-model="ctrl.user.password"
-														type="password">
-												</md-input-container>
-											</section>
-										</div>
-									</div>
-									<div layout="row">
-										<div flex="10" layout="row" layout-align="center center"></div>
-										<div flex="90">
-											<section layout="row" layout-align="start center">
-												<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
-											</section>
-										</div>
-									</div>
-									<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
-										{{ctrl.submitmessage}}
-									</div>
-								</form>
-							 </md-card-content>
-							 <md-card-footer>
-							   Card footer
-							 </md-card-footer>
-					</md-card>
-				
-					<md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter="12px" md-row-height="2:1">
-						<md-grid-tile class="blue">
-						  <md-grid-tile-header>
-							<h3>Heading</h3>
-						  </md-grid-tile-header>
-						  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-						</md-grid-tile>
-						<md-grid-tile class="blue">
-						  <md-grid-tile-header>
-							<h3>Heading</h3>
-						  </md-grid-tile-header>
-						  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-						</md-grid-tile>
-						<md-grid-tile class="blue">
-						  <md-grid-tile-header>
-							<h3>Heading</h3>
-						  </md-grid-tile-header>
-						  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-						</md-grid-tile>
-					</md-grid-list>
-		
-
-	
-			</md-content>
+		<div>
+			<img style="position:absolute; width:100%;" src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">
 		</div>
+
+		<div layout-align="center start" layout="row">
+			
+				<md-card class="md-whiteframe-z4 buttondemoBasicUsage" flex="66" style="z-index:99;">
+						 <!--<img src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">-->
+						 <h1>Test Heading</h1>
+						 <md-card-content>
+							<form name="createUser" ng-controller="HomepageCtrl as ctrl">
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center">
+										<span>Email Address</span>
+									</div>
+									<div flex="90">
+										<section layout="row">
+									 		<md-input-container flex>
+												<label>email</label>
+												<input 
+													ng-model="ctrl.user.email" 
+													type="email">
+											</md-input-container>
+										</section>
+									</div>
+								</div>
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center">
+										<span>Password</span>
+									</div>
+									<div flex="90">
+										<section layout="row">
+											<md-input-container flex>
+												<label>password</label>
+												<input 
+													ng-model="ctrl.user.password"
+													type="password">
+											</md-input-container>
+										</section>
+									</div>
+								</div>
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center"></div>
+									<div flex="90">
+										<section layout="row" layout-align="start center">
+											<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
+										</section>
+									</div>
+								</div>
+								<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
+									{{ctrl.submitmessage}}
+								</div>
+							</form>
+						 </md-card-content>
+						 <md-card-footer>
+						   Card footer
+						 </md-card-footer>
+				</md-card>
+
+
+		</div>
+
+				<md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter="12px" md-row-height="2:1">
+					<md-grid-tile class="blue">
+					  <md-grid-tile-header>
+						<h3>Heading</h3>
+					  </md-grid-tile-header>
+					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+					</md-grid-tile>
+					<md-grid-tile class="blue">
+					  <md-grid-tile-header>
+						<h3>Heading</h3>
+					  </md-grid-tile-header>
+					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+					</md-grid-tile>
+					<md-grid-tile class="blue">
+					  <md-grid-tile-header>
+						<h3>Heading</h3>
+					  </md-grid-tile-header>
+					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+					</md-grid-tile>
+				</md-grid-list>
+	
+
 
 		<!--Angular Material-->
 		<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
