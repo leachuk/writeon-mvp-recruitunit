@@ -1,3 +1,10 @@
+.table {
+	background: #e8ebff;
+}
+.table .header{
+	background: #3F51B5;
+}
+
 .row {
   box-sizing: border-box;
   display: table;
@@ -7,34 +14,53 @@
 
 .cell {
   display: table-cell;
-  flex: 1;
-  flex-direction: column;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: relative;
 }
 
-@supports(display: flex) {
+@supports ((display: -webkit-box) or (display: -webkit-flex) or (display: -ms-flexbox) or (display: flex)) {
   .row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
   }
-  // display: block is needed to allow inline-block content inside a cell, if there is vertical alignment, we need display: flex
+
   .cell {
     display: block;
   }
+
   .cell-valign-middle,
   .cell-valign-bottom {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
     display: flex;
   }
 }
-
-
 .cell-min {
   width: 1%;
-  flex: none auto;
+  -webkit-box-flex: 0;
+  -webkit-flex: none auto;
+      -ms-flex: none auto;
+          flex: none auto;
 }
 
 .cell-max {
   width: 100%;
-  flex: 1 100%;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 100%;
+      -ms-flex: 1 100%;
+          flex: 1 100%;
+}
 
 .row {
   border-collapse: seperate;
@@ -43,8 +69,9 @@
 }
 
 .cell {
-  border-radius: 6px;
-  background: rgba(#888, 0.85);
+  border-radius: 2px;
+  /*background: rgba(136, 136, 136, 0.85);*/
+  background: #ced3ef;
   margin-right: 8px;
   padding: 6px;
 }
@@ -56,11 +83,17 @@
 
 .cell.cell-valign-middle {
   vertical-align: middle;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
   justify-content: center;
 }
 
 .cell.cell-valign-bottom {
   vertical-align: bottom;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
   justify-content: flex-end;
 }
 
@@ -73,7 +106,10 @@
 }
 
 .cell.cell-100px {
-  flex: none;
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
   width: 100px;
   max-width: 100px;
 }
