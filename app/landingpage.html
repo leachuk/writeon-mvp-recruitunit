@@ -10,7 +10,8 @@
 
 		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
 		<link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
-		<link rel="stylesheet" href="src/css/global.css"/>	
+		<link rel="stylesheet" href="src/css/global.css"/>
+		<link rel="stylesheet" href="src/css/table.css"/>	
 	</head>
 
 	<body ng-app="recruitUnitApp" layout="column">
@@ -26,84 +27,49 @@
 
 		<div layout-align="center start" layout="row">
 			
-				<md-card class="md-whiteframe-z4 buttondemoBasicUsage" flex="66" style="z-index:99;">
-						 <!--<img src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">-->
-						 <h1>Test Heading</h1>
+				<md-card class="md-whiteframe-z4" flex="66" style="z-index:99;">
+						 <h1>Test Name Heading</h1>
 						 <md-card-content>
-							<form name="createUser" ng-controller="HomepageCtrl as ctrl">
-								<div layout="row">
-									<div flex="10" layout="row" layout-align="center center">
-										<span>Email Address</span>
-									</div>
-									<div flex="90">
-										<section layout="row">
-									 		<md-input-container flex>
-												<label>email</label>
-												<input 
-													ng-model="ctrl.user.email" 
-													type="email">
-											</md-input-container>
-										</section>
-									</div>
-								</div>
-								<div layout="row">
-									<div flex="10" layout="row" layout-align="center center">
-										<span>Password</span>
-									</div>
-									<div flex="90">
-										<section layout="row">
-											<md-input-container flex>
-												<label>password</label>
-												<input 
-													ng-model="ctrl.user.password"
-													type="password">
-											</md-input-container>
-										</section>
-									</div>
-								</div>
-								<div layout="row">
-									<div flex="10" layout="row" layout-align="center center"></div>
-									<div flex="90">
-										<section layout="row" layout-align="start center">
-											<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
-										</section>
-									</div>
-								</div>
-								<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
-									{{ctrl.submitmessage}}
-								</div>
-							</form>
+							<div class="summary" layout="row">
+								  <div flex>
+								  	<div><h3>Total</h3></div>
+								  	<div><h4>11</h4></div>
+								  </div>						
+								  <div flex>
+								  	<div><h3>Pass / Fail</h3></div>
+								  	<div>
+								  		<span class="pass">6 /</span>
+								  		<span class="fail">5</span>
+								  	</div>
+								  </div>
+							</div>
+							<!--Table-->
+							<div class="grid">
+							  <div class="row">
+							    <div class="cell">I am a header</div>
+							  </div>
+							  <div class="row">
+							    <div class="cell cell-align-right">I am also a header (but on the right)</div>
+							  </div>
+							  <div class="row">
+							    <div class="cell cell-valign-top cell-100px cell-nowrap">I am 100px wide and not a pixel more</div>
+							    <div class="cell">
+							      <div>I am some content</div>
+							      <div>I am some content</div>
+							      <div>I am some content</div><span>I am more content I am more content I am more content I am more content</span>
+							    </div>
+							    <div class="cell cell-1-5 cell-valign-middle">Middle (20%)</div>
+							    <div class="cell cell-valign-bottom">Bottom</div>
+							  </div>
+							  <div class="row">
+							    <div class="cell cell-align-center">I am a centered footer</div>
+							  </div>
+							</div>
 						 </md-card-content>
-						 <md-card-footer>
-						   Card footer
-						 </md-card-footer>
 				</md-card>
 
 
 		</div>
-
-				<md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter="12px" md-row-height="2:1">
-					<md-grid-tile class="blue">
-					  <md-grid-tile-header>
-						<h3>Heading</h3>
-					  </md-grid-tile-header>
-					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-					</md-grid-tile>
-					<md-grid-tile class="blue">
-					  <md-grid-tile-header>
-						<h3>Heading</h3>
-					  </md-grid-tile-header>
-					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-					</md-grid-tile>
-					<md-grid-tile class="blue">
-					  <md-grid-tile-header>
-						<h3>Heading</h3>
-					  </md-grid-tile-header>
-					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-					</md-grid-tile>
-				</md-grid-list>
-	
-
 
 		<!--Angular Material-->
 		<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
