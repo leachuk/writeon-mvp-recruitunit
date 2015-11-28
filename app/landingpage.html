@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+		<title>RecruitUnit - Homepage</title>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+		<link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+		<link rel="stylesheet" href="assets/app.css"/>
+		<style type="text/css">
+			md-content {
+				background: transparent;
+			}
+			.blue { background: #A2C9F6;}
+			.buttondemoBasicUsage section {
+				border-radius: 3px;
+				margin: 1em;
+				position: relative !important;
+				padding-bottom: 10px; }
+			.buttondemoBasicUsage md-content {
+				margin-right: 7px; }
+			.buttondemoBasicUsage section .md-button {
+				margin: 16px 10px 16px 10px;}
+			.buttondemoBasicUsage .label {
+				position: absolute;
+				bottom: 5px;
+				left: 7px;
+				font-size: 14px;
+				opacity: 0.54; 
+				top: 40%;}
+
+			.move-up {
+			  width: 100%;
+			  position: relative;
+			  top: 150px;
+			  /*z-index: 99;*/
+			}
+		</style>
+	</head>
+
+	<body ng-app="recruitUnitApp" layout="column">
+		<md-toolbar flex="5" class="md-whiteframe-z2">
+		  <md-button class="menu">
+			<md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
+		  </md-button>
+		</md-toolbar>
+		
+		<div>
+			<img style="position:absolute; width:100%;" src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">
+		</div>
+
+		<div layout-align="center start" layout="row">
+			
+				<md-card class="md-whiteframe-z4 buttondemoBasicUsage" flex="66" style="z-index:99;">
+						 <!--<img src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">-->
+						 <h1>Test Heading</h1>
+						 <md-card-content>
+							<form name="createUser" ng-controller="HomepageCtrl as ctrl">
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center">
+										<span>Email Address</span>
+									</div>
+									<div flex="90">
+										<section layout="row">
+									 		<md-input-container flex>
+												<label>email</label>
+												<input 
+													ng-model="ctrl.user.email" 
+													type="email">
+											</md-input-container>
+										</section>
+									</div>
+								</div>
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center">
+										<span>Password</span>
+									</div>
+									<div flex="90">
+										<section layout="row">
+											<md-input-container flex>
+												<label>password</label>
+												<input 
+													ng-model="ctrl.user.password"
+													type="password">
+											</md-input-container>
+										</section>
+									</div>
+								</div>
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center"></div>
+									<div flex="90">
+										<section layout="row" layout-align="start center">
+											<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
+										</section>
+									</div>
+								</div>
+								<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
+									{{ctrl.submitmessage}}
+								</div>
+							</form>
+						 </md-card-content>
+						 <md-card-footer>
+						   Card footer
+						 </md-card-footer>
+				</md-card>
+
+
+		</div>
+
+				<md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter="12px" md-row-height="2:1">
+					<md-grid-tile class="blue">
+					  <md-grid-tile-header>
+						<h3>Heading</h3>
+					  </md-grid-tile-header>
+					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+					</md-grid-tile>
+					<md-grid-tile class="blue">
+					  <md-grid-tile-header>
+						<h3>Heading</h3>
+					  </md-grid-tile-header>
+					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+					</md-grid-tile>
+					<md-grid-tile class="blue">
+					  <md-grid-tile-header>
+						<h3>Heading</h3>
+					  </md-grid-tile-header>
+					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+					</md-grid-tile>
+				</md-grid-list>
+	
+
+
+		<!--Angular Material-->
+		<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+		<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+		<script type="text/javascript" src="./bower_components/angular-aria/angular-aria.js"></script>
+		<script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+
+		<!--Loom API-->
+		<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
+		<script type="text/javascript" src="./bower_components/loom-api-angular/loom.api.ng.1.0.0.js"></script>
+		
+		<script type="text/javascript" src="./src/angular/recruitUnitApp.js"></script>
+		<script type="text/javascript" src="./src/angular/controllers/HomepageCtrl.js"></script>
+		
+	</body>
+</html>
