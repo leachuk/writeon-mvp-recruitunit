@@ -105,6 +105,14 @@
   text-align: right;
 }
 
+.cell.cell-80px {
+  -webkit-box-flex: 0;
+  -webkit-flex: none;
+      -ms-flex: none;
+          flex: none;
+  width: 80px;
+  max-width: 80px;
+}
 .cell.cell-100px {
   -webkit-box-flex: 0;
   -webkit-flex: none;
@@ -113,12 +121,12 @@
   width: 100px;
   max-width: 100px;
 }
-.cell.cell-80px {
+.cell.cell-120px {
   -webkit-box-flex: 0;
   -webkit-flex: none;
       -ms-flex: none;
           flex: none;
-  width: 80px;
-  max-width: 80px;
+  width: 120px;
+  max-width: 120px;
 }
 
