@@ -11,7 +11,8 @@ function HomepageCtrl($http, loomApi) {
 	this.user = {
 		name: "",
 		email: "",
-		password: ""
+		password: "",
+		role: ["recruiter", "candidate"]
 	};
 	this.submitmessage = "";
 

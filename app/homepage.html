@@ -62,6 +62,20 @@
 									</div>
 								</div>
 								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center">
+										<span>Role</span>
+									</div>
+									<div flex="90">
+										<section layout="row">
+									 		<md-radio-group ng-model="ctrl.user">
+											  <md-radio-button ng-repeat="role in ctrl.user.role" ng-value="role" aria-label="role">
+											         {{role}}
+											  </md-radio-button>
+											</md-radio-group>
+										</section>
+									</div>
+								</div>
+								<div layout="row">
 									<div flex="10" layout="row" layout-align="center center"></div>
 									<div flex="90">
 										<section layout="row" layout-align="start center">
