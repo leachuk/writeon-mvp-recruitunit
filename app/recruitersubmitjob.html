@@ -52,7 +52,8 @@
 							<section layout="row">
 								<md-input-container flex>
 									<label>Job Description</label>
-									<input>
+									<input ng-model="ctrl.article.jobDescription"
+										   type="text">
 								</md-input-container>
 							</section>
 						</div>
@@ -64,7 +65,7 @@
 						</div>
 						<div flex="90">
 							<section layout="column" layout-sm="column" layout-align="center start">
-								<md-radio-group>
+								<md-radio-group ng-model="ctrl.article.roleType">
 								  <md-radio-button value="Permanent" class="md-primary">Permanent</md-radio-button>
 								  <md-radio-button value="Contract"> Contract </md-radio-button>
 								</md-radio-group>
@@ -80,7 +81,7 @@
 							<section layout="row">
 								<md-input-container flex>
 								  <label>Pay Bracket</label>
-								  <input type="email">
+								  <input ng-model="crtl.article.payBracketLower" type="number">
 								</md-input-container>
 							</section>
 						</div>
@@ -94,7 +95,7 @@
 							<section layout="row">
 								<md-input-container flex>
 								  <label>Location</label>
-								  <input type="email">
+								  <input ng-model="ctrl.article.locationDescription" type="text">
 								</md-input-container>
 							</section>
 						</div>
@@ -107,7 +108,7 @@
 						<div flex="90">
 							<section layout="column">
 								<md-chips
-									ng-model="ctrl.tags"
+									ng-model="ctrl.article.skills"
 									placeholder="Enter a tag"
 									delete-button-label="Remove Tag"
 									delete-hint="Press delete to remove tag"
@@ -121,11 +122,14 @@
 						<div flex="10" layout="row" layout-align="center center"></div>
 						<div flex="90">
 							<section layout="row" layout-align="start center">
-								<md-button class="md-raised md-primary">Submit</md-button>
+								<md-button class="md-raised md-primary"
+										   ng-click="ctrl.submitJobToCandidate()">Submit</md-button>
 							</section>
 						</div>
 					</div>
-
+					<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
+						{{ctrl.submitmessage}}
+					</div>
 				</form>
 			</div>
 			<div flex="10"></div>
