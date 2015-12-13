@@ -3,9 +3,9 @@
 angular.module('recruitUnitApp')
   .controller('SubmitJobCtrl', SubmitJobCtrl);
 
-SubmitJobCtrl.$inject = ['$http', 'loomApi'];
+SubmitJobCtrl.$inject = ['$http', '$cookies', 'loomApi'];
 
-function SubmitJobCtrl($http, loomApi) {
+function SubmitJobCtrl($http, $cookies, loomApi) {
   console.log("in SubmitJobCtrl");
 
   var self = this;
@@ -25,42 +25,27 @@ function SubmitJobCtrl($http, loomApi) {
 
   self.submitmessage = "message placeholder";
 
-  //abstract to an auth API service, in loomApi
-  var doAuth = function(username, password){
-    var data = {};
-    data.username = username;
-    data.password = password;
-    //console.log(data);
-
-    //this is generating the hash on the server (so extra data can be added to the token), could also be done on the client using Base64Service.encode
-    //url will be replaced by config in loom.api service
-    $http.post('http://localhost:9000/api/users/signin', data).
-      success(function(outdata, status, headers, config) {
-        //console.log(outdata);
-        window.localStorage.setItem("writeon.authtoken", outdata.token);
-        return outdata.token;
-      }).
-      error(function(data, status, headers, config) {
-        console.log("Invalid login attempt: " + data);
-        //submitJobFromRecruiter.$setValidity("unauthorised", false); //need to find how to $setValidity in angular2
-        return data;
-      });
+  //abstract to an client util service
+  var checkAuth = function(username, password){
+    var authCookie = $cookies.get("writeon.authtoken"); //put cookie name into config var
+    return typeof authCookie != 'undefined' ? authCookie : loomApi.User.signInUser(username, password).then(angular.bind(this, function(result){
+      $cookies.put("writeon.authtoken", result.token);
+      self.authToken = result.token; //required angular.bind to enable setting of scope variable within promise
+    }));
   };
+  checkAuth("writeonmvpstep1-1@test.com", "12345678");
 
   SubmitJobCtrl.prototype.submitJobToCandidate = function(){
     console.log("in submitJobForm");
-
-    var localAuthHash = window.localStorage.getItem("writeon.authtoken");
-    var authHash = localAuthHash != null ? localAuthHash : doAuth("writeonmvpstep1-1@test.com", "12345678");//how to persist name/password??
 
     if(submitJobFromRecruiter.checkValidity()){ //submitJobFromRecruiter is form name
       console.log("model:");
       console.log(self.article);
 
-      loomApi.Article.saveArticle(sampleDoc, authHash).then(angular.bind(this,function(result){
+      loomApi.Article.saveArticle(sampleDoc, self.authToken).then(angular.bind(this,function(saveResult){
         console.log("result:");
-        console.log(result);
-        result.success ? self.submitmessage = "Success message" : this.submitmessage = "Error. " + result.message;
+        console.log(saveResult);
+        saveResult.success ? self.submitmessage = "Success message" : self.submitmessage = "Error. " + saveResult.message;
       }));
     }
   };

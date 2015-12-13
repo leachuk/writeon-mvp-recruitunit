@@ -3,5 +3,6 @@
 angular.module('recruitUnitApp', [
   'ngMaterial',
   'ngResource',
+  'ngCookies',
   'loom.api'
 ]);
