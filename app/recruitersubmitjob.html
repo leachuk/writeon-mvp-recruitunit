@@ -75,13 +75,21 @@
 
 					<div layout="row">
 						<div flex="10" layout="row" layout-align="center center">
-							<span>Pay Bracket Description</span>
+							<span>Pay Bracket Between</span>
 						</div>
-						<div flex="90">
+						<div flex="45">
 							<section layout="row">
 								<md-input-container flex>
-								  <label>Pay Bracket</label>
-								  <input ng-model="crtl.article.payBracketLower" type="number">
+								  <label>Lower bound</label>
+								  <input ng-model="ctrl.article.payBracketLower" type="number">
+								</md-input-container>
+							</section>
+						</div>
+						<div flex="45">
+							<section layout="row">
+								<md-input-container flex>
+									<label>Upper bound</label>
+									<input ng-model="ctrl.article.payBracketUpper" type="number">
 								</md-input-container>
 							</section>
 						</div>

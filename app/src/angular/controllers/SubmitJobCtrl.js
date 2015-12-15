@@ -26,6 +26,15 @@ function SubmitJobCtrl($http, $cookies, loomApi) {
   self.submitmessage = "message placeholder";
 
   //abstract to an client util service
+  var checkResponseForReAuth = function(result){
+
+    if(result.error = "unauthorized"){
+
+    } else {
+
+    }
+  }
+
   var checkAuth = function(username, password){
     var authCookie = $cookies.get("writeon.authtoken"); //put cookie name into config var
     return typeof authCookie != 'undefined' ? authCookie : loomApi.User.signInUser(username, password).then(angular.bind(this, function(result){
@@ -33,7 +42,7 @@ function SubmitJobCtrl($http, $cookies, loomApi) {
       self.authToken = result.token; //required angular.bind to enable setting of scope variable within promise
     }));
   };
-  checkAuth("writeonmvpstep1-1@test.com", "12345678");
+  self.authToken = checkAuth("writeonmvpstep1-1@test.com", "12345678");
 
   SubmitJobCtrl.prototype.submitJobToCandidate = function(){
     console.log("in submitJobForm");
@@ -42,7 +51,7 @@ function SubmitJobCtrl($http, $cookies, loomApi) {
       console.log("model:");
       console.log(self.article);
 
-      loomApi.Article.saveArticle(sampleDoc, self.authToken).then(angular.bind(this,function(saveResult){
+      loomApi.Article.saveArticle(self.article, 'server/services/couchDbHandler/couchDbHandler.controller', self.authToken).then(angular.bind(this,function(saveResult){
         console.log("result:");
         console.log(saveResult);
         saveResult.success ? self.submitmessage = "Success message" : self.submitmessage = "Error. " + saveResult.message;
