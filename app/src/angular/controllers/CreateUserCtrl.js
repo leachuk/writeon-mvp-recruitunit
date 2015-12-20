@@ -7,11 +7,13 @@ CreateUserCtrl.$inject = ['$http', 'loomApi'];
 
 function CreateUserCtrl($http, loomApi) {
 	console.log("in CreateUserCtrl");
-	
-	this.user = {
-		name: "",
-		email: "",
-		password: ""
+
+	var self = this;
+	self.user = {
+		"id": "",
+		"name": "",
+		"email": "",
+		"password": ""
 	};
 	this.submitmessage = "";
 
@@ -21,9 +23,11 @@ function CreateUserCtrl($http, loomApi) {
 		console.log(this.user);
 
 		if(createUser.checkValidity()){ //createUser is form name
-			loomApi.User.createNewUser(this.user.email, this.user.name, this.user.password).then(angular.bind(this,function(result){
+			//update createNewUser method to pass in json obj which maps to the server model
+			self.user.id = "org.couchdb.user:" + self.user.name;
+			loomApi.User.createNewUser(self.user).then(angular.bind(this,function(result){
 				console.log(result);
-				result.success ? this.submitmessage = "User created" : this.submitmessage = "Error. " + result.message;
+				result.success ? this.submitmessage = "User created" : this.submitmessage = "Error. " + result.data.message;
 			}));
 		}
 	};
