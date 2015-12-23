@@ -10,8 +10,7 @@ function CreateUserCtrl($http, loomApi) {
 
 	var self = this;
 	self.user = {
-		"id": "",
-		"name": "",
+		"displayName": "",
 		"email": "",
 		"password": ""
 	};
@@ -24,7 +23,7 @@ function CreateUserCtrl($http, loomApi) {
 
 		if(createUser.checkValidity()){ //createUser is form name
 			//update createNewUser method to pass in json obj which maps to the server model
-			self.user.id = "org.couchdb.user:" + self.user.name;
+			//self.user.id = "org.couchdb.user:" + self.user.name;
 			loomApi.User.createNewUser(self.user).then(angular.bind(this,function(result){
 				console.log(result);
 				result.success ? this.submitmessage = "User created" : this.submitmessage = "Error. " + result.data.message;
