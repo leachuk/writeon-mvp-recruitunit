@@ -22,8 +22,9 @@ function CreateUserCtrl($http, loomApi) {
 		console.log(this.user);
 
 		if(createUser.checkValidity()){ //createUser is form name
-			//update createNewUser method to pass in json obj which maps to the server model
-			//self.user.id = "org.couchdb.user:" + self.user.name;
+			//limitation of angular resource. Any parameters are placed on the url in the request, even for POST.
+			//Having a key on the url is bad, so appending to data object.
+			self.user.key = "123456789";
 			loomApi.User.createNewUser(self.user).then(angular.bind(this,function(result){
 				console.log(result);
 				result.success ? this.submitmessage = "User created" : this.submitmessage = "Error. " + result.data.message;
