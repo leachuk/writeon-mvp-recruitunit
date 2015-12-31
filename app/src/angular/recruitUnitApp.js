@@ -8,10 +8,11 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'loom.api',
   'app.home'
 ]).controller('AppController', ['$router', AppController])
-.config(['$componentLoaderProvider', function($componentLoaderProvider){
+.config(['$componentLoaderProvider', '$locationProvider', function($componentLoaderProvider, $locationProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
     return 'src/angular/components/' + name + '/' + name + '.html';
   });
+  $locationProvider.html5Mode(true);
 }])
 
 function AppController($router) {
