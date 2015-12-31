@@ -1,83 +1,142 @@
 <!DOCTYPE html>
 <html lang="en" >
-  <head>
-    <title>Angular Material - Starter App</title>
+	<head>
+		<title>RecruitUnit - Homepage</title>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
 
-    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
-    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
-    <link rel="stylesheet" href="assets/app.css"/>
-  </head>
+		<link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+		<link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+		<link rel="stylesheet" href="src/css/global.css"/>
+	</head>
 
-  <body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
+	<body ng-app="recruitUnitApp" layout="column">
+		<md-toolbar flex="5" class="md-whiteframe-z2">
+		  <md-button class="menu">
+			<md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
+		  </md-button>
+		</md-toolbar>
 
-    <md-toolbar layout="row">
-      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-        <md-icon md-svg-icon="menu" ></md-icon>
-      </md-button>
-      <h1>Angular Material - Starter App</h1>
-    </md-toolbar>
+		<div ng-viewport="home"></div>
 
-    <div flex layout="row">
+		<div>
+			<img style="position:absolute; width:100%;" src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">
+		</div>
 
-        <md-sidenav md-is-locked-open="$mdMedia('gt-sm')" class="md-whiteframe-z2" md-component-id="left">
-          <md-list>
-            <md-item ng-repeat="it in ul.users">
-                <md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
-                  <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
-                  {{it.name}}
-                </md-button>
-            </md-item>
-          </md-list>
-        </md-sidenav>
+		<div layout-align="center start" layout="row">
+			
+				<md-card class="md-whiteframe-z4 buttondemoBasicUsage" flex="66" style="z-index:99;">
+						 <!--<img src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">-->
+						 <h1>Test Heading</h1>
+						 <md-card-content>
+							<form name="createUser" ng-controller="AppController as ctrl">
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center">
+										<span>Email Address</span>
+									</div>
+									<div flex="90">
+										<section layout="row">
+									 		<md-input-container flex>
+												<label>email</label>
+												<input 
+													ng-model="ctrl.user.email" 
+													type="email">
+											</md-input-container>
+										</section>
+									</div>
+								</div>
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center">
+										<span>Password</span>
+									</div>
+									<div flex="90">
+										<section layout="row">
+											<md-input-container flex>
+												<label>password</label>
+												<input 
+													ng-model="ctrl.user.password"
+													type="password">
+											</md-input-container>
+										</section>
+									</div>
+								</div>
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center">
+										<span>Role</span>
+									</div>
+									<div flex="90">
+										<section layout="row">
+									 		<md-radio-group ng-model="ctrl.user">
+											  <md-radio-button ng-repeat="role in ctrl.user.role" ng-value="role" aria-label="role">
+											         {{role}}
+											  </md-radio-button>
+											</md-radio-group>
+										</section>
+									</div>
+								</div>
+								<div layout="row">
+									<div flex="10" layout="row" layout-align="center center"></div>
+									<div flex="90">
+										<section layout="row" layout-align="start center">
+											<md-button class="md-raised md-primary" ng-click="ctrl.createNewUser()">Sign me up</md-button>
+										</section>
+									</div>
+								</div>
+								<div class="messages" ng-if="ctrl.submitmessage" ng-cloak>
+									{{ctrl.submitmessage}}
+								</div>
+							</form>
+						 </md-card-content>
+						 <md-card-footer>
+						   Card footer
+						 </md-card-footer>
+				</md-card>
 
-        <md-content flex id="content">
-          <md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
-          <h2>{{ul.selected.name}}</h2>
-          <p>{{ul.selected.content}}</p>
 
-          <md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
-            <md-icon md-svg-icon="share"></md-icon>
-          </md-button>
-        </md-content>
+		</div>
 
-    </div>
+				<md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter="12px" md-row-height="2:1">
+					<md-grid-tile class="blue">
+					  <md-grid-tile-header>
+						<h3>Heading</h3>
+					  </md-grid-tile-header>
+					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+					</md-grid-tile>
+					<md-grid-tile class="blue">
+					  <md-grid-tile-header>
+						<h3>Heading</h3>
+					  </md-grid-tile-header>
+					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+					</md-grid-tile>
+					<md-grid-tile class="blue">
+					  <md-grid-tile-header>
+						<h3>Heading</h3>
+					  </md-grid-tile-header>
+					  <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+					</md-grid-tile>
+				</md-grid-list>
 
-    <script src="./bower_components/angular/angular.js"></script>
-    <script src="./bower_components/angular-animate/angular-animate.js"></script>
-    <script src="./bower_components/angular-aria/angular-aria.js"></script>
-    <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+		<!--Angular -->
+		<script type="text/javascript" src="./bower_components/angular/angular.js"></script>
+		<script type="text/javascript" src="./bower_components/angular-cookies/angular-cookies.js"></script>
+		<script type="text/javascript" src="./bower_components/angular-new-router/dist/router.es5.min.js"></script>
 
-    <script src="./src/users/Users.js"></script>
-    <script src="./src/users/UserController.js"></script>
-    <script src="./src/users/UserService.js"></script>
+		<!--Angular Material-->
+		<script type="text/javascript" src="./bower_components/angular-animate/angular-animate.js"></script>
+		<script type="text/javascript" src="./bower_components/angular-aria/angular-aria.js"></script>
+		<script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
 
-    <script type="text/javascript">
+		<!--Loom API-->
+		<script type="text/javascript" src="./bower_components/angular-resource/angular-resource.js"></script>
+		<script type="text/javascript" src="./bower_components/loom-api-angular/loom.api.ng.1.1.1.js"></script>
 
-          angular
-              .module('starterApp', ['ngMaterial', 'users'])
-              .config(function($mdThemingProvider, $mdIconProvider){
-
-                  $mdIconProvider
-                      .defaultIconSet("./assets/svg/avatars.svg", 128)
-                      .icon("menu"       , "./assets/svg/menu.svg"        , 24)
-                      .icon("share"      , "./assets/svg/share.svg"       , 24)
-                      .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
-                      .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
-                      .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
-                      .icon("phone"      , "./assets/svg/phone.svg"       , 512);
-
-                      $mdThemingProvider.theme('default')
-                          .primaryPalette('brown')
-                          .accentPalette('red');
-
-              });
-
-    </script>
-
-  </body>
+		<!--Application-->
+		<script type="text/javascript" src="./src/angular/recruitUnitApp.js"></script>
+		<script type="text/javascript" src="./src/angular/controllers/HomepageCtrl.js"></script>
+		<script type="text/javascript" src="./src/angular/components/home/home.js"></script>
+		
+	</body>
 </html>
