@@ -8,7 +8,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'loom.api',
   'app.home'
 ]).controller('AppController', ['$router', AppController])
-.config(['$componentLoaderProvider', '$locationProvider', function($componentLoaderProvider, $locationProvider){
+.config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', function($componentLoaderProvider, $locationProvider, $httpProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
     return 'src/angular/components/' + name + '/' + name + '.html';
   });
@@ -18,6 +18,6 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
 function AppController($router) {
   $router.config([
     { path: '/', redirectTo: '/home' },
-    { path: '/home', component:{ home :'home' } }
+    { path: '/home', component : "home" } //removed 'home: "home"' config as this was causing the controller to be run twice
   ]);
 }
