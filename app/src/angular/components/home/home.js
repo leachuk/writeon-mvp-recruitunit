@@ -30,7 +30,7 @@ function HomeController($http, loomApi, $location) {
       this.user.key = "123456789";
       loomApi.User.createNewUser(this.user).then(angular.bind(this,function(result){
         console.log(result);
-        result.success ? $location.path("/user").search({usercreated: "true"}) : this.submitmessage = "Error. " + result.data.message;
+        result.success ? $location.path("/user/" + this.user.email).search({usercreated: "true"}) : this.submitmessage = "Error. " + result.data.message;
       }));
     }
   };
