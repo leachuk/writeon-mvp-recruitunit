@@ -6,7 +6,8 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'ngCookies',
   'ngNewRouter',
   'loom.api',
-  'app.home'
+  'app.home',
+  'app.userLanding'
 ]).controller('AppController', ['$router', AppController])
 .config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', function($componentLoaderProvider, $locationProvider, $httpProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
@@ -18,6 +19,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
 function AppController($router) {
   $router.config([
     { path: '/', redirectTo: '/home' },
-    { path: '/home', component : "home" } //removed 'home: "home"' config as this was causing the controller to be run twice
+    { path: '/home', component : 'home' },
+    { path: '/user', component: 'userLanding' }
   ]);
 }

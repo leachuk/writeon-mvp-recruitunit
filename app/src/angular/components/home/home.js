@@ -3,9 +3,9 @@
 angular.module('app.home', [])
   .controller('HomeController', HomeController);
 
-HomeController.$inject = ['$http', 'loomApi'];
+HomeController.$inject = ['$http', 'loomApi', '$location'];
 
-function HomeController($http, loomApi) {
+function HomeController($http, loomApi, $location) {
   console.log("in HomeController");
 
   //client model maps to server model 'User'
@@ -30,7 +30,7 @@ function HomeController($http, loomApi) {
       this.user.key = "123456789";
       loomApi.User.createNewUser(this.user).then(angular.bind(this,function(result){
         console.log(result);
-        result.success ? this.submitmessage = "User created" : this.submitmessage = "Error. " + result.data.message;
+        result.success ? $location.path("/user").search({usercreated: "true"}) : this.submitmessage = "Error. " + result.data.message;
       }));
     }
   };
