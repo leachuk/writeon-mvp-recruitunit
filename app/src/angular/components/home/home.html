@@ -50,22 +50,20 @@
                         </section>
                     </div>
                 </div>
-                <!--
                 <div layout="row">
                     <div flex="10" layout="row" layout-align="center center">
                         <span>Role</span>
                     </div>
                     <div flex="90">
                         <section layout="row">
-                            <md-radio-group>
-                                <md-radio-button ng-repeat="role in home.user.role" ng-value="role" aria-label="role">
+                            <md-radio-group ng-model="home.user.jobRole">
+                                <md-radio-button ng-repeat="role in home.roles" ng-value="role" aria-label="role">
                                     {{role}}
                                 </md-radio-button>
                             </md-radio-group>
                         </section>
                     </div>
                 </div>
-                -->
                 <div layout="row">
                     <div flex="10" layout="row" layout-align="center center"></div>
                     <div flex="90">
