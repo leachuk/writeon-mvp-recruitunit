@@ -38,20 +38,6 @@
                 </div>
                 <div layout="row">
                     <div flex="10" layout="row" layout-align="center center">
-                        <span>Password</span>
-                    </div>
-                    <div flex="90">
-                        <section layout="row">
-                            <md-input-container flex>
-                                <label>password</label>
-                                <input ng-model="home.user.password"
-                                       type="password">
-                            </md-input-container>
-                        </section>
-                    </div>
-                </div>
-                <div layout="row">
-                    <div flex="10" layout="row" layout-align="center center">
                         <span>Role</span>
                     </div>
                     <div flex="90">
@@ -61,6 +47,20 @@
                                     {{role}}
                                 </md-radio-button>
                             </md-radio-group>
+                        </section>
+                    </div>
+                </div>
+                <div layout="row">
+                    <div flex="10" layout="row" layout-align="center center">
+                        <span>Password</span>
+                    </div>
+                    <div flex="90">
+                        <section layout="row">
+                            <md-input-container flex>
+                                <label>password</label>
+                                <input ng-model="home.user.password"
+                                       type="password">
+                            </md-input-container>
                         </section>
                     </div>
                 </div>
