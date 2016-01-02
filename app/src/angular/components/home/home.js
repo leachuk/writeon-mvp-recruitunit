@@ -8,7 +8,7 @@ HomeController.$inject = ['$http', 'loomApi'];
 function HomeController($http, loomApi) {
   console.log("in HomeController");
 
-  //var self = this;
+  //client model maps to server model 'User'
   this.user = {
     "displayName": "",
     "email": "",
@@ -26,6 +26,7 @@ function HomeController($http, loomApi) {
     if(createUser.checkValidity()){ //createUser is form name
       //limitation of angular resource. Any parameters are placed on the url in the request, even for POST.
       //Having a key on the url is bad, so appending to data object.
+      //ToDo: asses if the key is necesssary considering the server can be configured to only accept requests from specific hosts (via config > express.js)
       this.user.key = "123456789";
       loomApi.User.createNewUser(this.user).then(angular.bind(this,function(result){
         console.log(result);
