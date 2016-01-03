@@ -7,7 +7,8 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'ngNewRouter',
   'loom.api',
   'app.home',
-  'app.userLanding'
+  'app.userLanding',
+  'app.testCreate'
 ]).controller('AppController', ['$router', AppController])
 .config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', function($componentLoaderProvider, $locationProvider, $httpProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
@@ -20,6 +21,7 @@ function AppController($router) {
   $router.config([
     { path: '/', redirectTo: '/home' },
     { path: '/home', component : 'home' },
-    { path: '/user/:email', component: 'userLanding' }
+    { path: '/user/:email', component: 'userLanding' },
+    { path: '/user/:email/unittest/create', component: 'testCreate' }
   ]);
 }
