@@ -1,15 +1,11 @@
 'use strict';
 
-angular.module('app.testCreate', ['app.testDelete'])
-  .controller('TestCreateController', TestCreateController);
+angular.module('app.testCreate', [])
+  .controller('TestCreateController', Controller);
 
-TestCreateController.$inject = ['$http', 'loomApi', '$routeParams'];
+Controller.$inject = ['$http', 'loomApi', '$routeParams'];
 
-TestCreateController.$routeConfig = [
-  { path: '/delete',  component: {'delete': 'testDelete'} }
-];
-
-function TestCreateController($http, loomApi, $routeParams) {
+function Controller($http, loomApi, $routeParams) {
   console.log("in TestCreateController");
 
   //routeParams
