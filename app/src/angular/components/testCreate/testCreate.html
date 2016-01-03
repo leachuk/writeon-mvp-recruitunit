@@ -1,6 +1,7 @@
 <h1>Test Create</h1>
 <p>useremail: {{testCreate.useremail}}</p>
+<p>currentRoute: {{testCreate.currentRoute}}</p>
 
-<div ng-if="testDelete.loaded">foo</div>
+<div ng-if="testCreate.currentRoute == 'TestCreateController'">foo</div>
 
-<div ng-viewport="delete"></div>
+<!--<div ng-viewport></div> totally fucked!-->

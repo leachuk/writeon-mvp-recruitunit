@@ -6,7 +6,6 @@ angular.module('app.testCreate', ['app.testDelete'])
 TestCreateController.$inject = ['$http', 'loomApi', '$routeParams'];
 
 TestCreateController.$routeConfig = [
-  { path: '/', component:'testCreate' },
   { path: '/delete',  component: {'delete': 'testDelete'} }
 ];
 
@@ -15,4 +14,6 @@ function TestCreateController($http, loomApi, $routeParams) {
 
   //routeParams
   this.useremail = $routeParams.email;
+
+  this.currentRoute =  "TestCreateController";
 }
