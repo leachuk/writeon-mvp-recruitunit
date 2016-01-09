@@ -1,0 +1,105 @@
+<h1>Submit a RecruitUnit Form</h1>
+<p>test id: {{formSubmit.formId}}</p>
+
+<md-content layout="row" class="md-padding buttondemoBasicUsage">
+    <div flex="10"></div>
+    <div flex="80">
+        <form name="submitJobFromRecruiter">
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Job Description</span>
+                </div>
+                <div flex="90">
+                    <section layout="row">
+                        <md-input-container flex>
+                            <label>Job Description</label>
+                            <input ng-model="formSubmit.article.jobDescription"
+                                   type="text">
+                        </md-input-container>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Role Type</span>
+                </div>
+                <div flex="90">
+                    <section layout="column" layout-sm="column" layout-align="center start">
+                        <md-radio-group ng-model="formSubmit.article.roleType">
+                            <md-radio-button value="Permanent" class="md-primary">Permanent</md-radio-button>
+                            <md-radio-button value="Contract"> Contract </md-radio-button>
+                        </md-radio-group>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Pay Bracket Between</span>
+                </div>
+                <div flex="45">
+                    <section layout="row">
+                        <md-input-container flex>
+                            <label>Lower bound</label>
+                            <input ng-model="formSubmit.article.payBracketLower" type="number">
+                        </md-input-container>
+                    </section>
+                </div>
+                <div flex="45">
+                    <section layout="row">
+                        <md-input-container flex>
+                            <label>Upper bound</label>
+                            <input ng-model="formSubmit.article.payBracketUpper" type="number">
+                        </md-input-container>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Location Description</span>
+                </div>
+                <div flex="90">
+                    <section layout="row">
+                        <md-input-container flex>
+                            <label>Location</label>
+                            <input ng-model="formSubmit.article.locationDescription" type="text">
+                        </md-input-container>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Required Skills Description</span>
+                </div>
+                <div flex="90">
+                    <section layout="column">
+                        <md-chips
+                                ng-model="formSubmit.article.skills"
+                                placeholder="Enter a tag"
+                                delete-button-label="Remove Tag"
+                                delete-hint="Press delete to remove tag"
+                                secondary-placeholder="+Tag">
+                        </md-chips>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center"></div>
+                <div flex="90">
+                    <section layout="row" layout-align="start center">
+                        <md-button class="md-raised md-primary"
+                                   ng-click="formSubmit.submitJobToCandidate()">Submit</md-button>
+                    </section>
+                </div>
+            </div>
+            <div class="messages" ng-if="formSubmit.submitmessage" ng-cloak>
+                {{formSubmit.submitmessage}}
+            </div>
+        </form>
+    </div>
+    <div flex="10"></div>
+</md-content>

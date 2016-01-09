@@ -9,7 +9,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'app.home',
   'app.userLanding',
   'app.testCreate',
-  'app.uTestLanding'
+  'app.user.formSubmitController'
 ]).controller('AppController', ['$router', AppController])
 .config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', function($componentLoaderProvider, $locationProvider, $httpProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
@@ -23,6 +23,6 @@ function AppController($router) {
     { path: '/', redirectTo: '/home' },
     { path: '/home', component : 'home' },
     { path: '/user/:email', component: 'userLanding' },
-    { path: '/user/:email/unittest', component: 'uTestLanding' }
+    { path: '/user/:email/form/:id/submit', component: 'formSubmit' }
   ]);
 }
