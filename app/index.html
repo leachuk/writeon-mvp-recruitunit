@@ -16,10 +16,33 @@
 	</head>
 
 	<body ng-app="recruitUnitApp" ng-controller="AppController as app" layout="column">
-		<md-toolbar flex="5" class="md-whiteframe-z2">
-		  <md-button class="menu">
-			<md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
-		  </md-button>
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<md-button class="md-icon-button" aria-label="Settings">
+					<md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
+				</md-button>
+
+				<div layout="row" layout-align="end center" flex>
+					<div>
+						<md-input-container flex>
+							<label>Email</label>
+							<input ng-model=""
+								   type="text">
+						</md-input-container>
+					</div>
+					<div>
+						<md-input-container flex>
+							<label>Password</label>
+							<input ng-model=""
+								   type="text">
+						</md-input-container>
+					</div>
+					<div>
+						<md-button ng-click="">Login</md-button>
+					</div>
+				</div>
+
+			</div>
 		</md-toolbar>
 
 		<div ng-viewport></div>
