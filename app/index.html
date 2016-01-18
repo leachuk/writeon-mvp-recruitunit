@@ -21,27 +21,25 @@
 				<md-button class="md-icon-button" aria-label="Settings">
 					<md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
 				</md-button>
-
-				<div layout="row" layout-align="end center" flex>
+				<div layout="row" layout-align="end center" ng-controller="HomeController as homeUserLogin" flex>
 					<div>
 						<md-input-container flex>
 							<label>Email</label>
-							<input ng-model=""
+							<input ng-model="homeUserLogin.user.email"
 								   type="text">
 						</md-input-container>
 					</div>
 					<div>
 						<md-input-container flex>
 							<label>Password</label>
-							<input ng-model=""
+							<input ng-model="homeUserLogin.user.password"
 								   type="text">
 						</md-input-container>
 					</div>
 					<div>
-						<md-button ng-click="">Login</md-button>
+						<md-button ng-click="homeUserLogin.signInUser()">Login</md-button>
 					</div>
 				</div>
-
 			</div>
 		</md-toolbar>
 
@@ -64,6 +62,7 @@
 		<!--Application-->
 		<script type="text/javascript" src="./src/angular/recruitUnitApp.js"></script>
 		<script type="text/javascript" src="./src/angular/components/home/home.js"></script>
+		<script type="text/javascript" src="./src/angular/components/home/HomeController.js"></script>
 		<script type="text/javascript" src="./src/angular/components/userLanding/userLanding.js"></script>
 		<script type="text/javascript" src="./src/angular/components/formSubmit/formSubmit.js"></script>
 		<script type="text/javascript" src="./src/angular/components/formSubmit/FormSubmitController.js"></script>
