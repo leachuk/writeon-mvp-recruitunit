@@ -16,12 +16,12 @@
 	</head>
 
 	<body ng-app="recruitUnitApp" ng-controller="AppController as app" layout="column">
-		<md-toolbar>
+		<md-toolbar ng-controller="HomeController as homeUserLogin">
 			<div class="md-toolbar-tools">
 				<md-button class="md-icon-button" aria-label="Settings">
 					<md-icon md-svg-icon="./assets/svg/menu.svg"></md-icon>
 				</md-button>
-				<div layout="row" layout-align="end center" ng-controller="HomeController as homeUserLogin" flex>
+				<div layout="row" layout-align="end center" flex>
 					<div>
 						<md-input-container flex>
 							<label>Email</label>
@@ -40,6 +40,9 @@
 						<md-button ng-click="homeUserLogin.signInUser()">Login</md-button>
 					</div>
 				</div>
+			</div>
+			<div layout="row" layout-align="end center" ng-if="homeUserLogin.submitmessage" ng-cloak>
+				<div>{{homeUserLogin.submitmessage}}</div>
 			</div>
 		</md-toolbar>
 

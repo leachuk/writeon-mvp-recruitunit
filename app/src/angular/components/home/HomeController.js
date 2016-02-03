@@ -40,13 +40,15 @@
       }
     };
 
+    //login existing user
     Controller.prototype.signInUser = function(){
       console.log("in signInUser");
       console.log(this.user);
-
+      //ToDo: fix result.data.message so it's consistent.
       loomApi.User.signInUser(this.user.email, this.user.password).then(angular.bind(this,function(result){
         console.log(result);
-        result.success ? this.submitmessage = "User signed in successfully" : this.submitmessage = "Error. " + result.message;
+        result.success ? this.submitmessage = "User signed in successfully" : this.submitmessage = "Error. " + result.data.message;
+        console.log(this.submitmessage);
       }));
     };
   }
