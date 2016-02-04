@@ -11,4 +11,5 @@ function UserLandingController($http, loomApi, $location, $routeParams) {
   this.usercreated = $location.search().usercreated;
   //routeParams
   this.useremail = $routeParams.email;
+  //this.testid = $routeParams.testid;
 }
