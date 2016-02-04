@@ -7,12 +7,13 @@
 
   Controller.$inject = [
     '$routeParams',
+    '$location',
     '$http',
     '$cookies',
     'loomApi'
   ];
 
-  function Controller($routeParams, $http, $cookies, loomApi) {
+  function Controller($routeParams, $location, $http, $cookies, loomApi) {
     console.log("in HomeController");
 
     //client model maps to server model 'User'
@@ -44,13 +45,24 @@
     Controller.prototype.signInUser = function(){
       console.log("in signInUser");
       console.log(this.user);
-      //ToDo: fix result.data.message so it's consistent.
-      loomApi.User.signInUser(this.user.email, this.user.password).then(angular.bind(this,function(result){
+
+      loomApi.User.signInUser(this.user.email, this.user.password).then(angular.bind(this,function(result, status, headers, config){
         console.log(result);
-        result.success ? this.submitmessage = "User signed in successfully" : this.submitmessage = "Error. " + result.data.message;
-        console.log(this.submitmessage);
+        console.log(status);
+        console.log(headers);
+        console.log(config);
+        result.success ? persistAuth(result.token, this.user.email) : this.submitmessage = "Error. " + result.data.message;
+        //console.log(this.submitmessage);
       }));
     };
+
+    //private functions. Probably move to a service
+    var persistAuth = function(token, username){
+      window.localStorage.setItem("writeon.authtoken", token);
+      window.localStorage.setItem("writeon.username", username);
+      //now redirect to users home page, where token is checked for
+      window.location = "/home"; //will prob need to change this to come from header referer
+    }
   }
 
 })();
