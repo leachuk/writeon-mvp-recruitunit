@@ -61,7 +61,7 @@
       window.localStorage.setItem("writeon.authtoken", token);
       window.localStorage.setItem("writeon.username", username);
       //now redirect to users home page, where token is checked for
-      window.location = "/home"; //will prob need to change this to come from header referer
+      window.location = "/user/" + username; //will prob need to change this to come from header referer
     }
   }
 
