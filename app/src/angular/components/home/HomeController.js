@@ -51,7 +51,15 @@
         console.log(status);
         console.log(headers);
         console.log(config);
-        result.success ? persistAuth(result.token, this.user.email) : this.submitmessage = "Error. " + result.data.message;
+
+        result.success
+          ?
+            (persistAuth(result.token, this.user.email),
+            this.user.email = "",
+            this.user.password = "",
+            this.submitmessage = "")
+          :
+            this.submitmessage = "Error. " + result.data.message;
         //console.log(this.submitmessage);
       }));
     };
@@ -61,7 +69,7 @@
       window.localStorage.setItem("writeon.authtoken", token);
       window.localStorage.setItem("writeon.username", username);
       //now redirect to users home page, where token is checked for
-      window.location = "/user/" + username; //will prob need to change this to come from header referer
+      $location.path("/user/" + username).search({usercreated: "true"}); //will prob need to change this to come from header referer
     }
   }
 
