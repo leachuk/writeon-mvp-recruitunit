@@ -22,7 +22,6 @@
       password: ""
     };
     this.submitmessage = "";
-    this.roles = ["developer", "recruiter"];
 
     //todo: test this still works when minified.
     Controller.prototype.createNewUser = function(){
@@ -54,7 +53,7 @@
 
         result.success
           ?
-            (persistAuth(result.token, this.user.email),
+            (persistUserAuth(result.token, this.user.email),
             this.user.email = "",
             this.user.password = "",
             this.submitmessage = "")
@@ -65,7 +64,7 @@
     };
 
     //private functions. Probably move to a service
-    var persistAuth = function(token, username){
+    var persistUserAuth = function(token, username){
       window.localStorage.setItem("writeon.authtoken", token);
       window.localStorage.setItem("writeon.username", username);
       //now redirect to users home page, where token is checked for
