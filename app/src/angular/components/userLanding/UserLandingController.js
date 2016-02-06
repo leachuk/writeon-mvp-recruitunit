@@ -16,7 +16,7 @@
   function Controller($routeParams,$http,$cookies,$location,loomApi) {
     console.log("in UserLandingController");
 
-    this.usercreated = $location.search().usercreated;
+    //this.usercreated = $location.search().usercreated; //ref to get param from url
     //routeParams
     this.useremail = $routeParams.email;
     this.role = "";

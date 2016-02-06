@@ -68,7 +68,8 @@
       window.localStorage.setItem("writeon.authtoken", token);
       window.localStorage.setItem("writeon.username", username);
       //now redirect to users home page, where token is checked for
-      $location.path("/user/" + username).search({usercreated: "true"}); //will prob need to change this to come from header referer
+      $location.path("/user/" + username);
+      //$location.path("/user/" + username).search({usercreated: "true"}); for reference to add param to url
     }
   }
 
