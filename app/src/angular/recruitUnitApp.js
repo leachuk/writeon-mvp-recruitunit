@@ -8,6 +8,9 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'loom.api',
   'app.homeController',
   'app.user.userLandingController',
+  'app.user.recruiterLandingController',
+  'app.user.recruiterAdminController',
+  'app.user.developerAdminController',
   'app.testCreate',
   'app.user.formSubmitController'
 ]).controller('AppController', ['$router', AppController])
@@ -21,7 +24,11 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
 function AppController($router) {
   $router.config([
     { path: '/', redirectTo: '/home' },
-    { path: '/home', component : 'home' },
+    { path: '/home', component: 'home' },
+    { path: '/developer/:email', component: 'developerLanding' },
+    { path: '/recruiter/:email', component: 'recruiterLanding' },
+    { path: '/admin/recruiter/:email', component: 'recruiterAdmin' },
+    { path: '/admin/developer/:email', component: 'developerAdmin' },
     { path: '/user/:email', component: 'userLanding' },
     { path: '/user/:email/form/:id/submit', component: 'formSubmit' }
   ]);

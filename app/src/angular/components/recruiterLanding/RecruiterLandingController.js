@@ -2,20 +2,19 @@
   'use strict';
 
   angular
-    .module('app.user.userLandingController')
-    .controller('UserLandingController', Controller);
+    .module('app.user.recruiterLandingController')
+    .controller('RecruiterLandingController', Controller);
 
   Controller.$inject = [
     '$routeParams',
     '$http',
     '$cookies',
     '$location',
-    '$router',
     'loomApi'
   ];
 
-  function Controller($routeParams,$http,$cookies,$location,$router,loomApi) {
-    console.log("in UserLandingController");
+  function Controller($routeParams,$http,$cookies,$location,loomApi) {
+    console.log("in RecruiterLandingController");
 
     //this.usercreated = $location.search().usercreated; //ref to get param from url
     //routeParams
