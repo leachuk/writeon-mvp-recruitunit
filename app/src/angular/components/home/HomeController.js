@@ -22,6 +22,7 @@
       password: ""
     };
     this.submitmessage = "";
+    this.roles = ['developer', 'recruiter'];
 
     //todo: test this still works when minified.
     Controller.prototype.createNewUser = function(){
