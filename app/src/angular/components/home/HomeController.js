@@ -36,7 +36,19 @@
         this.user.key = "123456789";
         loomApi.User.createNewUser(this.user).then(angular.bind(this,function(result){
           console.log(result);
-          result.success ? $location.path("/user/" + this.user.email).search({usercreated: "true"}) : this.submitmessage = "Error. " + result.data.message;
+          result.success
+            ?
+              loomApi.User.signInUser(this.user.email, this.user.password).then(angular.bind(this,function(result, status, headers, config){
+                result.success
+                  ?
+                  (persistUserAuth(result.token, this.user.email),
+                   $location.path("/user/" + this.user.email).search({usercreated: "true"}))
+                  :
+                  this.submitmessage = "Error. " + result.data.message;
+                //console.log(this.submitmessage);
+              }))
+            :
+              this.submitmessage = "Error. " + result.data.message;
         }));
       }
     };
