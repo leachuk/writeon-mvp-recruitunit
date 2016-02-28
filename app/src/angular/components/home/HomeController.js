@@ -42,7 +42,7 @@
                 result.success
                   ?
                   (persistUserAuth(result.token, this.user.email),
-                   $location.path("/user/" + this.user.email).search({usercreated: "true"}))
+                   $location.path("/user/" + this.user.email))
                   :
                   this.submitmessage = "Error. " + result.data.message;
                 //console.log(this.submitmessage);
