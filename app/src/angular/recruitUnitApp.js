@@ -9,6 +9,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'app.homeController',
   'app.user.userLandingController',
   'app.user.recruiterLandingController',
+  'app.user.developerLandingController',
   'app.user.recruiterAdminController',
   'app.user.developerAdminController',
   'app.testCreate',

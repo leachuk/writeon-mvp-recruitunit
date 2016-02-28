@@ -1,2 +1,2 @@
 angular
-  .module('app.user.recruiterLandingController', []);
+  .module('app.user.developerLandingController', []);
