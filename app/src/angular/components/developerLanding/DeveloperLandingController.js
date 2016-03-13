@@ -23,7 +23,7 @@
     this.id = "";
 
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
-    loomApi.User.getUser(this.useremail, token).then(angular.bind(this,function(result){
+    loomApi.User.getSpecifiedUser(this.useremail, token).then(angular.bind(this,function(result){
       console.log(result);
       if (result.success) {
         this.role = result.data.jobRole;
