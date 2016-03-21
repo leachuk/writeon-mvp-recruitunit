@@ -1,4 +1,112 @@
 <h1>Developer Public Landing</h1>
+<h2>Developers Details:</h2>
 <p>user email: {{developerLanding.useremail}}</p>
 <p>user role: {{developerLanding.role}}</p>
 <p>user id: {{developerLanding.id}}</p>
+
+<h2>Logged In User Details:</h2>
+<p>user email: {{developerLanding.loggedinuser.email}}</p>
+<p>user role: {{developerLanding.loggedinuser.role}}</p>
+
+<md-content layout="row" class="md-padding buttondemoBasicUsage">
+    <div flex="10"></div>
+    <div flex="80">
+        <form name="submitJobFromRecruiter">
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Job Description</span>
+                </div>
+                <div flex="90">
+                    <section layout="row">
+                        <md-input-container flex>
+                            <label>Job Description</label>
+                            <input ng-model="developerLanding.article.jobDescription"
+                                   type="text">
+                        </md-input-container>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Role Type</span>
+                </div>
+                <div flex="90">
+                    <section layout="column" layout-sm="column" layout-align="center start">
+                        <md-radio-group ng-model="developerLanding.article.roleType">
+                            <md-radio-button value="Permanent" class="md-primary">Permanent</md-radio-button>
+                            <md-radio-button value="Contract"> Contract </md-radio-button>
+                        </md-radio-group>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Pay Bracket Between</span>
+                </div>
+                <div flex="45">
+                    <section layout="row">
+                        <md-input-container flex>
+                            <label>Lower bound</label>
+                            <input ng-model="developerLanding.article.payBracketLower" type="number">
+                        </md-input-container>
+                    </section>
+                </div>
+                <div flex="45">
+                    <section layout="row">
+                        <md-input-container flex>
+                            <label>Upper bound</label>
+                            <input ng-model="developerLanding.article.payBracketUpper" type="number">
+                        </md-input-container>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Location Description</span>
+                </div>
+                <div flex="90">
+                    <section layout="row">
+                        <md-input-container flex>
+                            <label>Location</label>
+                            <input ng-model="developerLanding.article.locationDescription" type="text">
+                        </md-input-container>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center">
+                    <span>Required Skills Description</span>
+                </div>
+                <div flex="90">
+                    <section layout="column">
+                        <md-chips
+                                ng-model="developerLanding.article.skills"
+                                placeholder="Enter a tag"
+                                delete-button-label="Remove Tag"
+                                delete-hint="Press delete to remove tag"
+                                secondary-placeholder="+Tag">
+                        </md-chips>
+                    </section>
+                </div>
+            </div>
+
+            <div layout="row">
+                <div flex="10" layout="row" layout-align="center center"></div>
+                <div flex="90">
+                    <section layout="row" layout-align="start center">
+                        <md-button class="md-raised md-primary"
+                                   ng-click="developerLanding.submitJobToCandidate()">Submit</md-button>
+                    </section>
+                </div>
+            </div>
+            <div class="messages" ng-if="developerLanding.submitmessage" ng-cloak>
+                {{developerLanding.submitmessage}}
+            </div>
+        </form>
+    </div>
+    <div flex="10"></div>
+</md-content>

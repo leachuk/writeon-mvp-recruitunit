@@ -26,7 +26,7 @@ function AppController($router) {
   $router.config([
     { path: '/', redirectTo: '/home' },
     { path: '/home', component: 'home' },
-    { path: '/developer/:email', component: 'developerLanding' },
+    { path: '/developer/:email', components: {default : 'developerLanding', form: 'formSubmit'} },
     { path: '/recruiter/:email', component: 'recruiterLanding' },
     { path: '/admin/recruiter/:email', component: 'recruiterAdmin' },
     { path: '/admin/developer/:email', component: 'developerAdmin' },
