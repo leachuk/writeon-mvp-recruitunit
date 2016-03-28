@@ -34,7 +34,8 @@
         //Having a key on the url is bad, so appending to data object.
         //ToDo: asses if the key is necesssary considering the server can be configured to only accept requests from specific hosts (via config > express.js)
         this.user.key = "123456789";
-        loomApi.User.createNewUser(this.user).then(angular.bind(this,function(result){
+
+        loomApi.User.createNewUser(this.user, 'server/services/recruitunit/users/recruitUnitUserService.controller.js').then(angular.bind(this,function(result){
           console.log(result);
           result.success
             ?
