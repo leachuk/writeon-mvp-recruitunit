@@ -33,7 +33,9 @@
       "payBracketLower": null,
       "payBracketUpper": null,
       "locationDescription": "",
-      "skills": ['node', 'java', 'html', 'grunt']
+      "skills": ['node', 'java', 'html', 'grunt'],
+      "submitTo" : "",
+      "submittedBy" : ""
     };
 
 
@@ -62,6 +64,9 @@
       if (submitJobFromRecruiter.checkValidity()) { //submitJobFromRecruiter is form name
         console.log("model:");
         console.log(this.article);
+
+        this.article.submitTo = this.useremail;
+        this.article.submittedBy = this.loggedinuser.email;
 
         loomApi.Article.saveArticle(this.article, 'server/services/recruitunit/articles/recruitUnitContentService.controller.js', token).then(angular.bind(this, function (saveResult) {
           console.log("result:");

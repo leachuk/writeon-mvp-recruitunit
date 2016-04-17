@@ -27,7 +27,9 @@
       "payBracketLower": null,
       "payBracketUpper": null,
       "locationDescription": "",
-      "skills": ['node', 'java', 'html', 'grunt']
+      "skills": ['node', 'java', 'html', 'grunt'],
+      "submitTo" : "",
+      "submittedBy" : ""
     };
 
     var checkAuth = function(username, password){
