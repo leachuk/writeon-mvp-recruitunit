@@ -14,7 +14,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'app.user.developerAdminController',
   'app.testCreate',
   'app.user.formSubmitController'
-]).controller('AppController', ['$router', AppController])
+]).controller('AppController', ['$router', '$mdComponentRegistry', AppController])
 .config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', function($componentLoaderProvider, $locationProvider, $httpProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
     return 'src/angular/components/' + name + '/' + name + '.html';
@@ -22,7 +22,12 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   $locationProvider.html5Mode(true);
 }])
 
-function AppController($router) {
+function AppController($router, $mdComponentRegistry) {
+  $mdComponentRegistry.when('left').then(function(leftSidenav){
+    leftSidenav.open();
+    console.log(leftSidenav.isOpen());
+  });
+  //$mdSidenav('left').open();
   $router.config([
     { path: '/', redirectTo: '/home' },
     { path: '/home', component: 'home' },
