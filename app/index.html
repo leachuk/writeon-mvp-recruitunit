@@ -57,9 +57,18 @@
 					<md-content layout-padding>
 						<section layout="column" layout-align="center start">
 							<md-list>
-								<md-button ng-href="/home" ng-click="close()" class="md-primary">Home</md-button>
-								<md-button ng-href="/#" ng-click="close()" class="md-primary">Test Criteria</md-button>
-								<md-button ng-href="/#" ng-click="close()" class="md-primary">Admin</md-button>
+								<md-button ng-href="/home" ng-click="close()" class="md-primary">
+									<md-icon md-svg-src='./bower_components/material-design-icons/action/svg/production/ic_home_24px.svg'></md-icon>
+									Home
+								</md-button>
+								<md-button ng-href="/#" ng-click="close()" class="md-primary">
+									<md-icon md-svg-icon="action:home"></md-icon>
+									Test Criteria
+								</md-button>
+								<md-button ng-href="/#" ng-click="close()" class="md-primary">
+									<md-icon md-svg-icon="mail"></md-icon>
+									Admin
+								</md-button>
 							</md-list>
 						</section>
 					</md-content>

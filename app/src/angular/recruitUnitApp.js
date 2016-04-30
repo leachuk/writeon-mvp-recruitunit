@@ -15,11 +15,24 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'app.testCreate',
   'app.user.formSubmitController'
 ]).controller('AppController', ['$router', '$mdComponentRegistry', AppController])
-.config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', function($componentLoaderProvider, $locationProvider, $httpProvider){
+.config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', '$mdIconProvider', function($componentLoaderProvider, $locationProvider, $httpProvider, $mdIconProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
     return 'src/angular/components/' + name + '/' + name + '.html';
   });
   $locationProvider.html5Mode(true);
+  $mdIconProvider
+    .iconSet('action', '../../assets/svg-sprite-action.svg', 24)
+    .icon('mail', './assets/svg/mail.svg', 24)
+    .defaultIconSet('../../assets/svg-sprite-action.svg');
+}])
+.run(['$http','$templateCache',function($http, $templateCache){
+  // Pre-fetch icons sources by URL and cache in the $templateCache...
+  // subsequent $http calls will look there first.
+  var urls = ['../../assets/svg-sprite-action2.svg'];
+  angular.forEach(urls, function(url) {
+    $http.get(url, {cache: $templateCache});
+    console.log(url);
+  });
 }])
 
 function AppController($router, $mdComponentRegistry) {
