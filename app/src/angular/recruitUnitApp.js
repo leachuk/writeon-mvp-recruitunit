@@ -47,7 +47,6 @@ function AppController($router, $mdComponentRegistry) {
   }
 
   AppController.prototype.toggleSideNav = function() {
-    console.log("toggleSideNav");
     sideNav.toggle();
   }
 }
