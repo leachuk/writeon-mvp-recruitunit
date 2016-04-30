@@ -23,9 +23,12 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
 }])
 
 function AppController($router, $mdComponentRegistry) {
-  $mdComponentRegistry.when('left').then(function(leftSidenav){
-    leftSidenav.open();
-    console.log(leftSidenav.isOpen());
+  var sideNav;
+
+  $mdComponentRegistry.when('sidenav-main').then(function(mainSideNav){
+    sideNav = mainSideNav;
+    //mainSideNav.open();
+    //console.log(mainSideNav.isOpen());
   });
   //$mdSidenav('left').open();
   $router.config([
@@ -38,4 +41,15 @@ function AppController($router, $mdComponentRegistry) {
     { path: '/user/:email', component: 'userLanding' },
     { path: '/user/:email/form/:id/submit', component: 'formSubmit' }
   ]);
+
+  AppController.prototype.test = function() {
+    console.log("test");
+  }
+
+  AppController.prototype.toggleSideNav = function() {
+    console.log("toggleSideNav");
+    sideNav.toggle();
+  }
 }
+
+
