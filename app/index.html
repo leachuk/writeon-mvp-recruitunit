@@ -45,9 +45,8 @@
 				<div>{{homeUserLogin.submitmessage}}</div>
 			</div>
 		</md-toolbar>
-
-		<div layout="vertical" flex>
-			<div>
+		<md-content flex>
+			<div layout="vertical" flex>
 				<md-sidenav
 						md-component-id="sidenav-main"
 						md-is-locked-open="false"
@@ -65,11 +64,10 @@
 						</section>
 					</md-content>
 				</md-sidenav>
+
+				<div ng-viewport flex></div>
 			</div>
-
-			<div ng-viewport flex></div>
-		</div>
-
+		</md-content>
 		<!--Angular -->
 		<script type="text/javascript" src="./bower_components/angular2/angular.js"></script>
 		<script type="text/javascript" src="./bower_components/angular-cookies/angular-cookies.js"></script>
