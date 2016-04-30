@@ -133,6 +133,9 @@ md-content {
   background: transparent;
 }
 .blue { background: #A2C9F6;}
+.buttondemoBasicUsage {
+  z-index: 50;
+}
 .buttondemoBasicUsage section {
   border-radius: 3px;
   margin: 1em;
