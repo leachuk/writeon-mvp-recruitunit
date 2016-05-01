@@ -19,7 +19,7 @@
 		<md-toolbar ng-controller="HomeController as homeUserLogin">
 			<div class="md-toolbar-tools">
 				<md-button class="md-icon-button" aria-label="Settings">
-					<md-icon ng-click="app.toggleSideNav()" md-svg-icon="./assets/svg/menu.svg"></md-icon>
+					<md-icon ng-click="app.toggleSideNav()" md-svg-icon="navigation:menu"></md-icon>
 				</md-button>
 				<div layout="row" layout-align="end center" flex>
 					<div>
@@ -58,16 +58,16 @@
 						<section layout="column" layout-align="center start">
 							<md-list>
 								<md-button ng-href="/home" ng-click="close()" class="md-primary">
-									<md-icon md-svg-src='./bower_components/material-design-icons/action/svg/production/ic_home_24px.svg'></md-icon>
+									<md-icon md-svg-icon="action:home"></md-icon>
 									Home
 								</md-button>
 								<md-button ng-href="/#" ng-click="close()" class="md-primary">
-									<md-icon md-svg-icon="action:home"></md-icon>
+									<md-icon md-svg-icon="av:playlist_add_check"></md-icon>
 									Test Criteria
 								</md-button>
 								<md-button ng-href="/#" ng-click="close()" class="md-primary">
-									<md-icon md-svg-icon="mail"></md-icon>
-									Admin
+									<md-icon md-svg-icon="action:settings"></md-icon>
+									Settings
 								</md-button>
 							</md-list>
 						</section>
