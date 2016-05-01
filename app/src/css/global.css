@@ -91,6 +91,7 @@ md-button.menuBtn > md-icon {
 
 /* Card */
 md-card-title .md-card-h1{
+  text-transform: capitalize;
   position: relative;
   top: -40px;
   left: 10px;

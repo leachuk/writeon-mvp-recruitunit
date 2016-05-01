@@ -20,6 +20,7 @@
     //this.usercreated = $location.search().usercreated; //ref to get param from url
     //routeParams
     this.useremail = $routeParams.email;
+    this.username = "";
     this.role = "";
     this.id = "";
 
@@ -29,6 +30,7 @@
       if (result.success) {
         this.role = result.data.jobRole;
         this.id = result.data.id;
+        this.username = result.data.displayName;
       } else {
         console.log(result.message);
       }
