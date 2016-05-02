@@ -14,19 +14,19 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
-            <div layout="row" flex>
-                <div layout="column" flex="33">
-                    <div flex>Total</div>
-                    <div>11</div>
+            <div layout="row" class="totals-table" flex>
+                <div layout="row" class="total row" flex="33">
+                    <div layout="column" layout-align="center center">Total</div>
+                    <div layout="column" layout-align="center center" flex>11</div>
                 </div>
                 <div layout="column" flex>
-                    <div flex>
-                        <div>Pass</div>
-                        <div>6</div>
+                    <div layout="row" class="pass row" flex>
+                        <div layout="column" flex>Pass</div>
+                        <div layout="column" flex="80">6</div>
                     </div>
-                    <div flex>
-                        <div>Fail</div>
-                        <div>5</div>
+                    <div layout="row" class="fail row" flex>
+                        <div layout="column" flex>Fail</div>
+                        <div layout="column" flex="80">5</div>
                     </div>
                 </div>
             </div>

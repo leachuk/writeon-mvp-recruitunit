@@ -98,6 +98,21 @@ md-card-title .md-card-h1{
   color: #f9f9f9;
 }
 
+.totals-table .row {
+  margin: 5px 5px 0px 0px;
+  padding: 20px 0px 20px 5px;
+}
+.totals-table .total{
+  background-color: #c4c4c4;
+}
+.totals-table .pass{
+  background-color: #008800;
+}
+.totals-table .fail{
+  background-color: #aa0000;
+}
+
+
 /* Utils */
 
 .content-wrapper {
