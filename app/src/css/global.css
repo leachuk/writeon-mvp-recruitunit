@@ -98,6 +98,15 @@ md-card-title .md-card-h1{
   color: #f9f9f9;
 }
 
+.totals-table {
+  font-size: 2em;
+}
+.totals-table .totals-heading {
+  color: #FFFFFF;
+}
+.totals-table .totals-result {
+  color: #2D2D2D;
+}
 .totals-table .row {
   margin: 5px 5px 0px 0px;
   padding: 20px 0px 20px 5px;
@@ -111,6 +120,11 @@ md-card-title .md-card-h1{
 .totals-table .fail{
   background-color: #aa0000;
 }
+
+.totals-list .result-icon {
+  margin-right: 20px;
+}
+
 
 
 /* Utils */

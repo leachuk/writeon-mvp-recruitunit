@@ -22,6 +22,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   $locationProvider.html5Mode(true);
   $mdIconProvider
     .iconSet('action', './assets/svg/action-icons.svg', 24)
+    .iconSet('content', './assets/svg/content-icons.svg', 24)
     .iconSet('av', './assets/svg/av-icons.svg', 24)
     .iconSet('navigation', './assets/svg/navigation-icons.svg', 24)
     .defaultIconSet('./assets/svg/action-icons.svg');

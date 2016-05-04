@@ -16,20 +16,53 @@
         <md-card-content>
             <div layout="row" class="totals-table" flex>
                 <div layout="row" class="total row" flex="33">
-                    <div layout="column" layout-align="center center">Total</div>
-                    <div layout="column" layout-align="center center" flex>11</div>
+                    <div layout="column" layout-align="center center" class="totals-heading">Total</div>
+                    <div layout="column" layout-align="center center" class="totals-result" flex>11</div>
                 </div>
                 <div layout="column" flex>
                     <div layout="row" class="pass row" flex>
-                        <div layout="column" flex>Pass</div>
-                        <div layout="column" flex="80">6</div>
+                        <div layout="column" class="totals-heading" flex>Pass</div>
+                        <div layout="column" flex="70" class="totals-result">6</div>
                     </div>
                     <div layout="row" class="fail row" flex>
-                        <div layout="column" flex>Fail</div>
-                        <div layout="column" flex="80">5</div>
+                        <div layout="column" class="totals-heading" flex>Fail</div>
+                        <div layout="column" flex="70" class="totals-result">5</div>
                     </div>
                 </div>
             </div>
+            <md-list class="totals-list">
+                <md-subheader class="md-no-sticky">3 line item</md-subheader>
+                <md-list-item class="md-3-line">
+                    <div layout="row">
+                        <md-icon layout="column" class="result-icon" md-svg-icon="action:done"></md-icon>
+                        <div layout="column" class="md-list-item-text">
+                            <h3>foo dfkjh skdjh</h3>
+                            <h4>sdfkjh skdfh skdjfh skf skjhdsf skdjf sfkjh</h4>
+                            <p>wdfkjh fw kffowfh f wekfj fwkefjhwef fkwjh wf wkjfh w fwefk jh jkwhf  fwf</p>
+                        </div>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line">
+                    <div layout="row">
+                        <md-icon layout="column" class="result-icon" md-svg-icon="content:clear"></md-icon>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>foo dfkjh skdjh</h3>
+                            <h4>sdfkjh skdfh skdjfh skf skjhdsf skdjf sfkjh</h4>
+                            <p>wdfkjh fw kffowfh f wekfj fwkefjhwef fkwjh wf wkjfh w fwefk jh jkwhf  fwf</p>
+                        </div>
+                    </div>
+                </md-list-item>
+                <md-list-item class="md-3-line">
+                    <div layout="row">
+                        <md-icon layout="column" class="result-icon" md-svg-icon="action:done"></md-icon>
+                        <div class="md-list-item-text" layout="column">
+                            <h3>foo dfkjh skdjh</h3>
+                            <h4>sdfkjh skdfh skdjfh skf skjhdsf skdjf sfkjh</h4>
+                            <p>wdfkjh fw kffowfh f wekfj fwkefjhwef fkwjh wf wkjfh w fwefk jh jkwhf  fwf</p>
+                        </div>
+                    </div>
+                </md-list-item>
+            </md-list>
         </md-card-content>
     </md-card>
 </div>
