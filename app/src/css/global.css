@@ -121,6 +121,11 @@ md-card-title .md-card-h1{
   background-color: #aa0000;
 }
 
+.totals-list p.job-description{
+  line-height: 1.10em !important;
+  color: #464646 !important;
+  font-size: 1.10em !important;
+}
 .totals-list .result-icon {
   margin-right: 20px;
 }
