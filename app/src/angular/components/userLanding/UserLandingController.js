@@ -43,7 +43,7 @@
       console.log("   form id:" + id);
       $mdDialog.show({
             controller: DialogController,
-            templateUrl:'./formReadDialog.html',
+            templateUrl: 'src/angular/components/formRead/formReadDialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
             clickOutsideToClose:true,
