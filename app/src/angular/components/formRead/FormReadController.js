@@ -2,8 +2,8 @@
   'use strict';
 
   angular
-    .module('app.user.formSubmitController')
-    .controller('FormSubmitController', Controller);
+    .module('app.user.formReadController')
+    .controller('FormReadController', Controller);
 
   Controller.$inject = [
     '$routeParams',
@@ -18,7 +18,7 @@
   ];
 
   function Controller($routeParams,$http,$cookies,loomApi) {
-    console.log("FormSubmitController instantiated");
+    console.log("FormReadController instantiated");
     this.formId = $routeParams.id;
 
     this.article = {
@@ -55,7 +55,6 @@
         }));
       }
     };
-
   }
 
 })();
