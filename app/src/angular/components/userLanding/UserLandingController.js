@@ -42,7 +42,8 @@
       console.log("in showFormDetailDialog");
       console.log("   form id:" + id);
       $mdDialog.show({
-            controller: DialogController,
+            controller: 'FormReadController',
+            controllerAs: 'formRead',
             templateUrl: 'src/angular/components/formRead/formReadDialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
@@ -55,17 +56,6 @@
       });
     }
 
-    var DialogController = function($scope, $mdDialog) {
-      $scope.hide = function() {
-        $mdDialog.hide();
-      };
-      $scope.cancel = function() {
-        $mdDialog.cancel();
-      };
-      $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
-      };
-    }
   }
 
 })();
