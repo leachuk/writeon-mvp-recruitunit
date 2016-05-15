@@ -149,6 +149,13 @@ md-toolbar h1 {
   font-weight: 400;
 }
 
+md-toolbar.md-hue-3.md-warn .fail {
+  color: #B71C1C;
+}
+md-toolbar .pass {
+  color: #00C853;
+}
+
 .avatar {
   position: relative;
   width: 128px;

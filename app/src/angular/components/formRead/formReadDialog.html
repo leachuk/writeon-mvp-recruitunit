@@ -1,8 +1,10 @@
 <md-dialog aria-label="Job Opportunity {{formRead.jobDetailFormId}}"  ng-cloak>
     <form>
-        <md-toolbar>
+        <md-toolbar class="md-warn md-hue-3">
+        <!--<md-toolbar>-->
             <div class="md-toolbar-tools">
-                <h2>Job Opportunity {{formRead.jobDetailFormId}}</h2>
+                <h2><md-icon md-svg-icon="social:mood_bad" aria-label="Happy face"></md-icon> Failed Test - Job Opportunity {{formRead.jobDetailFormId}}</h2>
+                <!--<h2><md-icon md-svg-icon="social:mood" aria-label="Happy face"></md-icon> Passed test - Job Opportunity {{formRead.jobDetailFormId}}</h2>-->
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="formRead.cancelDialog()">
                     <md-icon md-svg-icon="content:clear" aria-label="Close dialog"></md-icon>

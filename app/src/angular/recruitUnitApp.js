@@ -26,6 +26,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
     .iconSet('content', './assets/svg/content-icons.svg', 24)
     .iconSet('av', './assets/svg/av-icons.svg', 24)
     .iconSet('navigation', './assets/svg/navigation-icons.svg', 24)
+    .iconSet('social', './assets/svg/social-icons.svg', 24)
     .defaultIconSet('./assets/svg/action-icons.svg');
 }]);
 
