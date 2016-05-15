@@ -17,12 +17,28 @@
                     <form name="readForm">
                         <div layout="row">
                             <div flex="20" layout="row" layout-align="start center">
+                                <span>Submitted By</span>
+                            </div>
+                            <div flex>
+                                <section layout="row">
+                                    <md-input-container flex>
+                                        <label>Email address</label>
+                                        <input ng-model="formRead.article.submittedBy"
+                                               type="text"
+                                               ng-readonly="true">
+                                    </md-input-container>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div layout="row">
+                            <div flex="20" layout="row" layout-align="start center">
                                 <span>Job Description</span>
                             </div>
                             <div flex>
                                 <section layout="row">
                                     <md-input-container flex>
-                                        <label>Job Description</label>
+                                        <label>Description</label>
                                         <input ng-model="formRead.article.jobDescription"
                                                type="text"
                                                ng-readonly="true">
