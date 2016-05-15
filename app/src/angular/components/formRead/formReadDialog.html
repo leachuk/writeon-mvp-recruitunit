@@ -1,27 +1,103 @@
-<md-dialog aria-label="Mango (Fruit)"  ng-cloak>
+<md-dialog aria-label="Job Opportunity {{formRead.jobDetailFormId}}"  ng-cloak>
     <form>
         <md-toolbar>
             <div class="md-toolbar-tools">
-                <h2>Mango (Fruit)</h2>
+                <h2>Job Opportunity {{formRead.jobDetailFormId}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="formRead.cancelDialog()">
-                    <md-icon md-svg-icon="action:done" aria-label="Close dialog"></md-icon>
+                    <md-icon md-svg-icon="content:clear" aria-label="Close dialog"></md-icon>
                 </md-button>
             </div>
         </md-toolbar>
         <md-dialog-content>
             <div class="md-dialog-content">
-                <p>Debug: {{formRead.article}}</p>
-                <p>test id: {{formRead.jobDetailFormId}}</p>
-                <p>
-                    The mango is a juicy stone fruit belonging to the genus Mangifera, consisting of numerous tropical fruiting trees, cultivated mostly for edible fruit. The majority of these species are found in nature as wild mangoes. They all belong to the flowering plant family Anacardiaceae. The mango is native to South and Southeast Asia, from where it has been distributed worldwide to become one of the most cultivated fruits in the tropics.
-                </p>
-                <p>
-                    The highest concentration of Mangifera genus is in the western part of Malesia (Sumatra, Java and Borneo) and in Burma and India. While other Mangifera species (e.g. horse mango, M. foetida) are also grown on a more localized basis, Mangifera indica&mdash;the "common mango" or "Indian mango"&mdash;is the only mango tree commonly cultivated in many tropical and subtropical regions.
-                </p>
-                <p>
-                    It originated in Indian subcontinent (present day India and Pakistan) and Burma. It is the national fruit of India, Pakistan, and the Philippines, and the national tree of Bangladesh. In several cultures, its fruit and leaves are ritually used as floral decorations at weddings, public celebrations, and religious ceremonies.
-                </p>
+                <div flex>
+                    <form name="readForm">
+                        <div layout="row">
+                            <div flex="20" layout="row" layout-align="start center">
+                                <span>Job Description</span>
+                            </div>
+                            <div flex>
+                                <section layout="row">
+                                    <md-input-container flex>
+                                        <label>Job Description</label>
+                                        <input ng-model="formRead.article.jobDescription"
+                                               type="text"
+                                               ng-readonly="true">
+                                    </md-input-container>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div layout="row">
+                            <div flex="20" layout="row" layout-align="start center">
+                                <span>Role Type</span>
+                            </div>
+                            <div flex>
+                                <section layout="column" layout-sm="column" layout-align="center start">
+                                    <md-radio-group ng-model="formRead.article.roleType">
+                                        <md-radio-button value="Permanent" class="md-primary" ng-disabled="true">Permanent</md-radio-button>
+                                        <md-radio-button value="Contract" ng-disabled="true"> Contract </md-radio-button>
+                                    </md-radio-group>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div layout="row">
+                            <div flex="20" layout="row" layout-align="start center">
+                                <span>Pay Bracket Between</span>
+                            </div>
+                            <div flex="40">
+                                <section layout="row">
+                                    <md-input-container flex>
+                                        <label>Lower bound</label>
+                                        <input ng-model="formRead.article.payBracketLower" type="number" ng-readonly="true">
+                                    </md-input-container>
+                                </section>
+                            </div>
+                            <div flex="40">
+                                <section layout="row">
+                                    <md-input-container flex>
+                                        <label>Upper bound</label>
+                                        <input ng-model="formRead.article.payBracketUpper" type="number" ng-readonly="true">
+                                    </md-input-container>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div layout="row">
+                            <div flex="20" layout="row" layout-align="start center">
+                                <span>Location Description</span>
+                            </div>
+                            <div flex>
+                                <section layout="row">
+                                    <md-input-container flex>
+                                        <label>Location</label>
+                                        <input ng-model="formRead.article.locationDescription" type="text" ng-readonly="true">
+                                    </md-input-container>
+                                </section>
+                            </div>
+                        </div>
+
+                        <div layout="row">
+                            <div flex="20" layout="row" layout-align="start center">
+                                <span>Required Skills</span>
+                            </div>
+                            <div flex>
+                                <section layout="column">
+                                    <md-chips
+                                            ng-model="formRead.article.skills"
+                                            placeholder="Enter a tag"
+                                            delete-button-label="Remove Tag"
+                                            delete-hint="Press delete to remove tag"
+                                            secondary-placeholder="+Tag"
+                                            readonly="true">
+                                    </md-chips>
+                                </section>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </md-dialog-content>
     </form>

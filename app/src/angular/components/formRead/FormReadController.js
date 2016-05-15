@@ -23,14 +23,14 @@
     this.formId = $routeParams.id;
 
     this.article = {
-      "jobDescription" : "",
-      "roleType": "",
-      "payBracketLower": null,
-      "payBracketUpper": null,
-      "locationDescription": "",
+      "jobDescription" : "Job opportunity at Adobe in Sydney. Immediate start",
+      "roleType": "Permanent",
+      "payBracketLower": 140,
+      "payBracketUpper": 160,
+      "locationDescription": "Sydney CBD",
       "skills": ['node', 'java', 'html', 'grunt'],
-      "submitTo" : "",
-      "submittedBy" : ""
+      "submitTo" : "stew.leach@gmail.com",
+      "submittedBy" : "recruiter1@gmail.com"
     };
 
     //make this a reusable service
