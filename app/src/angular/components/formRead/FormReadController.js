@@ -30,7 +30,8 @@
       "locationDescription": "Sydney CBD",
       "skills": ['node', 'java', 'html', 'grunt'],
       "submitTo" : "stew.leach@gmail.com",
-      "submittedBy" : "recruiter1@gmail.com"
+      "submittedBy" : "recruiter1@gmail.com",
+      "isPass" : true
     };
 
     //make this a reusable service
