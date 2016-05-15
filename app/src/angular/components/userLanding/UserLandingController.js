@@ -44,6 +44,8 @@
       $mdDialog.show({
             controller: 'FormReadController',
             controllerAs: 'formRead',
+            locals: {'jobDetailFormId':id},
+            bindToController: true,
             templateUrl: 'src/angular/components/formRead/formReadDialog.html',
             parent: angular.element(document.body),
             targetEvent: $event,
