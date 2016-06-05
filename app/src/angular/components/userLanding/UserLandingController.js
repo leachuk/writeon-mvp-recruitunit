@@ -38,6 +38,15 @@
       }
     }));
 
+    //testing comparison
+    Controller.prototype.compare = function(){
+      loomApi.Article.compare("comparisonDocumentTest1","54e36e2ae5b03230adcb77aaa5001059", token).then(angular.bind(this,function(result){
+        console.log("Comparison result:");
+        console.log(result);
+      }));
+    }
+
+
     Controller.prototype.showFormDetailDialog = function($event, id){
       console.log("in showFormDetailDialog");
       console.log("   form id:" + id);
