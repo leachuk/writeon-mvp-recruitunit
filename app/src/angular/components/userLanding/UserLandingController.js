@@ -27,6 +27,7 @@
     this.status = "";
 
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
+
     loomApi.User.getUser(this.useremail, token).then(angular.bind(this,function(result){
       console.log(result);
       if (result.success) {
@@ -38,7 +39,7 @@
       }
     }));
 
-    //testing comparison
+    //testing comparison. Not to be used on the client as too many requests would be required
     Controller.prototype.compare = function(){
       loomApi.Article.compare("comparisonDocumentTest1","54e36e2ae5b03230adcb77aaa5001059", token).then(angular.bind(this,function(result){
         console.log("Comparison result:");
@@ -65,6 +66,16 @@
       }, function() {
         //this.status = 'You cancelled the dialog.';
       });
+    }
+
+    //useremail will equal the submitTo field in 'RecruitUnitJobItem' doc
+    Controller.prototype.getUserDocuments = function(){
+      console.log(token);
+      var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
+      loomApi.Article.listAllMyArticles(modelId, token).then(angular.bind(this,function(result){
+        console.log("RecruitUnit listAllMyArticles result:");
+        console.log(result);
+      }));
     }
 
   }
