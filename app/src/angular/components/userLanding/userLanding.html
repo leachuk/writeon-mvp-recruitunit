@@ -33,10 +33,13 @@
                 </div>
             </div>
             <md-list class="totals-list">
-                <md-subheader class="md-no-sticky">3 items</md-subheader>
+                <md-subheader class="md-no-sticky">{{userLanding.myContentList.length}} items</md-subheader>
                 <md-list-item class="md-2-line" ng-repeat="item in userLanding.myContentList">
                     <div layout="row" flex>
-                        <md-icon layout="column" class="result-icon icon-pass" md-svg-icon="action:done"></md-icon>
+                        <md-icon layout="column"
+                                 class="result-icon"
+                                 md-svg-icon="{{item.testResult.isPass || item.testResult.isPartialPass ? 'action:done' : 'content:clear'}}"
+                                 ng-class="{'icon-pass':item.testResult.isPass, 'icon-fail':!item.testResult.isPass, 'partial-pass':item.testResult.isPartialPass}"></md-icon>
                         <div layout="column" class="md-list-item-text" flex="60">
                             <a href="#" ng-click="userLanding.showFormDetailDialog($event, 'id123456')">
                                 <p class="job-description">{{item.document.jobDescription}}</p>

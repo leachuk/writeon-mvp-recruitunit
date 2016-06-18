@@ -132,6 +132,9 @@ md-card-title .md-card-h1{
 .totals-list .icon-pass {
   color: #17FF00;
 }
+.totals-list .icon-fail.partial-pass {
+  color: #BBBBBB;
+}
 .totals-list .icon-fail {
   color: #FF0000;
 }
