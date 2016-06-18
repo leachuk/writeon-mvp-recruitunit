@@ -34,14 +34,14 @@
             </div>
             <md-list class="totals-list">
                 <md-subheader class="md-no-sticky">3 items</md-subheader>
-                <md-list-item class="md-2-line">
-                    <div layout="row">
+                <md-list-item class="md-2-line" ng-repeat="item in userLanding.myContentList">
+                    <div layout="row" flex>
                         <md-icon layout="column" class="result-icon icon-pass" md-svg-icon="action:done"></md-icon>
                         <div layout="column" class="md-list-item-text" flex="60">
                             <a href="#" ng-click="userLanding.showFormDetailDialog($event, 'id123456')">
-                                <p class="job-description">Job opportunity at Adobe in Sydney. Immediate start.</p>
+                                <p class="job-description">{{item.document.jobDescription}}</p>
                             </a>
-                            <p><i>140</i> to <i>160</i> per year</p>
+                            <p><i>{{item.document.payBracketLower}}</i> to <i>{{item.document.payBracketUpper}}</i> per year</p>
                         </div>
                         <div layout="column" class="md-list-item-text" flex="20">
                             <p>Submitted <i>a moment ago</i></p>

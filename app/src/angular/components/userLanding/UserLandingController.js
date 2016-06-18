@@ -25,6 +25,7 @@
     this.role = "";
     this.id = "";
     this.status = "";
+    this.myContentList = {};
 
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
@@ -34,6 +35,12 @@
         this.role = result.data.jobRole;
         this.id = result.data.id;
         this.username = result.data.displayName;
+
+        //useremail param will equal the submitTo field in 'RecruitUnitJobItem' doc
+        var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
+        loomApi.Article.listMyTestContent(modelId, token).then(angular.bind(this,function(result){
+          this.myContentList = result;
+        }));
       } else {
         console.log(result.message);
       }
@@ -68,15 +75,6 @@
       });
     }
 
-    //useremail will equal the submitTo field in 'RecruitUnitJobItem' doc
-    Controller.prototype.getUserDocuments = function(){
-      console.log(token);
-      var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
-      loomApi.Article.listAllMyArticles(modelId, token).then(angular.bind(this,function(result){
-        console.log("RecruitUnit listAllMyArticles result:");
-        console.log(result);
-      }));
-    }
 
   }
 
