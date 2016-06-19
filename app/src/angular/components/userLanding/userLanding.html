@@ -17,7 +17,7 @@
             <div layout="row" class="totals-table" flex>
                 <div layout="row" class="total row" flex="33">
                     <div layout="column" layout-align="center center" class="totals-heading">Total</div>
-                    <div layout="column" layout-align="center center" class="totals-result" flex>11</div>
+                    <div layout="column" layout-align="center center" class="totals-result" flex>{{userLanding.myContentList.length}}</div>
                 </div>
                 <div layout="column" flex>
                     <div layout="row" class="pass row" flex>
@@ -45,54 +45,6 @@
                                 <p class="job-description">{{item.document.jobDescription}}</p>
                             </a>
                             <p><i>{{item.document.payBracketLower}}</i> to <i>{{item.document.payBracketUpper}}</i> per year</p>
-                        </div>
-                        <div layout="column" class="md-list-item-text" flex="20">
-                            <p>Submitted <i>a moment ago</i></p>
-                        </div>
-                        <div layout="column" class="" flex="10" layout-align="center center">
-                            <md-menu>
-                                <md-button aria-label="actions" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                                    <md-icon md-menu-origin md-svg-icon="navigation:more_vert"></md-icon>
-                                </md-button>
-                                <md-menu-content width="2">
-                                    <md-menu-item ng-repeat="item in ['foo', 'bar', 'hoo']">
-                                        <md-button aria-label="actions" ng-click=""> <span md-menu-align-target>Option</span> {{item}} </md-button>
-                                    </md-menu-item>
-                                </md-menu-content>
-                            </md-menu>
-                        </div>
-                    </div>
-                </md-list-item>
-                <md-list-item class="md-2-line">
-                    <div layout="row">
-                        <md-icon layout="column" class="result-icon icon-fail" md-svg-icon="content:clear"></md-icon>
-                        <div layout="column" class="md-list-item-text" flex="60">
-                            <p class="job-description">Job opportunity at Adobe in Sydney. Immediate start.</p>
-                            <p><i>140</i> to <i>160</i> per year</p>
-                        </div>
-                        <div layout="column" class="md-list-item-text" flex="20">
-                            <p>Submitted <i>a moment ago</i></p>
-                        </div>
-                        <div layout="column" class="" flex="10" layout-align="center center">
-                            <md-menu>
-                                <md-button aria-label="actions" class="md-icon-button" ng-click="$mdOpenMenu($event)">
-                                    <md-icon md-menu-origin md-svg-icon="navigation:more_vert"></md-icon>
-                                </md-button>
-                                <md-menu-content width="2">
-                                    <md-menu-item ng-repeat="item in ['foo', 'bar', 'hoo']">
-                                        <md-button aria-label="actions" ng-click=""> <span md-menu-align-target>Option</span> {{item}} </md-button>
-                                    </md-menu-item>
-                                </md-menu-content>
-                            </md-menu>
-                        </div>
-                    </div>
-                </md-list-item>
-                <md-list-item class="md-2-line">
-                    <div layout="row">
-                        <md-icon layout="column" class="result-icon icon-pass" md-svg-icon="action:done"></md-icon>
-                        <div layout="column" class="md-list-item-text" flex="60">
-                            <p class="job-description">Job opportunity at Adobe in Sydney. Immediate start.</p>
-                            <p><i>140</i> to <i>160</i> per year</p>
                         </div>
                         <div layout="column" class="md-list-item-text" flex="20">
                             <p>Submitted <i>a moment ago</i></p>

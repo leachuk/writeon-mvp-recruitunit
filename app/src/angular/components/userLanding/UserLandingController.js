@@ -26,6 +26,8 @@
     this.id = "";
     this.status = "";
     this.myContentList = {};
+    this.myContentListPassCount = 0;
+    this.myContentListFailCount = 0;
 
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
