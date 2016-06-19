@@ -6,6 +6,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'ngCookies',
   'ngNewRouter',
   'loom.api',
+  'ngLodash',
   'app.homeController',
   'app.user.userLandingController',
   'app.user.recruiterLandingController',

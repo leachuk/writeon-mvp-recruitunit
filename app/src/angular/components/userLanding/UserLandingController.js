@@ -12,10 +12,11 @@
     '$location',
     '$router',
     '$mdDialog',
-    'loomApi'
+    'loomApi',
+    'lodash'
   ];
 
-  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,loomApi) {
+  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,loomApi,lodash) {
     console.log("in UserLandingController");
 
     //this.usercreated = $location.search().usercreated; //ref to get param from url
@@ -42,6 +43,8 @@
         var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
         loomApi.Article.listMyTestContent(modelId, token).then(angular.bind(this,function(result){
           this.myContentList = result;
+          this.myContentListPassCount = lodash.filter(result, {'testResult':{'isPass':true}}).length + lodash.filter(result, {'testResult':{'isPartialPass':true}}).length;
+          this.myContentListFailCount = result.length - this.myContentListPassCount;
         }));
       } else {
         console.log(result.message);
