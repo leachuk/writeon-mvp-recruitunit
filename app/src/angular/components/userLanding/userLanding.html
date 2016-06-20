@@ -47,7 +47,7 @@
                             <p><i>{{item.document.payBracketLower}}</i> to <i>{{item.document.payBracketUpper}}</i> per year</p>
                         </div>
                         <div layout="column" class="md-list-item-text" flex="20">
-                            <p>Submitted <i>a moment ago</i></p>
+                            <p>Submitted <i am-time-ago="item.document.createdDate"></i></p>
                         </div>
                         <div layout="column" class="" flex="10" layout-align="center center">
                             <md-menu>

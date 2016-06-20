@@ -13,10 +13,11 @@
     '$router',
     '$mdDialog',
     'loomApi',
-    'lodash'
+    'lodash',
+    'moment'
   ];
 
-  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,loomApi,lodash) {
+  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,loomApi,lodash,moment) {
     console.log("in UserLandingController");
 
     //this.usercreated = $location.search().usercreated; //ref to get param from url
