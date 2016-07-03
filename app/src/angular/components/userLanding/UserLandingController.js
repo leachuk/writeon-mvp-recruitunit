@@ -81,6 +81,10 @@
       });
     }
 
+    Controller.prototype.formatUnixDateToNow = function(unixTime){
+      return moment.unix(unixTime).from();
+    }
+
 
   }
 
