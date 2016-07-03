@@ -43,7 +43,7 @@
         //useremail param will equal the submitTo field in 'RecruitUnitJobItem' doc
         var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
         loomApi.Article.listMyTestContent(modelId, token).then(angular.bind(this,function(result){
-          this.myContentList = result;
+          this.myContentList = lodash.sortBy(result,'document.createdDate').reverse();
           this.myContentListPassCount = lodash.filter(result, {'testResult':{'isPass':true}}).length + lodash.filter(result, {'testResult':{'isPartialPass':true}}).length;
           this.myContentListFailCount = result.length - this.myContentListPassCount;
         }));
