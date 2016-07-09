@@ -21,6 +21,7 @@
   function Controller($routeParams, $http, $cookies, $mdDialog, loomApi) {
     console.log("FormReadController instantiated");
     this.formId = $routeParams.id;
+    var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
     this.article = {
       "jobDescription" : "Job opportunity at Adobe in Sydney. Immediate start",
@@ -34,6 +35,12 @@
       "isPass" : true
     };
 
+    var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
+    this.model = loomApi.Article.getArticle("54e36e2ae5b03230adcb77aaa50067ee", modelId, "server/models/RecruitUnit.Job.All.js", token).then(angular.bind(this, function(result){
+      console.log("get article:");
+      console.log(result);
+    }));
+    
     //make this a reusable service
     var checkAuth = function(username, password){
       var authCookie = $cookies.get("writeon.authtoken"); //put cookie name into config var

@@ -50,7 +50,7 @@ function AppController($router, $mdComponentRegistry) {
     { path: '/admin/developer/:email', component: 'developerAdmin' },
     { path: '/user/:email', component: 'userLanding' },
     { path: '/user/:email/form/:id/submit', component: 'formSubmit' },
-    { path: '/user/:email/form/:id/read', component: 'formRead' }
+    { path: '/user/:email/form/:id', component: 'formRead' }
   ]);
 
   AppController.prototype.test = function() {
