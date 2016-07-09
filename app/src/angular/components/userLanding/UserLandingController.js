@@ -85,13 +85,18 @@
       return moment.unix(unixTime).from();
     }
 
-    Controller.prototype.deleteItem = function(id){
-      console.log("delete id:" + id);
+    Controller.prototype.deleteItem = function(id, index){
+      console.log("delete id:" + id + ",index:" + index);
       var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
+      //todo: ensure the update can only change the users own document
       loomApi.Article.updateArticle(id,{"published": false}, token, modelId).then(angular.bind(this,function(result){
         console.log("Delete result:");
         console.log(result);
+        if (result.success){
+          this.myContentList.splice(index, 1);
+        }
       }));
+
     }
 
     Controller.prototype.viewItem = function(id){
