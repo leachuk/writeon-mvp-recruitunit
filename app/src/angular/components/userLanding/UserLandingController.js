@@ -85,6 +85,18 @@
       return moment.unix(unixTime).from();
     }
 
+    Controller.prototype.deleteItem = function(id){
+      console.log("delete id:" + id);
+      var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
+      loomApi.Article.updateArticle(id,{"published": false}, token, modelId).then(angular.bind(this,function(result){
+        console.log("Delete result:");
+        console.log(result);
+      }));
+    }
+
+    Controller.prototype.viewItem = function(id){
+      console.log("view id:" + id);
+    }
 
   }
 

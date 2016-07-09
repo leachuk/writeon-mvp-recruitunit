@@ -55,8 +55,11 @@
                                     <md-icon md-menu-origin md-svg-icon="navigation:more_vert"></md-icon>
                                 </md-button>
                                 <md-menu-content width="2">
-                                    <md-menu-item ng-repeat="item in ['foo', 'bar', 'hoo']">
-                                        <md-button aria-label="actions" ng-click=""> <span md-menu-align-target>Option</span> {{item}} </md-button>
+                                    <md-menu-item>
+                                        <md-button aria-label="actions" ng-click="userLanding.viewItem(item.document.id)"> View </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button aria-label="actions" ng-click="userLanding.deleteItem(item.document.id)"> Delete </md-button>
                                     </md-menu-item>
                                 </md-menu-content>
                             </md-menu>
