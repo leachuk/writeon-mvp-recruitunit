@@ -91,7 +91,7 @@
     }
 
     Controller.prototype.viewItem = function(id){
-      console.log("view id:" + id);
+      //console.log("view id:" + id);
       $location.path("/user/" + this.useremail + "/form/" + id);
     }
 
