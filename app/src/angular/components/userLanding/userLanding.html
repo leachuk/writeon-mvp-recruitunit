@@ -41,7 +41,7 @@
                                  md-svg-icon="{{item.testResult.isPass || item.testResult.isPartialPass ? 'action:done' : 'content:clear'}}"
                                  ng-class="{'icon-pass':item.testResult.isPass, 'icon-fail':!item.testResult.isPass, 'partial-pass':item.testResult.isPartialPass}"></md-icon>
                         <div layout="column" class="md-list-item-text" flex="60">
-                            <a href="#" ng-click="userLanding.showFormDetailDialog($event, 'id123456')">
+                            <a href="#" ng-click="userLanding.showFormDetailDialog($event, item.document.id, item.testResult.isPass, item.testResult.isPartialPass)">
                                 <p class="job-description">{{item.document.jobDescription}}</p>
                             </a>
                             <p><i>{{item.document.payBracketLower}}</i> to <i>{{item.document.payBracketUpper}}</i> per year</p>
@@ -56,7 +56,7 @@
                                 </md-button>
                                 <md-menu-content width="2">
                                     <md-menu-item>
-                                        <md-button aria-label="actions" ng-click="userLanding.viewItem(item.document.id)"> View </md-button>
+                                        <md-button aria-label="actions" ng-click="userLanding.showFormDetailDialog($event, item.document.id, item.testResult.isPass, item.testResult.isPartialPass)"> View </md-button>
                                     </md-menu-item>
                                     <md-menu-item>
                                         <md-button aria-label="actions" ng-click="userLanding.deleteItem(item.document.id, $index)"> Delete </md-button>

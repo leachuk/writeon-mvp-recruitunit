@@ -20,8 +20,9 @@
 
   function Controller($routeParams, $http, $cookies, $mdDialog, loomApi) {
     console.log("FormReadController instantiated");
+    console.log("jobDetailFormId passed in from dialog controller:" + this.jobDetailFormId);
 
-    this.formId = $routeParams.id;
+    this.formId = $routeParams.id == null ? this.jobDetailFormId : $routeParams.id;
     this.article = {"skills": []}; //Need to initialise for md-chips, otherwise an exception is thrown
 
     var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
