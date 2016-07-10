@@ -20,25 +20,31 @@
 
   function Controller($routeParams, $http, $cookies, $mdDialog, loomApi) {
     console.log("FormReadController instantiated");
+
     this.formId = $routeParams.id;
+    this.article = {"skills": []}; //Need to initialise for md-chips, otherwise an exception is thrown
+
+    var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
+    var model = "server/models/RecruitUnit.Job.All.js";
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
-    this.article = {
-      "jobDescription" : "Job opportunity at Adobe in Sydney. Immediate start",
-      "roleType": "Permanent",
-      "payBracketLower": 140,
-      "payBracketUpper": 160,
-      "locationDescription": "Sydney CBD",
-      "skills": ['node', 'java', 'html', 'grunt'],
-      "submitTo" : "stew.leach@gmail.com",
-      "submittedBy" : "recruiter1@gmail.com",
-      "isPass" : true
-    };
+    // this.article = {
+    //   "jobDescription" : "Job opportunity at Adobe in Sydney. Immediate start",
+    //   "roleType": "Permanent",
+    //   "payBracketLower": 140,
+    //   "payBracketUpper": 160,
+    //   "locationDescription": "Sydney CBD",
+    //   "skills": ['node', 'java', 'html', 'grunt'],
+    //   "submitTo" : "stew.leach@gmail.com",
+    //   "submittedBy" : "recruiter1@gmail.com",
+    //   "isPass" : true
+    // };
 
-    var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
-    this.model = loomApi.Article.getArticle("54e36e2ae5b03230adcb77aaa50067ee", modelId, "server/models/RecruitUnit.Job.All.js", token).then(angular.bind(this, function(result){
+
+    loomApi.Article.getArticle(this.formId, modelId, model, token).then(angular.bind(this, function(result){
       console.log("get article:");
       console.log(result);
+      this.article = result;
     }));
     
     //make this a reusable service
