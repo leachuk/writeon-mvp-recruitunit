@@ -52,15 +52,6 @@
       }
     }));
 
-    //testing comparison. Not to be used on the client as too many requests would be required
-    Controller.prototype.compare = function(){
-      loomApi.Article.compare("comparisonDocumentTest1","54e36e2ae5b03230adcb77aaa5001059", token).then(angular.bind(this,function(result){
-        console.log("Comparison result:");
-        console.log(result);
-      }));
-    }
-
-
     Controller.prototype.showFormDetailDialog = function($event, id){
       console.log("in showFormDetailDialog");
       console.log("   form id:" + id);
@@ -101,6 +92,7 @@
 
     Controller.prototype.viewItem = function(id){
       console.log("view id:" + id);
+      $location.path("/user/" + this.useremail + "/form/" + id);
     }
 
   }

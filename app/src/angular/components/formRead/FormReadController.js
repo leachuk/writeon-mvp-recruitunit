@@ -28,19 +28,6 @@
     var model = "server/models/RecruitUnit.Job.All.js";
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
-    // this.article = {
-    //   "jobDescription" : "Job opportunity at Adobe in Sydney. Immediate start",
-    //   "roleType": "Permanent",
-    //   "payBracketLower": 140,
-    //   "payBracketUpper": 160,
-    //   "locationDescription": "Sydney CBD",
-    //   "skills": ['node', 'java', 'html', 'grunt'],
-    //   "submitTo" : "stew.leach@gmail.com",
-    //   "submittedBy" : "recruiter1@gmail.com",
-    //   "isPass" : true
-    // };
-
-
     loomApi.Article.getArticle(this.formId, modelId, model, token).then(angular.bind(this, function(result){
       console.log("get article:");
       console.log(result);
