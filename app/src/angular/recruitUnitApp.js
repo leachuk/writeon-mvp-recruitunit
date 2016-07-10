@@ -34,6 +34,9 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
 
 function AppController($router, $mdComponentRegistry) {
   var sideNav;
+  this.user = { //todo: handle when user isn't signed in. Prob create service
+    email: window.localStorage.getItem("writeon.username")
+  };
 
   $mdComponentRegistry.when('sidenav-main').then(function(mainSideNav){
     sideNav = mainSideNav;
