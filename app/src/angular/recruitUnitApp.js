@@ -16,7 +16,8 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'app.user.developerAdminController',
   'app.testCreate',
   'app.user.formSubmitController',
-  'app.user.formReadController'
+  'app.user.formReadController',
+  'app.user.comparisonRuleController'
 ]).controller('AppController', ['$router', '$mdComponentRegistry', AppController])
 .config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', '$mdIconProvider', function($componentLoaderProvider, $locationProvider, $httpProvider, $mdIconProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
@@ -52,6 +53,7 @@ function AppController($router, $mdComponentRegistry) {
     { path: '/admin/recruiter/:email', component: 'recruiterAdmin' },
     { path: '/admin/developer/:email', component: 'developerAdmin' },
     { path: '/user/:email', component: 'userLanding' },
+    { path: '/user/:email/comparison', component: 'comparisonRule' },
     { path: '/user/:email/form/:id/submit', component: 'formSubmit' },
     { path: '/user/:email/form/:id', component: 'formRead' }
   ]);
