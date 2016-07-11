@@ -21,17 +21,61 @@
   function Controller($routeParams, $http, $cookies, $mdDialog, loomApi) {
     console.log("ComparisonRuleController instantiated");
 
-    this.formId = "aa7ecbe9092c948606d4b8a8f0001807";
+    this.formId = "aa7ecbe9092c948606d4b8a8f0001807"; //todo: pass in the id of the users comparison document. Will need a way to initialise a single new document for the user if one doesn't already exist.
     this.article = {"skills": []}; //Need to initialise for md-chips, otherwise an exception is thrown
 
     var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
     var model = "server/models/RecruitUnit.Job.All.js";
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
+    this.article = {
+      "model": "RecruitUnitComparisonTest",
+      "roleType": {
+        "value": ["contract", "permanent"],
+        "rule": "assertEqualTo"
+      },
+      "payBracketLower": {
+        "value": 110,
+        "rule": "assertGreaterThan"
+      },
+      "skills": {
+        "value": [
+          "java",
+          "bar"
+        ],
+        "rule": "assertArrayContains"
+      },
+      "authorName": "writeonmvpstep1-1@test.com",
+      "createdDate": 1463906114820,
+      "locationDescription": {
+        "value": [
+          "sydney",
+          "melbourne"
+        ],
+        "rule": "assertStringContains"
+      }
+    };
+
+    this.toggleRoleType = function(value){
+      var roleTypeValue = this.article.roleType.value;
+      var idx = roleTypeValue.indexOf(value);
+      if (idx > -1) {
+        roleTypeValue.splice(idx, 1);
+      }
+      else {
+        roleTypeValue.push(value);
+      };
+    }
+
+    this.existsRoleType = function(value){
+      var roleTypeValue = this.article.roleType.value;
+      return roleTypeValue.indexOf(value) > -1;
+    }
+
     loomApi.Article.getArticle(this.formId, modelId, model, token).then(angular.bind(this, function(result){
       console.log("get article:");
       console.log(result);
-      this.article = result;
+      //this.article = result;
     }));
   }
 

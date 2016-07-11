@@ -3,53 +3,36 @@
 <md-content layout="row" class="md-padding buttondemoBasicUsage">
     <div flex="10"></div>
     <div flex="80">
-        <form name="readForm">
-            <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
-                    <span>Job Description</span>
-                </div>
-                <div flex="90">
-                    <section layout="row">
-                        <md-input-container flex>
-                            <label>Job Description</label>
-                            <input ng-model="comparisonRule.article.jobDescription"
-                                   type="text">
-                        </md-input-container>
-                    </section>
-                </div>
-            </div>
+        <form name="comparisonRuleForm">
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
+                <div flex="10" layout="row" layout-align="left center">
                     <span>Role Type</span>
                 </div>
                 <div flex="90">
                     <section layout="column" layout-sm="column" layout-align="center start">
-                        <md-radio-group ng-model="comparisonRule.article.roleType">
-                            <md-radio-button value="Permanent" class="md-primary">Permanent</md-radio-button>
-                            <md-radio-button value="Contract"> Contract </md-radio-button>
-                        </md-radio-group>
+                            <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
+                                         ng-checked="comparisonRule.existsRoleType('permanent')">
+                                Permanent
+                            </md-checkbox>
+                            <md-checkbox ng-click="comparisonRule.toggleRoleType('contract')"
+                                         ng-checked="comparisonRule.existsRoleType('contract')">
+                                Contract
+                            </md-checkbox>
+                        </md-checkbox>
                     </section>
                 </div>
             </div>
 
             <div layout="row">
                 <div flex="10" layout="row" layout-align="center center">
-                    <span>Pay Bracket Between</span>
+                    <span>Pay Greater Than</span>
                 </div>
                 <div flex="45">
                     <section layout="row">
                         <md-input-container flex>
-                            <label>Lower bound</label>
-                            <input ng-model="comparisonRule.article.payBracketLower" type="number">
-                        </md-input-container>
-                    </section>
-                </div>
-                <div flex="45">
-                    <section layout="row">
-                        <md-input-container flex>
-                            <label>Upper bound</label>
-                            <input ng-model="comparisonRule.article.payBracketUpper" type="number">
+                            <label>Lowest acceptable amount</label>
+                            <input ng-model="comparisonRule.article.payBracketLower.value" type="number">
                         </md-input-container>
                     </section>
                 </div>
@@ -57,14 +40,17 @@
 
             <div layout="row">
                 <div flex="10" layout="row" layout-align="center center">
-                    <span>Location Description</span>
+                    <span>Location Contains</span>
                 </div>
                 <div flex="90">
-                    <section layout="row">
-                        <md-input-container flex>
-                            <label>Location</label>
-                            <input ng-model="comparisonRule.article.locationDescription" type="text">
-                        </md-input-container>
+                    <section layout="column">
+                        <md-chips
+                                ng-model="comparisonRule.article.locationDescription.value"
+                                placeholder="Add Locations to match against"
+                                delete-button-label="Remove Tag"
+                                delete-hint="Press delete to remove tag"
+                                secondary-placeholder="+ City">
+                        </md-chips>
                     </section>
                 </div>
             </div>
@@ -76,11 +62,11 @@
                 <div flex="90">
                     <section layout="column">
                         <md-chips
-                                ng-model="comparisonRule.article.skills"
+                                ng-model="comparisonRule.article.skills.value"
                                 placeholder="Enter a tag"
                                 delete-button-label="Remove Tag"
                                 delete-hint="Press delete to remove tag"
-                                secondary-placeholder="+Tag">
+                                secondary-placeholder="+ Skill">
                         </md-chips>
                     </section>
                 </div>
