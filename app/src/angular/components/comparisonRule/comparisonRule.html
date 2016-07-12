@@ -47,7 +47,9 @@
                     <section layout="row">
                         <md-input-container flex>
                             <label>Lowest acceptable amount</label>
-                            <input ng-model="comparisonRule.article.payBracketLower.value" type="number">
+                            <input ng-model="comparisonRule.article.payBracketLower.value"
+                                   ng-disabled="comparisonRule.article.payBracketLower.disabled"
+                                   type="number">
                         </md-input-container>
                     </section>
                 </div>
@@ -67,6 +69,9 @@
                     <section layout="column">
                         <md-chips
                                 ng-model="comparisonRule.article.locationDescription.value"
+                                ng-class="comparisonRule.article.locationDescription.disabled ? 'chipsDisabled' : '' "
+                                readonly="comparisonRule.article.locationDescription.disabled"
+                                ng-disabled="true"
                                 placeholder="Add Locations to match against"
                                 delete-button-label="Remove Tag"
                                 delete-hint="Press delete to remove tag"
@@ -90,6 +95,8 @@
                     <section layout="column">
                         <md-chips
                                 ng-model="comparisonRule.article.skills.value"
+                                ng-class="comparisonRule.article.skills.disabled ? 'chipsDisabled' : '' "
+                                readonly="comparisonRule.article.skills.disabled"
                                 placeholder="Enter a tag"
                                 delete-button-label="Remove Tag"
                                 delete-hint="Press delete to remove tag"
