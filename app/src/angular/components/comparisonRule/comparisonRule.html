@@ -6,10 +6,17 @@
         <form name="comparisonRuleForm">
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="left center">
+                <div layout="row" layout-padding layout-align="left center">
+                    <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
+                                 ng-checked="comparisonRule.existsRoleType('permanent')">
+                        Test against
+                    </md-checkbox>
+
+                </div>
+                <div layout="row" layout-padding layout-align="left center">
                     <span>Role Type</span>
                 </div>
-                <div flex="90">
+                <div flex>
                     <section layout="column" layout-sm="column" layout-align="center start">
                             <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
                                          ng-checked="comparisonRule.existsRoleType('permanent')">
@@ -25,10 +32,16 @@
             </div>
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
+                <div layout="row" layout-padding layout-align="left center">
+                    <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
+                                 ng-checked="comparisonRule.existsRoleType('permanent')">
+                        Test against
+                    </md-checkbox>
+                </div>
+                <div layout="row" layout-padding layout-align="left center">
                     <span>Pay Greater Than</span>
                 </div>
-                <div flex="45">
+                <div flex>
                     <section layout="row">
                         <md-input-container flex>
                             <label>Lowest acceptable amount</label>
@@ -39,10 +52,16 @@
             </div>
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
+                <div layout="row" layout-padding layout-align="left center">
+                    <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
+                                 ng-checked="comparisonRule.existsRoleType('permanent')">
+                        Test against
+                    </md-checkbox>
+                </div>
+                <div layout="row" layout-padding layout-align="left center">
                     <span>Location Contains</span>
                 </div>
-                <div flex="90">
+                <div flex>
                     <section layout="column">
                         <md-chips
                                 ng-model="comparisonRule.article.locationDescription.value"
@@ -56,10 +75,16 @@
             </div>
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
+                <div layout="row" layout-padding layout-align="left center">
+                    <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
+                                 ng-checked="comparisonRule.existsRoleType('permanent')">
+                        Test against
+                    </md-checkbox>
+                </div>
+                <div layout="row" layout-padding layout-align="left center">
                     <span>Required Skills</span>
                 </div>
-                <div flex="90">
+                <div flex>
                     <section layout="column">
                         <md-chips
                                 ng-model="comparisonRule.article.skills.value"
@@ -73,7 +98,7 @@
             </div>
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center"></div>
+                <div flex="10" layout="row" layout-align="left center"></div>
                 <div flex="90">
                     <section layout="row" layout-align="start center">
                         <md-button class="md-raised md-primary"
