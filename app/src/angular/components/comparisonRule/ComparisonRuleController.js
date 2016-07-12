@@ -32,10 +32,12 @@
       "model": "RecruitUnitComparisonTest",
       "roleType": {
         "value": ["contract", "permanent"],
+        "disabled": true,
         "rule": "assertEqualTo"
       },
       "payBracketLower": {
         "value": 110,
+        "disabled": false,
         "rule": "assertGreaterThan"
       },
       "skills": {
@@ -43,6 +45,7 @@
           "java",
           "bar"
         ],
+        "disabled": false,
         "rule": "assertArrayContains"
       },
       "authorName": "writeonmvpstep1-1@test.com",
@@ -52,6 +55,7 @@
           "sydney",
           "melbourne"
         ],
+        "disabled": false,
         "rule": "assertStringContains"
       }
     };
@@ -72,6 +76,19 @@
       return roleTypeValue.indexOf(value) > -1;
     }
 
+    this.disableRoleType = function(){
+      this.article.roleType.disabled = !this.article.roleType.disabled;
+    }
+    this.disablePayBracketLower = function(){
+      this.article.payBracketLower.disabled = !this.article.payBracketLower.disabled;
+    }
+    this.disableSkills = function(){
+      this.article.skills.disabled = !this.article.skills.disabled;
+    }
+    this.disableLocationDescription = function(){
+      this.article.locationDescription.disabled = !this.article.locationDescription.disabled;
+    }
+    
     loomApi.Article.getArticle(this.formId, modelId, model, token).then(angular.bind(this, function(result){
       console.log("get article:");
       console.log(result);

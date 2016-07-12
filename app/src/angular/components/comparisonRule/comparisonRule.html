@@ -7,23 +7,25 @@
 
             <div layout="row">
                 <div layout="row" layout-padding layout-align="left center">
-                    <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
-                                 ng-checked="comparisonRule.existsRoleType('permanent')">
+                    <md-checkbox ng-click="comparisonRule.disableRoleType()"
+                                 ng-checked="!comparisonRule.article.roleType.disabled">
                         Test against
                     </md-checkbox>
 
                 </div>
                 <div layout="row" layout-padding layout-align="left center">
-                    <span>Role Type</span>
+                    <span ng-class="comparisonRule.article.roleType.disabled ? 'disabled' : ''">Role Type</span>
                 </div>
                 <div flex>
                     <section layout="column" layout-sm="column" layout-align="center start">
                             <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
-                                         ng-checked="comparisonRule.existsRoleType('permanent')">
+                                         ng-checked="comparisonRule.existsRoleType('permanent')"
+                                         ng-disabled="comparisonRule.article.roleType.disabled">
                                 Permanent
                             </md-checkbox>
                             <md-checkbox ng-click="comparisonRule.toggleRoleType('contract')"
-                                         ng-checked="comparisonRule.existsRoleType('contract')">
+                                         ng-checked="comparisonRule.existsRoleType('contract')"
+                                         ng-disabled="comparisonRule.article.roleType.disabled">
                                 Contract
                             </md-checkbox>
                         </md-checkbox>
@@ -33,13 +35,13 @@
 
             <div layout="row">
                 <div layout="row" layout-padding layout-align="left center">
-                    <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
-                                 ng-checked="comparisonRule.existsRoleType('permanent')">
+                    <md-checkbox ng-click="comparisonRule.disablePayBracketLower()"
+                                 ng-checked="!comparisonRule.article.payBracketLower.disabled">
                         Test against
                     </md-checkbox>
                 </div>
                 <div layout="row" layout-padding layout-align="left center">
-                    <span>Pay Greater Than</span>
+                    <span ng-class="comparisonRule.article.payBracketLower.disabled ? 'disabled' : ''">Pay Greater Than</span>
                 </div>
                 <div flex>
                     <section layout="row">
@@ -53,13 +55,13 @@
 
             <div layout="row">
                 <div layout="row" layout-padding layout-align="left center">
-                    <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
-                                 ng-checked="comparisonRule.existsRoleType('permanent')">
+                    <md-checkbox ng-click="comparisonRule.disableLocationDescription()"
+                                 ng-checked="!comparisonRule.article.locationDescription.disabled">
                         Test against
                     </md-checkbox>
                 </div>
                 <div layout="row" layout-padding layout-align="left center">
-                    <span>Location Contains</span>
+                    <span ng-class="comparisonRule.article.locationDescription.disabled ? 'disabled' : ''">Location Contains</span>
                 </div>
                 <div flex>
                     <section layout="column">
@@ -76,13 +78,13 @@
 
             <div layout="row">
                 <div layout="row" layout-padding layout-align="left center">
-                    <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
-                                 ng-checked="comparisonRule.existsRoleType('permanent')">
+                    <md-checkbox ng-click="comparisonRule.disableSkills()"
+                                 ng-checked="!comparisonRule.article.skills.disabled">
                         Test against
                     </md-checkbox>
                 </div>
                 <div layout="row" layout-padding layout-align="left center">
-                    <span>Required Skills</span>
+                    <span ng-class="comparisonRule.article.skills.disabled ? 'disabled' : ''">Required Skills</span>
                 </div>
                 <div flex>
                     <section layout="column">
