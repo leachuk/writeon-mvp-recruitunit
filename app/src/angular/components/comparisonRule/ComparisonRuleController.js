@@ -29,35 +29,29 @@
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
     this.article = {
-      "model": "RecruitUnitComparisonTest",
       "roleType": {
         "value": ["contract", "permanent"],
-        "disabled": true,
+        "disabled": false,
         "rule": "assertEqualTo"
       },
       "payBracketLower": {
-        "value": 110,
+        "value": 0,
         "disabled": false,
         "rule": "assertGreaterThan"
       },
       "skills": {
-        "value": [
-          "java",
-          "bar"
-        ],
+        "value": [],
         "disabled": false,
         "rule": "assertArrayContains"
       },
       "authorName": "writeonmvpstep1-1@test.com",
-      "createdDate": 1463906114820,
+      "createdDate": Date.now(),
       "locationDescription": {
-        "value": [
-          "sydney",
-          "melbourne"
-        ],
+        "value": [],
         "disabled": false,
         "rule": "assertStringContains"
-      }
+      },
+      "published": true
     };
 
     this.toggleRoleType = function(value){
@@ -88,6 +82,28 @@
     this.disableLocationDescription = function(){
       this.article.locationDescription.disabled = !this.article.locationDescription.disabled;
     }
+
+    this.submitComparisonRuleDocument = function(){
+      console.log("in submitComparisonRuleDocument");
+
+      var authToken = $cookies.get("writeon.authtoken");
+
+      //ToDo: handle if authToken is expired/not available. Redirect to login page?
+      if(comparisonRuleForm.checkValidity() && typeof authToken != 'undefined'){ //comparisonRuleForm is form name
+        console.log("model:");
+        console.log(this.article);
+
+        var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
+        var modelType = "server/models/RecruitUnit.ComparisonTest.js";
+        loomApi.Article.saveArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(saveResult){
+          console.log("result:");
+          console.log(saveResult);
+          //ToDo: redirect to users homepage after success
+          saveResult.success ? this.submitmessage = "Success message" : this.submitmessage = "Error. " + saveResult.message;
+        }));
+      }
+    }
+    
     
     loomApi.Article.getArticle(this.formId, modelId, model, token).then(angular.bind(this, function(result){
       console.log("get article:");
