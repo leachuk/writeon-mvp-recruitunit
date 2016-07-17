@@ -24,9 +24,12 @@
     this.formId = "aa7ecbe9092c948606d4b8a8f0001807"; //todo: pass in the id of the users comparison document. Will need a way to initialise a single new document for the user if one doesn't already exist.
     this.article = {"skills": []}; //Need to initialise for md-chips, otherwise an exception is thrown
 
-    var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
-    var model = "server/models/RecruitUnit.Job.All.js";
+    var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
+    var model = "server/models/RecruitUnit.ComparisonTest.js";
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
+
+    var searchJson = {};
+    searchJson.authorName = "writeonmvpstep1-1@test.com"; 
 
     this.article = {
       "roleType": {
@@ -103,13 +106,21 @@
         }));
       }
     }
-    
-    
-    loomApi.Article.getArticle(this.formId, modelId, model, token).then(angular.bind(this, function(result){
-      console.log("get article:");
+
+    loomApi.Article.search(controllerId, model, searchJson, token).then(angular.bind(this, function(result){
+      console.log("get search:");
       console.log(result);
+      if (result.length > 0){
+        this.article = result[0];
+      }
       //this.article = result;
     }));
+
+    // loomApi.Article.getArticle(this.formId, modelId, model, token).then(angular.bind(this, function(result){
+    //   console.log("get article:");
+    //   console.log(result);
+    //   //this.article = result;
+    // }));
   }
 
 })();
