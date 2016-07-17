@@ -31,7 +31,12 @@
     this.myContentListPassCount = 0;
     this.myContentListFailCount = 0;
 
+    var comparisonRulesDocId = "";
+    var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
+    var model = "server/models/RecruitUnit.ComparisonTest.js";
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
+    var searchJson = {};
+    searchJson.authorName = this.useremail;
 
     loomApi.User.getUser(this.useremail, token).then(angular.bind(this,function(result){
       console.log(result);
@@ -40,9 +45,23 @@
         this.id = result.data.id;
         this.username = result.data.displayName;
 
+        loomApi.Article.search(controllerId, model, searchJson, token).then(function(result){
+          console.log("get search:");
+          console.log(result);
+          if (result.length > 0){
+            comparisonRulesDocId = result[0].id;//todo: handle no id
+            return loomApi.Article.listMyTestContent(controllerId, comparisonRulesDocId, token);
+          }
+        }).then(angular.bind(this,function(listMyTestContentResult){
+          this.myContentList = lodash.sortBy(listMyTestContentResult,'document.createdDate').reverse();
+          this.myContentListPassCount = lodash.filter(listMyTestContentResult, {'testResult':{'isPass':true}}).length + lodash.filter(listMyTestContentResult, {'testResult':{'isPartialPass':true}}).length;
+          this.myContentListFailCount = listMyTestContentResult.length - this.myContentListPassCount;
+        }));
+
+
         //useremail param will equal the submitTo field in 'RecruitUnitJobItem' doc
-        var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
-        loomApi.Article.listMyTestContent(modelId, token).then(angular.bind(this,function(result){
+
+        loomApi.Article.listMyTestContent(controllerId, comparisonRulesDocId, token).then(angular.bind(this,function(result){
           this.myContentList = lodash.sortBy(result,'document.createdDate').reverse();
           this.myContentListPassCount = lodash.filter(result, {'testResult':{'isPass':true}}).length + lodash.filter(result, {'testResult':{'isPartialPass':true}}).length;
           this.myContentListFailCount = result.length - this.myContentListPassCount;
@@ -78,9 +97,8 @@
 
     Controller.prototype.deleteItem = function(id, index){
       console.log("delete id:" + id + ",index:" + index);
-      var modelId = 'server/services/recruitunit/articles/recruitUnitContentService.controller.js';
       //todo: ensure the update can only change the users own document
-      loomApi.Article.updateArticle(id,{"published": false}, token, modelId).then(angular.bind(this,function(result){
+      loomApi.Article.updateArticle(id,{"published": false}, token, controllerId).then(angular.bind(this,function(result){
         console.log("Delete result:");
         console.log(result);
         if (result.success){

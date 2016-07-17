@@ -29,13 +29,13 @@
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
     var searchJson = {};
-    searchJson.authorName = "writeonmvpstep1-1@test.com"; 
+    searchJson.authorName = "writeonmvpstep1-1@test.com"; //todo: pass in username
 
     this.article = {
       "roleType": {
         "value": ["contract", "permanent"],
         "disabled": false,
-        "rule": "assertEqualTo"
+        "rule": "assertArrayContains"
       },
       "payBracketLower": {
         "value": 0,
