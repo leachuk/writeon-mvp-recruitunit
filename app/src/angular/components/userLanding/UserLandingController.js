@@ -33,7 +33,8 @@
 
     var comparisonRulesDocId = "";
     var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
-    var model = "server/models/RecruitUnit.ComparisonTest.js";
+    var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
+    var jobItemModel = "server/models/RecruitUnit.Job.All.js";
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
     var searchJson = {};
     searchJson.authorName = this.useremail;
@@ -45,7 +46,7 @@
         this.id = result.data.id;
         this.username = result.data.displayName;
 
-        loomApi.Article.search(controllerId, model, searchJson, token).then(function(result){
+        loomApi.Article.search(controllerId, rulesModel, searchJson, token).then(function(result){
           console.log("get search:");
           console.log(result);
           if (result.length > 0){
@@ -61,11 +62,11 @@
 
         //useremail param will equal the submitTo field in 'RecruitUnitJobItem' doc
 
-        loomApi.Article.listMyTestContent(controllerId, comparisonRulesDocId, token).then(angular.bind(this,function(result){
-          this.myContentList = lodash.sortBy(result,'document.createdDate').reverse();
-          this.myContentListPassCount = lodash.filter(result, {'testResult':{'isPass':true}}).length + lodash.filter(result, {'testResult':{'isPartialPass':true}}).length;
-          this.myContentListFailCount = result.length - this.myContentListPassCount;
-        }));
+        // loomApi.Article.listMyTestContent(controllerId, comparisonRulesDocId, token).then(angular.bind(this,function(result){
+        //   this.myContentList = lodash.sortBy(result,'document.createdDate').reverse();
+        //   this.myContentListPassCount = lodash.filter(result, {'testResult':{'isPass':true}}).length + lodash.filter(result, {'testResult':{'isPartialPass':true}}).length;
+        //   this.myContentListFailCount = result.length - this.myContentListPassCount;
+        // }));
       } else {
         console.log(result.message);
       }
@@ -98,14 +99,13 @@
     Controller.prototype.deleteItem = function(docId, index){
       console.log("delete id:" + docId + ",index:" + index);
       //todo: ensure the update can only change the users own document
-      loomApi.Article.updateArticle(docId, controllerId, model, {"published": false}, token).then(angular.bind(this,function(result){
+      loomApi.Article.updateArticle(docId, controllerId, jobItemModel, {"published": false}, token).then(angular.bind(this,function(result){
         console.log("Delete result:");
         console.log(result);
         if (result.success){
           this.myContentList.splice(index, 1);
         }
       }));
-
     }
 
     Controller.prototype.viewItem = function(id){
