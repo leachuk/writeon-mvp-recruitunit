@@ -95,10 +95,10 @@
       return moment.unix(unixTime).from();
     }
 
-    Controller.prototype.deleteItem = function(id, index){
-      console.log("delete id:" + id + ",index:" + index);
+    Controller.prototype.deleteItem = function(docId, index){
+      console.log("delete id:" + docId + ",index:" + index);
       //todo: ensure the update can only change the users own document
-      loomApi.Article.updateArticle(id,{"published": false}, token, controllerId).then(angular.bind(this,function(result){
+      loomApi.Article.updateArticle(docId, controllerId, model, {"published": false}, token).then(angular.bind(this,function(result){
         console.log("Delete result:");
         console.log(result);
         if (result.success){

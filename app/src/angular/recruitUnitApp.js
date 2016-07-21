@@ -53,7 +53,7 @@ function AppController($router, $mdComponentRegistry) {
     { path: '/admin/recruiter/:email', component: 'recruiterAdmin' },
     { path: '/admin/developer/:email', component: 'developerAdmin' },
     { path: '/user/:email', component: 'userLanding' },
-    { path: '/user/:email/comparison', component: 'comparisonRule' },
+    { path: '/user/:email/comparisonrules', component: 'comparisonRule' },
     { path: '/user/:email/form/:id/submit', component: 'formSubmit' },
     { path: '/user/:email/form/:id', component: 'formRead' }
   ]);

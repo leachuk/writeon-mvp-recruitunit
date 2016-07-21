@@ -35,7 +35,7 @@
       "roleType": {
         "value": ["contract", "permanent"],
         "disabled": false,
-        "rule": "assertArrayContains"
+        "rule": "assertStringContains"
       },
       "payBracketLower": {
         "value": 0,
@@ -98,12 +98,24 @@
 
         var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
         var modelType = "server/models/RecruitUnit.ComparisonTest.js";
-        loomApi.Article.saveArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(saveResult){
-          console.log("result:");
-          console.log(saveResult);
-          //ToDo: redirect to users homepage after success
-          saveResult.success ? this.submitmessage = "Success message" : this.submitmessage = "Error. " + saveResult.message;
-        }));
+        if (this.article.hasOwnProperty("id")){
+          delete this.article._rev;
+          loomApi.Article.updateArticle(this.article.id, modelId, modelType, this.article, token).then(angular.bind(this, function (result) {
+            console.log("Update result:");
+            console.log(result);
+            result.success ? this.submitmessage = "Success" : this.submitmessage = "Error. " + result.message;
+          }));
+        }else {
+          loomApi.Article.saveArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(result){
+            console.log("Save result:");
+            console.log(result);
+            result.success
+                ? (this.submitmessage = "Success",
+                  this.article = result.data)
+                :
+                  this.submitmessage = "Error. " + result.message;
+          }));
+        }
       }
     }
 
