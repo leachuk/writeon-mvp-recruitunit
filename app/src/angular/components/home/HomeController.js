@@ -18,7 +18,7 @@
     console.log("in HomeController");
 
     recruitUnitUtil.Util.setTitle("Home");
-    
+
     //client model maps to server model 'User'
     this.user = {
       email: "",
@@ -26,6 +26,17 @@
     };
     this.submitmessage = "";
     this.roles = ['developer', 'recruiter'];
+
+    console.log("Check User Authentication:");
+    var localUser = recruitUnitUtil.Util.getLocalUser();
+    if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set
+      recruitUnitUtil.Util.isUserAuthenticated(localUser.email, localUser.token).then(angular.bind(this,function(result){
+        if(result){ //true
+          console.log("Redirecting user to landing page");
+          $location.path("/user/" + localUser.email);
+        }
+      }));
+    }
 
     //todo: test this still works when minified.
     Controller.prototype.createNewUser = function(){
