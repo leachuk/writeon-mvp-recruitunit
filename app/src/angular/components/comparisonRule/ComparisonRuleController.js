@@ -10,19 +10,35 @@
     '$http',
     '$cookies',
     '$mdDialog',
+    '$location',
+    '$window',
     'loomApi',
     'recruitUnitUtil'
   ];
 
   //example child router. Component folder structure stays flat
-  Controller.$routeConfig = [
-    { path: '/create', component: 'testCreate' }
-  ];
+  // Controller.$routeConfig = [
+  //   { path: '/create', component: 'testCreate' }
+  // ];
 
-  function Controller($routeParams, $http, $cookies, $mdDialog, loomApi, recruitUnitUtil) {
+  function Controller($routeParams, $http, $cookies, $mdDialog, $location, $window, loomApi, recruitUnitUtil) {
     console.log("ComparisonRuleController instantiated");
 
     recruitUnitUtil.Util.setTitle("Manage Comparison Rules");
+
+    //redirect depending on user authentication
+    console.log("Check User Authentication:");
+    var localUser = recruitUnitUtil.Util.getLocalUser();
+    if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set
+      recruitUnitUtil.Util.isUserAuthenticated(localUser.email, localUser.token).then(angular.bind(this,function(result){
+        if(!result){ //false
+          console.log("Redirecting user to landing page");
+          $location.path("/home");
+        }
+      }));
+    } else { // local user details aren't set
+      $window.location.assign("/home"); //alternate redirect. location.path failed here.
+    }
 
     this.formId = "aa7ecbe9092c948606d4b8a8f0001807"; //todo: pass in the id of the users comparison document. Will need a way to initialise a single new document for the user if one doesn't already exist.
     this.article = {"skills": []}; //Need to initialise for md-chips, otherwise an exception is thrown

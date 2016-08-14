@@ -18,7 +18,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'app.user.formSubmitController',
   'app.user.formReadController',
   'app.user.comparisonRuleController',
-  'recruitunit.util'  
+  'recruitunit.util'
 ]).controller('AppController', ['$router', '$mdComponentRegistry', AppController])
 .config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', '$mdIconProvider', function($componentLoaderProvider, $locationProvider, $httpProvider, $mdIconProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
@@ -37,8 +37,11 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
 function AppController($router, $mdComponentRegistry) {
   var sideNav;
   this.user = { //todo: handle when user isn't signed in. Prob create service
-    email: window.localStorage.getItem("writeon.username")
+    email: window.localStorage.getItem("writeon.username"),
+    password: ""
   };
+  this.submitmessage = "";
+  this.roles = ['developer', 'recruiter'];
 
   $mdComponentRegistry.when('sidenav-main').then(function(mainSideNav){
     sideNav = mainSideNav;
@@ -66,6 +69,29 @@ function AppController($router, $mdComponentRegistry) {
   AppController.prototype.toggleSideNav = function() {
     sideNav.toggle();
   }
+
+  //login existing user
+  AppController.prototype.signInUser = function(){
+    console.log("in signInUser");
+    console.log(this.user);
+
+    loomApi.User.signInUser(this.user.email, this.user.password).then(angular.bind(this,function(result, status, headers, config){
+      console.log(result);
+      console.log(status);
+      console.log(headers);
+      console.log(config);
+
+      result.success
+          ?
+          (persistUserAuth(result.token, this.user.email),
+              this.user.email = "",
+              this.user.password = "",
+              this.submitmessage = "")
+          :
+          this.submitmessage = "Error. " + result.data.message;
+      //console.log(this.submitmessage);
+    }));
+  };
 }
 
 

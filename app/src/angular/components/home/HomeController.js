@@ -7,6 +7,7 @@
 
   Controller.$inject = [
     '$routeParams',
+    '$router',
     '$location',
     '$http',
     '$cookies',
@@ -14,18 +15,10 @@
     'recruitUnitUtil'
   ];
 
-  function Controller($routeParams, $location, $http, $cookies, loomApi, recruitUnitUtil) {
+  function Controller($routeParams, $router, $location, $http, $cookies, loomApi, recruitUnitUtil) {
     console.log("in HomeController");
 
     recruitUnitUtil.Util.setTitle("Home");
-
-    //client model maps to server model 'User'
-    this.user = {
-      email: "",
-      password: ""
-    };
-    this.submitmessage = "";
-    this.roles = ['developer', 'recruiter'];
 
     //redirect depending on user authentication
     console.log("Check User Authentication:");
@@ -67,29 +60,6 @@
               this.submitmessage = "Error. " + result.data.message;
         }));
       }
-    };
-
-    //login existing user
-    Controller.prototype.signInUser = function(){
-      console.log("in signInUser");
-      console.log(this.user);
-
-      loomApi.User.signInUser(this.user.email, this.user.password).then(angular.bind(this,function(result, status, headers, config){
-        console.log(result);
-        console.log(status);
-        console.log(headers);
-        console.log(config);
-
-        result.success
-          ?
-            (persistUserAuth(result.token, this.user.email),
-            this.user.email = "",
-            this.user.password = "",
-            this.submitmessage = "")
-          :
-            this.submitmessage = "Error. " + result.data.message;
-        //console.log(this.submitmessage);
-      }));
     };
 
     //private functions. Probably move to a service

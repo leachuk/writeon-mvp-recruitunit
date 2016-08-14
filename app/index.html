@@ -16,7 +16,7 @@
 	</head>
 
 	<body ng-app="recruitUnitApp" ng-controller="AppController as app" layout="column">
-		<md-toolbar ng-controller="HomeController as homeUserLogin">
+		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<md-button class="md-icon-button" aria-label="Settings">
 					<md-icon ng-click="app.toggleSideNav()" md-svg-icon="navigation:menu"></md-icon>
@@ -25,24 +25,24 @@
 					<div>
 						<md-input-container flex>
 							<label>Email</label>
-							<input ng-model="homeUserLogin.user.email"
+							<input ng-model="app.user.email"
 								   type="text">
 						</md-input-container>
 					</div>
 					<div>
 						<md-input-container flex>
 							<label>Password</label>
-							<input ng-model="homeUserLogin.user.password"
+							<input ng-model="app.user.password"
 								   type="text">
 						</md-input-container>
 					</div>
 					<div>
-						<md-button ng-click="homeUserLogin.signInUser()">Login</md-button>
+						<md-button ng-click="app.signInUser()">Login</md-button>
 					</div>
 				</div>
 			</div>
-			<div layout="row" layout-align="end center" ng-if="homeUserLogin.submitmessage" ng-cloak>
-				<div>{{homeUserLogin.submitmessage}}</div>
+			<div layout="row" layout-align="end center" ng-if="app.submitmessage" ng-cloak>
+				<div>{{app.submitmessage}}</div>
 			</div>
 		</md-toolbar>
 		<md-content flex>
