@@ -138,6 +138,10 @@
       }
     }
 
+    this.cancelComparisonRuleDocument = function(){
+      window.history.back();
+    }
+
     loomApi.Article.search(controllerId, model, searchJson, token).then(angular.bind(this, function(result){
       console.log("get search:");
       console.log(result);
