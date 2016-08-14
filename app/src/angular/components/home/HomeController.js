@@ -10,12 +10,15 @@
     '$location',
     '$http',
     '$cookies',
-    'loomApi'
+    'loomApi',
+    'recruitUnitUtil'
   ];
 
-  function Controller($routeParams, $location, $http, $cookies, loomApi) {
+  function Controller($routeParams, $location, $http, $cookies, loomApi, recruitUnitUtil) {
     console.log("in HomeController");
 
+    recruitUnitUtil.Util.setTitle("Home");
+    
     //client model maps to server model 'User'
     this.user = {
       email: "",

@@ -17,7 +17,8 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'app.testCreate',
   'app.user.formSubmitController',
   'app.user.formReadController',
-  'app.user.comparisonRuleController'
+  'app.user.comparisonRuleController',
+  'recruitunit.util'  
 ]).controller('AppController', ['$router', '$mdComponentRegistry', AppController])
 .config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', '$mdIconProvider', function($componentLoaderProvider, $locationProvider, $httpProvider, $mdIconProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {

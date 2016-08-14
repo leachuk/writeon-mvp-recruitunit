@@ -14,11 +14,14 @@
     '$mdDialog',
     'loomApi',
     'lodash',
-    'moment'
+    'moment',
+    'recruitUnitUtil'
   ];
 
-  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,loomApi,lodash,moment) {
+  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,loomApi,lodash,moment,recruitUnitUtil) {
     console.log("in UserLandingController");
+
+    recruitUnitUtil.Util.setTitle("User Landing Page");
 
     //this.usercreated = $location.search().usercreated; //ref to get param from url
     //routeParams

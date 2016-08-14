@@ -10,7 +10,8 @@
     '$http',
     '$cookies',
     '$mdDialog',
-    'loomApi'
+    'loomApi',
+    'recruitUnitUtil'
   ];
 
   //example child router. Component folder structure stays flat
@@ -18,8 +19,10 @@
     { path: '/create', component: 'testCreate' }
   ];
 
-  function Controller($routeParams, $http, $cookies, $mdDialog, loomApi) {
+  function Controller($routeParams, $http, $cookies, $mdDialog, loomApi, recruitUnitUtil) {
     console.log("ComparisonRuleController instantiated");
+
+    recruitUnitUtil.Util.setTitle("Manage Comparison Rules");
 
     this.formId = "aa7ecbe9092c948606d4b8a8f0001807"; //todo: pass in the id of the users comparison document. Will need a way to initialise a single new document for the user if one doesn't already exist.
     this.article = {"skills": []}; //Need to initialise for md-chips, otherwise an exception is thrown
