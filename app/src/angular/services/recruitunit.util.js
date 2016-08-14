@@ -30,7 +30,9 @@ angular.module('recruitunit.util',[])
                     }
                 });
 
-            }));
+            })).catch(function(err) {
+               console.log("Exception: isUserAuthenticated");
+            });
 
         }
 

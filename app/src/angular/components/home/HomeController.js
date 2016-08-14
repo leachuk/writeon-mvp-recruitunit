@@ -27,6 +27,7 @@
     this.submitmessage = "";
     this.roles = ['developer', 'recruiter'];
 
+    //redirect depending on user authentication
     console.log("Check User Authentication:");
     var localUser = recruitUnitUtil.Util.getLocalUser();
     if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set

@@ -12,16 +12,31 @@
     '$location',
     '$router',
     '$mdDialog',
+    '$window',
     'loomApi',
     'lodash',
     'moment',
     'recruitUnitUtil'
   ];
 
-  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,loomApi,lodash,moment,recruitUnitUtil) {
+  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil) {
     console.log("in UserLandingController");
 
     recruitUnitUtil.Util.setTitle("User Landing Page");
+
+    //redirect depending on user authentication
+    console.log("Check User Authentication:");
+    var localUser = recruitUnitUtil.Util.getLocalUser();
+    if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set
+      recruitUnitUtil.Util.isUserAuthenticated(localUser.email, localUser.token).then(angular.bind(this,function(result){
+        if(!result){ //false
+          console.log("Redirecting user to landing page");
+          $location.path("/home");
+        }
+      }));
+    } else { // local user details aren't set
+      $window.location.assign("/home"); //alternate redirect. location.path failed here.
+    }
 
     //this.usercreated = $location.search().usercreated; //ref to get param from url
     //routeParams
