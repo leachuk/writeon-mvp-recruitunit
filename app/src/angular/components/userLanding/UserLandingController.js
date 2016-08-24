@@ -45,7 +45,7 @@
     this.role = "";
     this.id = "";
     this.status = "";
-    this.myContentList = {};
+    this.myContentListArray = [];
     this.myContentListPassCount = 0;
     this.myContentListFailCount = 0;
 
@@ -72,9 +72,11 @@
             return loomApi.Article.listMyTestContent(controllerId, comparisonRulesDocId, token);
           }
         }).then(angular.bind(this,function(listMyTestContentResult){
-          this.myContentList = lodash.sortBy(listMyTestContentResult,'document.createdDate').reverse();
-          this.myContentListPassCount = lodash.filter(listMyTestContentResult, {'testResult':{'isPass':true}}).length + lodash.filter(listMyTestContentResult, {'testResult':{'isPartialPass':true}}).length;
-          this.myContentListFailCount = listMyTestContentResult.length - this.myContentListPassCount;
+          if (typeof listMyTestContentResult !== 'undefined') {
+            this.myContentListArray = lodash.sortBy(listMyTestContentResult, 'document.createdDate').reverse();
+            this.myContentListPassCount = lodash.filter(listMyTestContentResult, {'testResult': {'isPass': true}}).length + lodash.filter(listMyTestContentResult, {'testResult': {'isPartialPass': true}}).length;
+            this.myContentListFailCount = listMyTestContentResult.length - this.myContentListPassCount;
+          }
         }));
 
 
