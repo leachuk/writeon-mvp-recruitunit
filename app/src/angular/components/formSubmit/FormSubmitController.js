@@ -9,7 +9,8 @@
     '$routeParams',
     '$http',
     '$cookies',
-    'loomApi'
+    'loomApi',
+    'recruitUnitUtil'
   ];
 
   //example child router. Component folder structure stays flat
@@ -17,9 +18,11 @@
     { path: '/create', component: 'testCreate' }
   ];
 
-  function Controller($routeParams,$http,$cookies,loomApi) {
+  function Controller($routeParams, $http, $cookies, loomApi, recruitUnitUtil) {
     console.log("FormSubmitController instantiated");
-    this.formId = $routeParams.id;
+
+    this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
+    this.submitTo = $routeParams.email
 
     this.article = {
       "jobDescription" : "",
@@ -27,21 +30,23 @@
       "payBracketLower": null,
       "payBracketUpper": null,
       "locationDescription": "",
-      "skills": ['node', 'java', 'html', 'grunt'],
-      "submitTo" : "",
-      "submittedBy" : ""
+      "skills": [],
+      "submitTo" : this.submitTo,
+      "authorEmail" : this.authenticatedUser.email
     };
 
     Controller.prototype.submitJobToCandidate = function(){
       console.log("in submitJobToCandidate");
-      var authToken = $cookies.get("writeon.authtoken");
+      var authToken = this.authenticatedUser.token;
 
       //ToDo: handle if authToken is expired/not available. Redirect to login page?
       if(submitJobFromRecruiter.checkValidity() && typeof authToken != 'undefined'){ //submitJobFromRecruiter is form name
         console.log("model:");
         console.log(this.article);
 
-        loomApi.Article.saveArticle(this.article, 'server/services/recruitunit/articles/recruitUnitContentService.controller.js', authToken).then(angular.bind(this,function(saveResult){
+        var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
+        var modelType = "server/models/RecruitUnit.Job.All.js";
+        loomApi.Article.saveArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(saveResult){
           console.log("result:");
           console.log(saveResult);
           //ToDo: redirect to users homepage after success
