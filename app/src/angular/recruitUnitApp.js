@@ -19,7 +19,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'app.user.formReadController',
   'app.user.comparisonRuleController',
   'recruitunit.util'
-]).controller('AppController', ['$router', '$mdComponentRegistry', AppController])
+]).controller('AppController', ['$router', '$mdComponentRegistry', 'loomApi', 'recruitUnitUtil', AppController])
 .config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', '$mdIconProvider', function($componentLoaderProvider, $locationProvider, $httpProvider, $mdIconProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
     return 'src/angular/components/' + name + '/' + name + '.html';
@@ -34,7 +34,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
     .defaultIconSet('./assets/svg/action-icons.svg');
 }]);
 
-function AppController($router, $mdComponentRegistry) {
+function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil) {
   var sideNav;
   this.user = { //todo: handle when user isn't signed in. Prob create service
     email: window.localStorage.getItem("writeon.username"),
@@ -83,7 +83,7 @@ function AppController($router, $mdComponentRegistry) {
 
       result.success
           ?
-          (persistUserAuth(result.token, this.user.email),
+          (recruitUnitUtil.Util.persistUserAuth(result.token, this.user.email),
               this.user.email = "",
               this.user.password = "",
               this.submitmessage = "")

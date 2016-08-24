@@ -50,7 +50,7 @@
               loomApi.User.signInUser(this.user.email, this.user.password).then(angular.bind(this,function(result, status, headers, config){
                 result.success
                   ?
-                  (persistUserAuth(result.token, this.user.email),
+                  (recruitUnitUtil.Util.persistUserAuth(result.token, this.user.email),
                    $location.path("/user/" + this.user.email))
                   :
                   this.submitmessage = "Error. " + result.data.message;
@@ -62,14 +62,6 @@
       }
     };
 
-    //private functions. Probably move to a service
-    var persistUserAuth = function(token, username){
-      window.localStorage.setItem("writeon.authtoken", token);
-      window.localStorage.setItem("writeon.username", username);
-      //now redirect to users home page, where token is checked for
-      $location.path("/user/" + username);
-      //$location.path("/user/" + username).search({usercreated: "true"}); for reference to add param to url
-    }
   }
 
 })();

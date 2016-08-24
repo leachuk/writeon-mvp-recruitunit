@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('recruitunit.util',[])
-    .factory('recruitUnitUtil', ['$resource', 'loomApi', function ($resource, loomApi) {
+    .factory('recruitUnitUtil', ['$resource', '$location', 'loomApi', function ($resource, $location, loomApi) {
         
         //Util Service
         var service = {};
@@ -34,6 +34,14 @@ angular.module('recruitunit.util',[])
                console.log("Exception: isUserAuthenticated");
             });
 
+        }
+
+        service.Util.persistUserAuth = function(token, username){
+            window.localStorage.setItem("writeon.authtoken", token);
+            window.localStorage.setItem("writeon.username", username);
+            //now redirect to users home page, where token is checked for
+            $location.path("/user/" + username);
+            //$location.path("/user/" + username).search({usercreated: "true"}); for reference to add param to url
         }
 
         return service;
