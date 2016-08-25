@@ -7,8 +7,7 @@
 
   Controller.$inject = [
     '$routeParams',
-    '$http',
-    '$cookies',
+    '$location',
     'loomApi',
     'recruitUnitUtil'
   ];
@@ -18,8 +17,10 @@
     { path: '/create', component: 'testCreate' }
   ];
 
-  function Controller($routeParams, $http, $cookies, loomApi, recruitUnitUtil) {
+  function Controller($routeParams, $location, loomApi, recruitUnitUtil) {
     console.log("FormSubmitController instantiated");
+
+    recruitUnitUtil.Util.redirectUserIfNotAuthenticated("/home");
 
     this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
     this.submitTo = $routeParams.email
@@ -50,7 +51,7 @@
           console.log("result:");
           console.log(saveResult);
           //ToDo: redirect to users homepage after success
-          saveResult.success ? this.submitmessage = "Success message" : this.submitmessage = "Error. " + saveResult.message;
+          saveResult.success ? $location.path("/user/" + this.authenticatedUser.email) : this.submitmessage = "Error. " + saveResult.message;
         }));
       }
     };

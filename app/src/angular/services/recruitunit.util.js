@@ -43,6 +43,23 @@ angular.module('recruitunit.util',[])
             $location.path("/user/" + username);
             //$location.path("/user/" + username).search({usercreated: "true"}); for reference to add param to url
         }
+        
+        service.Util.redirectUserIfNotAuthenticated = function(redirectToPath){
+            console.log("redirectUserIfNotAuthenticated, redirect to :" + redirectToPath);
+            var localUser = service.Util.getLocalUser();
+            if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set
+                service.Util.isUserAuthenticated(localUser.email, localUser.token).then(angular.bind(this,function(result){
+                    if(!result){ //false
+                        console.log("Redirecting user to landing page");
+                        $location.path(redirectToPath);
+                    }
+                }));
+            } else { // local user details aren't set
+                console.log("User details don't exist, redirecting");
+                $window.location.assign(redirectToPath); //alternate redirect. location.path failed here.
+            }
+
+        }
 
         return service;
 
