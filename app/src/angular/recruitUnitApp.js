@@ -8,6 +8,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'loom.api',
   'ngLodash',
   'angularMoment',
+  'angular-jwt',
   'app.homeController',
   'app.user.userLandingController',
   'app.user.recruiterLandingController',

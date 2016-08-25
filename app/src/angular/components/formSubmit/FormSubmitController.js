@@ -9,7 +9,8 @@
     '$routeParams',
     '$location',
     'loomApi',
-    'recruitUnitUtil'
+    'recruitUnitUtil',
+    'jwtHelper'
   ];
 
   //example child router. Component folder structure stays flat
@@ -17,13 +18,16 @@
     { path: '/create', component: 'testCreate' }
   ];
 
-  function Controller($routeParams, $location, loomApi, recruitUnitUtil) {
+  function Controller($routeParams, $location, loomApi, recruitUnitUtil, jwtHelper) {
     console.log("FormSubmitController instantiated");
 
     recruitUnitUtil.Util.redirectUserIfNotAuthenticated("/home");
 
     this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
-    this.submitTo = $routeParams.email
+    this.submitTo = $routeParams.email;
+
+    console.log("Decoding authtoken:");
+    console.log(jwtHelper.decodeToken(this.authenticatedUser.token));
 
     this.article = {
       "jobDescription" : "",
