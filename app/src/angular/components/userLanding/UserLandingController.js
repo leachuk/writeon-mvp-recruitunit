@@ -22,11 +22,17 @@
   function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil) {
     console.log("in UserLandingController");
 
+
+    Controller.prototype.canActivate = function() {
+      console.log("Executing UserLandingController canActivate");
+      return true;
+    };
+
     recruitUnitUtil.Util.setTitle("User Landing Page");
 
     //redirect depending on user authentication
     recruitUnitUtil.Util.redirectUserIfNotAuthenticated("/home");
-    
+
     //this.usercreated = $location.search().usercreated; //ref to get param from url
     //routeParams
     this.useremail = $routeParams.email;

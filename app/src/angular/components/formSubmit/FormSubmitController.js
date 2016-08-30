@@ -18,17 +18,11 @@
     { path: '/create', component: 'testCreate' }
   ];
 
-  function Controller($routeParams, $location, loomApi, recruitUnitUtil, jwtHelper) {
+  function Controller($routeParams, $location, loomApi, recruitUnitUtil) {
     console.log("FormSubmitController instantiated");
-
-    recruitUnitUtil.Util.redirectUserIfNotAuthenticated("/home");
 
     this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
     this.submitTo = $routeParams.email;
-
-    console.log("Decoding authtoken:");
-    console.log(jwtHelper.decodeToken(this.authenticatedUser.token));
-
     this.article = {
       "jobDescription" : "",
       "roleType": "",
@@ -40,6 +34,7 @@
       "authorEmail" : this.authenticatedUser.email
     };
 
+    //todo: move this outside of the Controller function.
     Controller.prototype.submitJobToCandidate = function(){
       console.log("in submitJobToCandidate");
       var authToken = this.authenticatedUser.token;
@@ -61,5 +56,20 @@
     };
 
   }
+
+  Controller.prototype.canActivate = function(recruitUnitUtil, jwtHelper) {
+    console.log("Executing FormSubmitController canActivate");
+
+    var token = jwtHelper.decodeToken(this.authenticatedUser.token);
+    var userJobRole = token.jobRole;
+    console.log("job role:" + userJobRole);
+
+    //recruitUnitUtil.Util.redirectUserIfNotAuthenticated("/home");
+    return userJobRole == 'recruiter2' ? true : false;
+  };
+
+  Controller.prototype.canDeactivate = function(recruitUnitUtil, jwtHelper) {
+    console.log("Executing FormSubmitController deactivate");
+  };
 
 })();
