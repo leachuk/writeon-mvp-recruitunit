@@ -45,7 +45,7 @@
 
         var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
         var modelType = "server/models/RecruitUnit.Job.All.js";
-        loomApi.Article.saveArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(saveResult){
+        loomApi.Article.createArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(saveResult){
           console.log("result:");
           console.log(saveResult);
           //ToDo: redirect to users homepage after success

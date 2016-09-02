@@ -51,7 +51,7 @@ function SubmitJobCtrl($http, $cookies, loomApi) {
       console.log("model:");
       console.log(self.article);
 
-      loomApi.Article.saveArticle(self.article, 'server/services/recruitunit/articles/recruitUnitContentService.controller.js', self.authToken).then(angular.bind(this,function(saveResult){
+      loomApi.Article.createArticle(self.article, 'server/services/recruitunit/articles/recruitUnitContentService.controller.js', self.authToken).then(angular.bind(this,function(saveResult){
         console.log("result:");
         console.log(saveResult);
         saveResult.success ? self.submitmessage = "Success message" : self.submitmessage = "Error. " + saveResult.message;

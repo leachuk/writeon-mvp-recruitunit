@@ -68,7 +68,7 @@
         this.article.submitTo = this.useremail;
         this.article.submittedBy = this.loggedinuser.email;
 
-        loomApi.Article.saveArticle(this.article, 'server/services/recruitunit/articles/recruitUnitContentService.controller.js', token).then(angular.bind(this, function (saveResult) {
+        loomApi.Article.createArticle(this.article, 'server/services/recruitunit/articles/recruitUnitContentService.controller.js', token).then(angular.bind(this, function (saveResult) {
           console.log("result:");
           console.log(saveResult);
           saveResult.success ? this.submitmessage = "Success message" : this.submitmessage = "Error. " + saveResult.message;

@@ -125,7 +125,7 @@
             result.success ? this.submitmessage = "Success" : this.submitmessage = "Error. " + result.message;
           }));
         }else {
-          loomApi.Article.saveArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(result){
+          loomApi.Article.createArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(result){
             console.log("Save result:");
             console.log(result);
             result.success
