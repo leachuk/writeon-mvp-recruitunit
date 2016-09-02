@@ -21,6 +21,8 @@
   function Controller($routeParams, $location, loomApi, recruitUnitUtil, jwtHelper) {
     console.log("FormSubmitController instantiated");
 
+    recruitUnitUtil.Util.setTitle("Submit Form Page");
+
     this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
     this.submitTo = $routeParams.email;
     this.article = {
