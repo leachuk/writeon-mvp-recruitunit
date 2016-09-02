@@ -1,11 +1,15 @@
 'use strict';
 
 angular.module('recruitunit.util',[])
-    .factory('recruitUnitUtil', ['$resource', '$location', 'loomApi', function ($resource, $location, loomApi) {
+    .factory('recruitUnitUtil', ['$resource', '$location', '$window', 'loomApi', function ($resource, $location, $window, loomApi) {
         
         //Util Service
         var service = {};
         service.Util = {};
+        service.Constants = { //I know!
+            'DEVELOPER_ROLE': 'developer',
+            'RECRUITER_ROLE': 'recruiter'
+        };
 
         service.Util.setTitle = function(title){
             document.title = "Recruit Unit - " + title;
@@ -59,6 +63,11 @@ angular.module('recruitunit.util',[])
                 $window.location.assign(redirectToPath); //alternate redirect. location.path failed here.
             }
 
+        }
+
+        service.Util.redirectUserToPath = function(redirectToPath) {
+            console.log("redirectUserToPath, redirect to :" + redirectToPath);
+            $window.location.assign(redirectToPath);
         }
 
         return service;

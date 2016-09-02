@@ -18,7 +18,7 @@
     { path: '/create', component: 'testCreate' }
   ];
 
-  function Controller($routeParams, $location, loomApi, recruitUnitUtil) {
+  function Controller($routeParams, $location, loomApi, recruitUnitUtil, jwtHelper) {
     console.log("FormSubmitController instantiated");
 
     this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
@@ -39,7 +39,6 @@
       console.log("in submitJobToCandidate");
       var authToken = this.authenticatedUser.token;
 
-      //ToDo: handle if authToken is expired/not available. Redirect to login page?
       if(submitJobFromRecruiter.checkValidity() && typeof authToken != 'undefined'){ //submitJobFromRecruiter is form name
         console.log("model:");
         console.log(this.article);
@@ -57,19 +56,12 @@
 
   }
 
+  //only activate controller if user role is 'developer'
   Controller.prototype.canActivate = function(recruitUnitUtil, jwtHelper) {
-    console.log("Executing FormSubmitController canActivate");
-
     var token = jwtHelper.decodeToken(this.authenticatedUser.token);
     var userJobRole = token.jobRole;
-    console.log("job role:" + userJobRole);
 
-    //recruitUnitUtil.Util.redirectUserIfNotAuthenticated("/home");
-    return userJobRole == 'recruiter2' ? true : false;
-  };
-
-  Controller.prototype.canDeactivate = function(recruitUnitUtil, jwtHelper) {
-    console.log("Executing FormSubmitController deactivate");
+    return userJobRole == recruitUnitUtil.Constants.RECRUITER_ROLE ? true : recruitUnitUtil.Util.redirectUserToPath("/user/" + this.authenticatedUser.email);
   };
 
 })();

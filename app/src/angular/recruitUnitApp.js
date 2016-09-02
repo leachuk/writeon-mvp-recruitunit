@@ -42,8 +42,7 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil) 
     password: ""
   };
   this.submitmessage = "";
-  this.roles = ['developer', 'recruiter'];
-
+  
   $mdComponentRegistry.when('sidenav-main').then(function(mainSideNav){
     sideNav = mainSideNav;
     //mainSideNav.open();
