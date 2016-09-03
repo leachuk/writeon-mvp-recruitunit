@@ -35,7 +35,8 @@
       "locationDescription": "",
       "skills": [],
       "submitTo" : this.submitTo,
-      "authorEmail" : this.authenticatedUser.email
+      "authorEmail" : this.authenticatedUser.email,
+      "published" : true
     };
 
     //todo: move this outside of the Controller function.
