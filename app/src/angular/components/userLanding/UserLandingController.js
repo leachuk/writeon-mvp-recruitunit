@@ -79,6 +79,47 @@
         console.log(result.message);
       }
     }));
+
+    Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
+      console.log("in showFormDetailDialog");
+      console.log("   form id:" + id);
+      $mdDialog.show({
+        controller: 'FormReadController',
+        controllerAs: 'formRead',
+        locals: {'jobDetailFormId':id, 'isItemPass': isPartialPass || isPass ? true : false},
+        bindToController: true,
+        templateUrl: 'src/angular/components/formRead/formReadDialog.html',
+        parent: angular.element(document.body),
+        targetEvent: $event,
+        clickOutsideToClose:true,
+        fullscreen: false
+      }).then(function(answer) {
+        //this.status = 'You said the information was "' + answer + '".';
+      }, function() {
+        //this.status = 'You cancelled the dialog.';
+      });
+    }
+
+    Controller.prototype.deleteItem = function(docId, index){
+      console.log("delete id:" + docId + ",index:" + index);
+      //todo: ensure the update can only change the users own document
+      loomApi.Article.updateArticle(docId, controllerId, jobItemModel, {"published": false}, token).then(angular.bind(this,function(result){
+        console.log("Delete result:");
+        console.log(result);
+        if (result.success){
+          this.myContentList.splice(index, 1);
+        }
+      }));
+    }
+
+    Controller.prototype.formatUnixDateToNow = function(unixTime){
+      return moment.unix(unixTime).from();
+    }
+
+    Controller.prototype.viewItem = function(id){
+      //console.log("view id:" + id);
+      $location.path("/user/" + this.useremail + "/form/" + id);
+    }
   }
 
   Controller.prototype.canActivate = function($routeParams, recruitUnitUtil, jwtHelper) {
@@ -88,46 +129,5 @@
 
     return authenticatedUsername == requestedUsername ? true : recruitUnitUtil.Util.redirectUserToPath("/user/" + authenticatedUsername);
   };
-
-  Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
-    console.log("in showFormDetailDialog");
-    console.log("   form id:" + id);
-    $mdDialog.show({
-      controller: 'FormReadController',
-      controllerAs: 'formRead',
-      locals: {'jobDetailFormId':id, 'isItemPass': isPartialPass || isPass ? true : false},
-      bindToController: true,
-      templateUrl: 'src/angular/components/formRead/formReadDialog.html',
-      parent: angular.element(document.body),
-      targetEvent: $event,
-      clickOutsideToClose:true,
-      fullscreen: false
-    }).then(function(answer) {
-      //this.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      //this.status = 'You cancelled the dialog.';
-    });
-  }
-
-  Controller.prototype.formatUnixDateToNow = function(unixTime){
-    return moment.unix(unixTime).from();
-  }
-
-  Controller.prototype.deleteItem = function(docId, index){
-    console.log("delete id:" + docId + ",index:" + index);
-    //todo: ensure the update can only change the users own document
-    loomApi.Article.updateArticle(docId, controllerId, jobItemModel, {"published": false}, token).then(angular.bind(this,function(result){
-      console.log("Delete result:");
-      console.log(result);
-      if (result.success){
-        this.myContentList.splice(index, 1);
-      }
-    }));
-  }
-
-  Controller.prototype.viewItem = function(id){
-    //console.log("view id:" + id);
-    $location.path("/user/" + this.useremail + "/form/" + id);
-  }
 
 })();
