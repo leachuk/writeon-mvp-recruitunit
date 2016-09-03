@@ -22,19 +22,12 @@
   function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil) {
     console.log("in UserLandingController");
 
-
-    Controller.prototype.canActivate = function() {
-      console.log("Executing UserLandingController canActivate");
-      return true;
-    };
-
     recruitUnitUtil.Util.setTitle("User Landing Page");
 
     //redirect depending on user authentication
     recruitUnitUtil.Util.redirectUserIfNotAuthenticated("/home");
 
     //this.usercreated = $location.search().usercreated; //ref to get param from url
-    //routeParams
     this.useremail = $routeParams.email;
     this.username = "";
     this.role = "";
@@ -86,48 +79,55 @@
         console.log(result.message);
       }
     }));
+  }
 
-    Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
-      console.log("in showFormDetailDialog");
-      console.log("   form id:" + id);
-      $mdDialog.show({
-            controller: 'FormReadController',
-            controllerAs: 'formRead',
-            locals: {'jobDetailFormId':id, 'isItemPass': isPartialPass || isPass ? true : false},
-            bindToController: true,
-            templateUrl: 'src/angular/components/formRead/formReadDialog.html',
-            parent: angular.element(document.body),
-            targetEvent: $event,
-            clickOutsideToClose:true,
-            fullscreen: false
-      }).then(function(answer) {
-        //this.status = 'You said the information was "' + answer + '".';
-      }, function() {
-        //this.status = 'You cancelled the dialog.';
-      });
-    }
+  Controller.prototype.canActivate = function($routeParams, recruitUnitUtil, jwtHelper) {
+    var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
+    var authenticatedUsername = token.username;
+    var requestedUsername = $routeParams.email;
 
-    Controller.prototype.formatUnixDateToNow = function(unixTime){
-      return moment.unix(unixTime).from();
-    }
+    return authenticatedUsername == requestedUsername ? true : recruitUnitUtil.Util.redirectUserToPath("/user/" + authenticatedUsername);
+  };
 
-    Controller.prototype.deleteItem = function(docId, index){
-      console.log("delete id:" + docId + ",index:" + index);
-      //todo: ensure the update can only change the users own document
-      loomApi.Article.updateArticle(docId, controllerId, jobItemModel, {"published": false}, token).then(angular.bind(this,function(result){
-        console.log("Delete result:");
-        console.log(result);
-        if (result.success){
-          this.myContentList.splice(index, 1);
-        }
-      }));
-    }
+  Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
+    console.log("in showFormDetailDialog");
+    console.log("   form id:" + id);
+    $mdDialog.show({
+      controller: 'FormReadController',
+      controllerAs: 'formRead',
+      locals: {'jobDetailFormId':id, 'isItemPass': isPartialPass || isPass ? true : false},
+      bindToController: true,
+      templateUrl: 'src/angular/components/formRead/formReadDialog.html',
+      parent: angular.element(document.body),
+      targetEvent: $event,
+      clickOutsideToClose:true,
+      fullscreen: false
+    }).then(function(answer) {
+      //this.status = 'You said the information was "' + answer + '".';
+    }, function() {
+      //this.status = 'You cancelled the dialog.';
+    });
+  }
 
-    Controller.prototype.viewItem = function(id){
-      //console.log("view id:" + id);
-      $location.path("/user/" + this.useremail + "/form/" + id);
-    }
+  Controller.prototype.formatUnixDateToNow = function(unixTime){
+    return moment.unix(unixTime).from();
+  }
 
+  Controller.prototype.deleteItem = function(docId, index){
+    console.log("delete id:" + docId + ",index:" + index);
+    //todo: ensure the update can only change the users own document
+    loomApi.Article.updateArticle(docId, controllerId, jobItemModel, {"published": false}, token).then(angular.bind(this,function(result){
+      console.log("Delete result:");
+      console.log(result);
+      if (result.success){
+        this.myContentList.splice(index, 1);
+      }
+    }));
+  }
+
+  Controller.prototype.viewItem = function(id){
+    //console.log("view id:" + id);
+    $location.path("/user/" + this.useremail + "/form/" + id);
   }
 
 })();
