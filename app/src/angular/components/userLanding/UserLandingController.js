@@ -66,15 +66,6 @@
             this.myContentListFailCount = listMyTestContentResult.length - this.myContentListPassCount;
           }
         }));
-
-
-        //useremail param will equal the submitTo field in 'RecruitUnitJobItem' doc
-
-        // loomApi.Article.listMyTestContent(controllerId, comparisonRulesDocId, token).then(angular.bind(this,function(result){
-        //   this.myContentList = lodash.sortBy(result,'document.createdDate').reverse();
-        //   this.myContentListPassCount = lodash.filter(result, {'testResult':{'isPass':true}}).length + lodash.filter(result, {'testResult':{'isPartialPass':true}}).length;
-        //   this.myContentListFailCount = result.length - this.myContentListPassCount;
-        // }));
       } else {
         console.log(result.message);
       }
@@ -107,7 +98,7 @@
         console.log("Delete result:");
         console.log(result);
         if (result.success){
-          this.myContentList.splice(index, 1);
+          this.myContentListArray.splice(index, 1);
         }
       }));
     }
