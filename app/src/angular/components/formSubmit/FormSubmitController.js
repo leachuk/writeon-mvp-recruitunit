@@ -59,7 +59,7 @@
 
   }
 
-  //only activate controller if user role is 'developer'
+  //only activate controller if user role is 'recruiter'
   Controller.prototype.canActivate = function(recruitUnitUtil, jwtHelper) {
     var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token); //todo: handle no token
     var userJobRole = token.jobRole;
