@@ -16,16 +16,14 @@
     'loomApi',
     'lodash',
     'moment',
-    'recruitUnitUtil'
+    'recruitUnitUtil',
+    '$resource'
   ];
 
   function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil) {
     console.log("in UserLandingController");
 
     recruitUnitUtil.Util.setTitle("User Landing Page");
-
-    //redirect depending on user authentication
-    recruitUnitUtil.Util.redirectUserIfNotAuthenticated("/home");
 
     //this.usercreated = $location.search().usercreated; //ref to get param from url
     this.useremail = $routeParams.email;
@@ -36,40 +34,6 @@
     this.myContentListArray = [];
     this.myContentListPassCount = 0;
     this.myContentListFailCount = 0;
-
-    var comparisonRulesDocId = "";
-    var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
-    var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
-    var jobItemModel = "server/models/RecruitUnit.Job.All.js";
-    var token = window.localStorage.getItem("writeon.authtoken");//handle no token
-    var searchJson = {};
-    searchJson.authorName = this.useremail;
-
-    loomApi.User.getUser(this.useremail, token).then(angular.bind(this,function(result){
-      console.log(result);
-      if (result.success) {
-        this.role = result.data.jobRole;
-        this.id = result.data.id;
-        this.username = result.data.displayName;
-
-        loomApi.Article.search(controllerId, rulesModel, searchJson, token).then(function(result){
-          console.log("get search:");
-          console.log(result);
-          if (result.length > 0){
-            comparisonRulesDocId = result[0].id;//todo: handle no id
-            return loomApi.Article.listMyTestContent(controllerId, comparisonRulesDocId, token);
-          }
-        }).then(angular.bind(this,function(listMyTestContentResult){
-          if (typeof listMyTestContentResult !== 'undefined') {
-            this.myContentListArray = lodash.sortBy(listMyTestContentResult, 'document.createdDate').reverse();
-            this.myContentListPassCount = lodash.filter(listMyTestContentResult, {'testResult': {'isPass': true}}).length + lodash.filter(listMyTestContentResult, {'testResult': {'isPartialPass': true}}).length;
-            this.myContentListFailCount = listMyTestContentResult.length - this.myContentListPassCount;
-          }
-        }));
-      } else {
-        console.log(result.message);
-      }
-    }));
 
     Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
       console.log("in showFormDetailDialog");
@@ -113,12 +77,50 @@
     }
   }
 
-  Controller.prototype.canActivate = function($routeParams, recruitUnitUtil, jwtHelper) {
-    var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
-    var authenticatedUsername = token.username;
+  Controller.prototype.canActivate = function($routeParams, recruitUnitUtil, jwtHelper, loomApi, lodash) {
+    console.log("in UserLandingController canActivate");
+
+    var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token); //todo: handle no token
+    var tokenUsername = token.username;
     var requestedUsername = $routeParams.email;
 
-    return authenticatedUsername == requestedUsername ? true : recruitUnitUtil.Util.redirectUserToPath("/user/" + authenticatedUsername);
-  };
+    return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this,function(result){
+      if (result == false){
+        recruitUnitUtil.Util.redirectUserToPath("/home");// todo: get path from constant;
+      } else if (tokenUsername != requestedUsername) {
+        recruitUnitUtil.Util.redirectUserToPath("/user/" + tokenUsername);
+      } else if (result.success) {
+          var comparisonRulesDocId = "";
+          var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
+          var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
+          var jobItemModel = "server/models/RecruitUnit.Job.All.js";
+          var searchJson = {};
+          var localToken = recruitUnitUtil.Util.getLocalUser().token;
+          searchJson.authorName = requestedUsername;
+
+          this.role = result.data.jobRole;
+          this.id = result.data.id;
+          this.username = result.data.displayName;
+
+          loomApi.Article.search(controllerId, rulesModel, searchJson, localToken).then(function(result){
+            console.log("get search:");
+            console.log(result);
+            if (result.length > 0){
+              comparisonRulesDocId = result[0].id;//todo: handle no id
+              return loomApi.Article.listMyTestContent(controllerId, comparisonRulesDocId, localToken);
+            }
+          }).then(angular.bind(this,function(listMyTestContentResult){
+            if (typeof listMyTestContentResult !== 'undefined') {
+              this.myContentListArray = lodash.sortBy(listMyTestContentResult, 'document.createdDate').reverse();
+              this.myContentListPassCount = lodash.filter(listMyTestContentResult, {'testResult': {'isPass': true}}).length + lodash.filter(listMyTestContentResult, {'testResult': {'isPartialPass': true}}).length;
+              this.myContentListFailCount = listMyTestContentResult.length - this.myContentListPassCount;
+
+              return true; //return canActivate state once results are available
+            }
+          }));
+      }
+
+    }));
+  }
 
 })();

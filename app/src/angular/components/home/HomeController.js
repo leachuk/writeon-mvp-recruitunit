@@ -21,16 +21,16 @@
     recruitUnitUtil.Util.setTitle("Home");
 
     //redirect depending on user authentication
-    console.log("Check User Authentication:");
-    var localUser = recruitUnitUtil.Util.getLocalUser();
-    if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set
-      recruitUnitUtil.Util.isUserAuthenticated(localUser.email, localUser.token).then(angular.bind(this,function(result){
-        if(result){ //true
-          console.log("Redirecting user to landing page");
-          $location.path("/user/" + localUser.email);
-        }
-      }));
-    }
+    //console.log("Check User Authentication:");
+    // var localUser = recruitUnitUtil.Util.getLocalUser();
+    // if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set
+    //   recruitUnitUtil.Util.isUserAuthenticated(localUser.email, localUser.token).then(angular.bind(this,function(result){
+    //     if(result){ //true
+    //       console.log("Redirecting user to landing page");
+    //       $location.path("/user/" + localUser.email);
+    //     }
+    //   }));
+    // }
 
     //todo: test this still works when minified.
     Controller.prototype.createNewUser = function(){

@@ -23,8 +23,6 @@
 
     recruitUnitUtil.Util.setTitle("Submit Form Page");
 
-    recruitUnitUtil.Util.redirectUserIfNotAuthenticated("/home");
-
     this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
     this.submitTo = $routeParams.email;
     this.article = {
@@ -63,11 +61,19 @@
 
   //only activate controller if user role is 'developer'
   Controller.prototype.canActivate = function(recruitUnitUtil, jwtHelper) {
-    var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
+    var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token); //todo: handle no token
     var userJobRole = token.jobRole;
+    var tokenUsername = token.username;
 
-    return true;
-    return userJobRole == recruitUnitUtil.Constants.RECRUITER_ROLE ? true : recruitUnitUtil.Util.redirectUserToPath("/user/" + this.authenticatedUser.email);
-  };
+    return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this,function(result) {
+      if (result == false) {
+        recruitUnitUtil.Util.redirectUserToPath("/home");// todo: get path from constant;
+      } else if (userJobRole != recruitUnitUtil.Constants.RECRUITER_ROLE) {
+        recruitUnitUtil.Util.redirectUserToPath("/user/" + tokenUsername);
+      } else if (result.success) {
+        return true;
+      }
+    }));
+  }
 
 })();
