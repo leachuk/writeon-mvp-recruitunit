@@ -15,13 +15,14 @@
 		<link rel="stylesheet" href="src/css/global.css"/>
 	</head>
 
-	<body ng-app="recruitUnitApp" ng-controller="AppController as app" layout="column">
+	<body ng-app="recruitUnitApp" ng-controller="AppController as app" layout="column" ng-init="app.initApp()">
 		<md-toolbar>
 			<div class="md-toolbar-tools">
 				<md-button class="md-icon-button" aria-label="Settings">
 					<md-icon ng-click="app.toggleSideNav()" md-svg-icon="navigation:menu"></md-icon>
 				</md-button>
 				<div layout="row" layout-align="end center" flex>
+					<!--<div ng-if="app.getLoggedInUserDetails()" ng-cloak>IsLoggedIn</div>-->
 					<div>
 						<md-input-container flex>
 							<label>Email</label>

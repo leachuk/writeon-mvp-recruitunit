@@ -62,6 +62,10 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil) 
     { path: '/user/:email/form/:id', component: 'formRead' }
   ]);
 
+  AppController.prototype.initApp = function(){
+    this.getLoggedInUserDetails();
+  }
+
   AppController.prototype.test = function() {
     console.log("test");
   }
@@ -91,7 +95,20 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil) 
           this.submitmessage = "Error. " + result.data.message;
       //console.log(this.submitmessage);
     }));
-  };
+  }
+
+  AppController.prototype.getLoggedInUserDetails = function(){
+    var localUser = recruitUnitUtil.Util.getLocalUser();
+    var isLoggedIn = false;
+    if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set
+      console.log("The local user details are present")
+      isLoggedIn = true;
+    }
+    //var isTokenExpired = jwtHelper.isTokenExpired(recruitUnitUtil.Util.getLocalUser().token);
+
+    return isLoggedIn;
+  }
+
 }
 
 

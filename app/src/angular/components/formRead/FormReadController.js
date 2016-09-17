@@ -36,7 +36,7 @@
     }));
     
     //make this a reusable service
-    var checkAuth = function(username, password){
+    var checkAuth = function(username, password){ //ToDo: does this need refactoring to use local storage rather than cookie?
       var authCookie = $cookies.get("writeon.authtoken"); //put cookie name into config var
       return typeof authCookie != 'undefined' ? authCookie : loomApi.User.signInUser(username, password).then(angular.bind(this, function(result){
         $cookies.put("writeon.authtoken", result.token);
