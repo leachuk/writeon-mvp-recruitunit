@@ -48,9 +48,20 @@ angular.module('recruitunit.util',[])
             //$location.path("/user/" + username).search({usercreated: "true"}); for reference to add param to url
         }
 
+        service.Util.deleteUserAuth = function(){
+            window.localStorage.removeItem("writeon.authtoken");
+            window.localStorage.removeItem("writeon.username");
+        }
+
         service.Util.redirectUserToPath = function(redirectToPath) {
             console.log("redirectUserToPath, redirect to :" + redirectToPath);
             $window.location.assign(redirectToPath);
+        }
+
+        service.Util.isLocalUserAvailable = function(){
+            var localUser = this.getLocalUser();
+
+            return (typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null);
         }
 
         return service;

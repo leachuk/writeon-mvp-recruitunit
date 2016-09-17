@@ -20,7 +20,7 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'app.user.formReadController',
   'app.user.comparisonRuleController',
   'recruitunit.util'
-]).controller('AppController', ['$router', '$mdComponentRegistry', 'loomApi', 'recruitUnitUtil', AppController])
+]).controller('AppController', ['$router', '$mdComponentRegistry', 'loomApi', 'recruitUnitUtil', 'jwtHelper', AppController])
 .config(['$componentLoaderProvider', '$locationProvider', '$httpProvider', '$mdIconProvider', function($componentLoaderProvider, $locationProvider, $httpProvider, $mdIconProvider){
   $componentLoaderProvider.setTemplateMapping(function (name) {
     return 'src/angular/components/' + name + '/' + name + '.html';
@@ -35,10 +35,10 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
     .defaultIconSet('./assets/svg/action-icons.svg');
 }]);
 
-function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil) {
+function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil, jwtHelper) {
   var sideNav;
-  this.user = { //todo: handle when user isn't signed in. Prob create service
-    email: window.localStorage.getItem("writeon.username"),
+  this.user = {
+    email: "",
     password: ""
   };
   this.submitmessage = "";
@@ -62,8 +62,11 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil) 
     { path: '/user/:email/form/:id', component: 'formRead' }
   ]);
 
-  AppController.prototype.initApp = function(){
-    this.getLoggedInUserDetails();
+  AppController.prototype.initApp = function() {
+    this.user.isLoggedIn = this.isLocalUserLoggedIn();
+    if (this.user.isLoggedIn){
+      this.user.email = recruitUnitUtil.Util.getLocalUser().email;
+    }
   }
 
   AppController.prototype.test = function() {
@@ -88,23 +91,29 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil) 
       result.success
           ?
           (recruitUnitUtil.Util.persistUserAuth(result.token, this.user.email),
-              this.user.email = "",
+              this.initApp(),
               this.user.password = "",
               this.submitmessage = "")
           :
-          this.submitmessage = "Error. " + result.data.message;
+          (this.submitmessage = "Error. " + result.data.message,
+              recruitUnitUtil.Util.deleteUserAuth);
       //console.log(this.submitmessage);
     }));
   }
 
-  AppController.prototype.getLoggedInUserDetails = function(){
+  AppController.prototype.signOutUser = function(){
+    console.log("in signOutUser");
+    recruitUnitUtil.Util.deleteUserAuth();
+    recruitUnitUtil.Util.redirectUserToPath("/home");
+  }
+
+  AppController.prototype.isLocalUserLoggedIn = function(){
     var localUser = recruitUnitUtil.Util.getLocalUser();
     var isLoggedIn = false;
-    if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set
-      console.log("The local user details are present")
-      isLoggedIn = true;
+    if (recruitUnitUtil.Util.isLocalUserAvailable()){ //check if details are set
+      console.log("The local user details are present");
+      isLoggedIn = !jwtHelper.isTokenExpired(localUser.token);
     }
-    //var isTokenExpired = jwtHelper.isTokenExpired(recruitUnitUtil.Util.getLocalUser().token);
 
     return isLoggedIn;
   }

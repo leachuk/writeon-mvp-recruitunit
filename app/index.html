@@ -21,8 +21,9 @@
 				<md-button class="md-icon-button" aria-label="Settings">
 					<md-icon ng-click="app.toggleSideNav()" md-svg-icon="navigation:menu"></md-icon>
 				</md-button>
-				<div layout="row" layout-align="end center" flex>
-					<!--<div ng-if="app.getLoggedInUserDetails()" ng-cloak>IsLoggedIn</div>-->
+
+				<div ng-if="app.user.isLoggedIn" ng-cloak layout="row" layout-align="end center" flex>{{app.user.email}}<md-button ng-click="app.signOutUser()">Logout</md-button></div>
+				<div ng-if="!app.user.isLoggedIn" ng-cloak layout="row" layout-align="end center" flex>
 					<div>
 						<md-input-container flex>
 							<label>Email</label>
@@ -41,6 +42,7 @@
 						<md-button ng-click="app.signInUser()">Login</md-button>
 					</div>
 				</div>
+
 			</div>
 			<div layout="row" layout-align="end center" ng-if="app.submitmessage" ng-cloak>
 				<div>{{app.submitmessage}}</div>
@@ -55,7 +57,7 @@
 					<md-content layout-padding>
 						<section layout="column" layout-align="center start">
 							<md-list>
-								<md-button ng-href="/home" ng-click="app.toggleSideNav()" class="md-primary">
+								<md-button ng-href="/user/{{app.user.email}}" ng-click="app.toggleSideNav()" class="md-primary">
 									<md-icon md-svg-icon="action:home"></md-icon>
 									Home
 								</md-button>
