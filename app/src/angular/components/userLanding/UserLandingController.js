@@ -81,13 +81,13 @@
     console.log("in UserLandingController canActivate");
 
     if (recruitUnitUtil.Util.isLocalUserAvailable()) {
-      var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token); //todo: handle no token
+      var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
       var tokenUsername = token.username;
       var requestedUsername = $routeParams.email;
 
       return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this, function (result) {
         if (result == false) {
-          recruitUnitUtil.Util.redirectUserToPath("/home");// todo: get path from constant;
+          recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_HOME);// todo: get path from constant;
           recruitUnitUtil.Util.deleteUserAuth();
         } else if (tokenUsername != requestedUsername) {
           recruitUnitUtil.Util.redirectUserToPath("/user/" + tokenUsername);
@@ -124,7 +124,7 @@
 
       }));
     } else {
-      recruitUnitUtil.Util.redirectUserToPath("/home");
+      recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_HOME);
     }
   }
 

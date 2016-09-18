@@ -6,9 +6,11 @@ angular.module('recruitunit.util',[])
         //Util Service
         var service = {};
         service.Util = {};
-        service.Constants = { //I know!
+        service.Constants = { //I know, not really constant,  but it'll do given the lack of alternative!
             'DEVELOPER_ROLE': 'developer',
-            'RECRUITER_ROLE': 'recruiter'
+            'RECRUITER_ROLE': 'recruiter',
+            'PATH_HOME': '/home',
+            'PATH_USER': '/user'
         };
 
         service.Util.setTitle = function(title){
