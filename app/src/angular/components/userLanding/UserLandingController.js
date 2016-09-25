@@ -58,7 +58,10 @@
     Controller.prototype.deleteItem = function(docId, index){
       console.log("delete id:" + docId + ",index:" + index);
       //todo: ensure the update can only change the users own document
-      loomApi.Article.updateArticle(docId, controllerId, jobItemModel, {"published": false}, token).then(angular.bind(this,function(result){
+      var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
+      var jobItemModel = "server/models/RecruitUnit.Job.All.js";
+      var localToken = recruitUnitUtil.Util.getLocalUser().token;
+      loomApi.Article.updateArticle(docId, controllerId, jobItemModel, {"published": false}, localToken).then(angular.bind(this,function(result){
         console.log("Delete result:");
         console.log(result);
         if (result.success){
@@ -80,7 +83,6 @@
       var comparisonRulesDocId = "";
       var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
       var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
-      //var jobItemModel = "server/models/RecruitUnit.Job.All.js";
       var localToken = recruitUnitUtil.Util.getLocalUser().token;
 
       loomApi.Article.search(controllerId, rulesModel, searchJson, localToken).then(function (result) {
