@@ -18,6 +18,8 @@
   function Controller($routeParams, $router, $location, $http, $cookies, loomApi, recruitUnitUtil) {
     console.log("in HomeController");
 
+    this.roles = ['developer', 'recruiter'];
+
     recruitUnitUtil.Util.setTitle("Home");
 
     //redirect depending on user authentication

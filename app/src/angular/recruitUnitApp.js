@@ -58,7 +58,7 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil, 
     { path: '/admin/developer/:email', component: 'developerAdmin' },
     { path: '/user/:email', component: 'userLanding' },
     { path: '/user/:email/comparisonrules', component: 'comparisonRule' },
-    { path: '/user/:email/form', component: 'formSubmit' },
+    { path: '/user/:guid/form', component: 'formSubmit' },
     { path: '/user/:email/form/:id', component: 'formRead' }
   ]);
 

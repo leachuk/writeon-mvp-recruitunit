@@ -24,7 +24,7 @@
     recruitUnitUtil.Util.setTitle("Submit Form Page");
 
     this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
-    this.submitTo = $routeParams.email;
+    this.submitTo = $routeParams.guid;
     this.article = {
       "jobDescription" : "",
       "roleType": "",
@@ -37,7 +37,6 @@
       "published" : true
     };
 
-    //todo: move this outside of the Controller function.
     Controller.prototype.submitJobToCandidate = function(){
       console.log("in submitJobToCandidate");
       var authToken = recruitUnitUtil.Util.getLocalUser().token;
@@ -46,9 +45,7 @@
         console.log("model:");
         console.log(this.article);
 
-        var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
-        var modelType = "server/models/RecruitUnit.Job.All.js";
-        loomApi.Article.createArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(saveResult){
+        loomApi.Article.createJobSubmission(this.article, authToken).then(angular.bind(this,function(saveResult){
           console.log("result:");
           console.log(saveResult);
 
