@@ -22,9 +22,13 @@
     console.log("FormSubmitController instantiated");
 
     recruitUnitUtil.Util.setTitle("Submit Form Page");
+    var authToken = recruitUnitUtil.Util.getLocalUser().token;
 
     this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
     this.submitTo = $routeParams.guid;
+    loomApi.User.getUserFromGuid($routeParams.guid, authToken).then(angular.bind(this,function(result){
+      this.user = result;
+    }));
     this.article = {
       "jobDescription" : "",
       "roleType": "",
@@ -68,6 +72,7 @@
       } else if (userJobRole != recruitUnitUtil.Constants.RECRUITER_ROLE) {
         recruitUnitUtil.Util.redirectUserToPath("/user/" + tokenUsername);
       } else if (result.success) {
+        this.userName = tokenUsername;
         return true;
       }
     }));
