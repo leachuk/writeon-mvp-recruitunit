@@ -28,7 +28,7 @@
     //this.usercreated = $location.search().usercreated; //ref to get param from url
     this.useremail = $routeParams.email;
     this.username = "";
-    this.role = "";
+    this.roles = "";
     this.id = "";
     this.status = "";
     this.myContentListArray = [];
@@ -130,7 +130,7 @@
     if (recruitUnitUtil.Util.isLocalUserAvailable()) {
       var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
       var tokenUsername = token.username;
-      var tokenJobRole = token.jobRole;
+      var tokenRoles = token.roles;
       var requestedUsername = $routeParams.email;
 
       return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this, function (result) {
@@ -140,15 +140,15 @@
         } else if (tokenUsername != requestedUsername) {
           recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + tokenUsername);
         } else if (result.success) {
-            this.role = result.data.jobRole;
+            this.roles = result.data.roles;
             this.id = result.data.id;
             this.username = result.data.displayName;
-            if (tokenJobRole == "recruiter"){
+            if (tokenRoles.indexOf("recruiter") != -1){
               var searchJson = {
                 "authorEmail": requestedUsername
               };
               return this.searchRecruiter(searchJson);
-            } else if (tokenJobRole == "developer"){
+            } else if (tokenRoles.indexOf("developer") != -1){
               var searchJson = {
                 "authorName": requestedUsername
               };

@@ -26,29 +26,16 @@
 
     recruitUnitUtil.Util.setTitle("Manage Comparison Rules");
 
-    //redirect depending on user authentication
-    console.log("Check User Authentication:");
-    var localUser = recruitUnitUtil.Util.getLocalUser();
-    if ((typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null)){ //check if details are set
-      recruitUnitUtil.Util.isUserAuthenticated(localUser.email, localUser.token).then(angular.bind(this,function(result){
-        if(!result){ //false
-          console.log("Redirecting user to landing page");
-          $location.path("/home");
-        }
-      }));
-    } else { // local user details aren't set
-      $window.location.assign("/home"); //alternate redirect. location.path failed here.
-    }
-
     this.formId = "aa7ecbe9092c948606d4b8a8f0001807"; //todo: pass in the id of the users comparison document. Will need a way to initialise a single new document for the user if one doesn't already exist.
     this.article = {"skills": []}; //Need to initialise for md-chips, otherwise an exception is thrown
 
+    var localUser = recruitUnitUtil.Util.getLocalUser();
     var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
     var model = "server/models/RecruitUnit.ComparisonTest.js";
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
     var searchJson = {};
-    searchJson.authorName = "writeonmvpstep1-1@test.com"; //todo: pass in username
+    searchJson.authorName = localUser.email;
 
     this.article = {
       "roleType": {
@@ -66,7 +53,7 @@
         "disabled": false,
         "rule": "assertArrayContains"
       },
-      "authorName": "writeonmvpstep1-1@test.com",
+      "authorName": localUser.email,
       "createdDate": Date.now(),
       "locationDescription": {
         "value": [],
@@ -142,20 +129,41 @@
       window.history.back();
     }
 
-    loomApi.Article.search(controllerId, model, searchJson, token).then(angular.bind(this, function(result){
-      console.log("get search:");
-      console.log(result);
-      if (result.length > 0){
-        this.article = result[0];
-      }
-      //this.article = result;
-    }));
+  }
 
-    // loomApi.Article.getArticle(this.formId, modelId, model, token).then(angular.bind(this, function(result){
-    //   console.log("get article:");
-    //   console.log(result);
-    //   //this.article = result;
-    // }));
+  Controller.prototype.canActivate = function($routeParams, recruitUnitUtil, jwtHelper) {
+    console.log("in ComparisonRuleController canActivate");
+
+    if (recruitUnitUtil.Util.isLocalUserAvailable()) {
+      var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
+      var tokenUsername = token.username;
+      this.isComparisonFormEnabled = token.isComparisonFormEnabled;
+      var requestedUsername = $routeParams.email;
+
+      return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this, function (result) {
+        if (result == false) {
+          recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_HOME);// todo: get path from constant;
+          recruitUnitUtil.Util.deleteUserAuth();
+        } else if (tokenUsername != requestedUsername) {
+          recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + tokenUsername);
+        } else if (result.success) {
+          if (this.isComparisonFormEnabled) { //update the default form if it exists
+            loomApi.Article.search(controllerId, model, searchJson, token).then(angular.bind(this, function (result) {
+              console.log("get search:");
+              console.log(result);
+              if (result.length > 0) {
+                this.article = result[0];
+              }
+              //this.article = result;
+            }));
+          }
+
+          return true;
+        }
+      }));
+    } else {
+      recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_HOME);
+    }
   }
 
 })();
