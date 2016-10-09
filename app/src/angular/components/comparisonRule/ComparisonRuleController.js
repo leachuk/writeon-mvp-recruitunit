@@ -95,18 +95,17 @@
     this.submitComparisonRuleDocument = function(){
       console.log("in submitComparisonRuleDocument");
 
-      var authToken = $cookies.get("writeon.authtoken");
-
-      //ToDo: handle if authToken is expired/not available. Redirect to login page?
-      if(comparisonRuleForm.checkValidity() && typeof authToken != 'undefined'){ //comparisonRuleForm is form name
+      if(comparisonRuleForm.checkValidity()){ //comparisonRuleForm is form name
         console.log("model:");
         console.log(this.article);
 
+        var authToken = recruitUnitUtil.Util.getLocalUser().token;
+        var authEmail = recruitUnitUtil.Util.getLocalUser().email;
         var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
         var modelType = "server/models/RecruitUnit.ComparisonTest.js";
         if (this.article.hasOwnProperty("id")){
           delete this.article._rev;
-          loomApi.Article.updateArticle(this.article.id, modelId, modelType, this.article, token).then(angular.bind(this, function (result) {
+          loomApi.Article.updateArticle(this.article.id, modelId, modelType, this.article, authToken).then(angular.bind(this, function (result) {
             console.log("Update result:");
             console.log(result);
             result.success ? this.submitmessage = "Success" : this.submitmessage = "Error. " + result.message;
@@ -117,7 +116,8 @@
             console.log(result);
             result.success
                 ? (this.submitmessage = "Success",
-                  this.article = result.data)
+                  this.article = result.data,
+                  loomApi.User.updateUser(authEmail, {"isComparisonFormEnabled": true}, authToken))
                 :
                   this.submitmessage = "Error. " + result.message;
           }));
