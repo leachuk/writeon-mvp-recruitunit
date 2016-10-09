@@ -35,7 +35,7 @@
     var token = window.localStorage.getItem("writeon.authtoken");//handle no token
 
     var searchJson = {};
-    searchJson.authorName = localUser.email;
+    searchJson.authorEmail = localUser.email;
 
     this.article = {
       "roleType": {
@@ -53,7 +53,7 @@
         "disabled": false,
         "rule": "assertArrayContains"
       },
-      "authorName": localUser.email,
+      "authorEmail": localUser.email,
       "createdDate": Date.now(),
       "locationDescription": {
         "value": [],
@@ -103,12 +103,12 @@
         var authEmail = recruitUnitUtil.Util.getLocalUser().email;
         var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
         var modelType = "server/models/RecruitUnit.ComparisonTest.js";
-        if (this.article.hasOwnProperty("id")){
+        if (this.article.hasOwnProperty("id")){//there is an existing comparisontest form, so update.
           delete this.article._rev;
           loomApi.Article.updateArticle(this.article.id, modelId, modelType, this.article, authToken).then(angular.bind(this, function (result) {
             console.log("Update result:");
             console.log(result);
-            result.success ? this.submitmessage = "Success" : this.submitmessage = "Error. " + result.message;
+            result.success ? recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + authEmail) : this.submitmessage = "Error. " + result.message;
           }));
         }else {
           loomApi.Article.createArticle(this.article, modelId, modelType, authToken).then(angular.bind(this,function(result){
@@ -117,7 +117,14 @@
             result.success
                 ? (this.submitmessage = "Success",
                   this.article = result.data,
-                  loomApi.User.updateUser(authEmail, {"isComparisonFormEnabled": true}, authToken))
+                  loomApi.User.updateUser(authEmail, {"isComparisonFormEnabled": true}, authToken).then(angular.bind(this,function(updateUserResult){
+                    if (updateUserResult.success){
+                      recruitUnitUtil.Util.deleteUserAuth();
+                      recruitUnitUtil.Util.persistUserAuth(updateUserResult.token, authEmail);
+                      recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + authEmail);
+                    }
+                  }))
+                  )
                 :
                   this.submitmessage = "Error. " + result.message;
           }));
@@ -131,14 +138,19 @@
 
   }
 
-  Controller.prototype.canActivate = function($routeParams, recruitUnitUtil, jwtHelper) {
+  Controller.prototype.canActivate = function(loomApi, $routeParams, recruitUnitUtil, jwtHelper) {
     console.log("in ComparisonRuleController canActivate");
 
     if (recruitUnitUtil.Util.isLocalUserAvailable()) {
-      var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
-      var tokenUsername = token.username;
-      this.isComparisonFormEnabled = token.isComparisonFormEnabled;
+      var decodedToken = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
+      var tokenUsername = decodedToken.username;
+      this.isComparisonFormEnabled = decodedToken.isComparisonFormEnabled;
       var requestedUsername = $routeParams.email;
+
+      var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
+      var model = "server/models/RecruitUnit.ComparisonTest.js";
+      var searchJson = {};
+      searchJson.authorEmail = requestedUsername;
 
       return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this, function (result) {
         if (result == false) {
@@ -148,13 +160,13 @@
           recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + tokenUsername);
         } else if (result.success) {
           if (this.isComparisonFormEnabled) { //update the default form if it exists
-            loomApi.Article.search(controllerId, model, searchJson, token).then(angular.bind(this, function (result) {
+            loomApi.Article.search(controllerId, model, searchJson, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this, function (searchResult) {
               console.log("get search:");
-              console.log(result);
-              if (result.length > 0) {
-                this.article = result[0];
+              console.log(searchResult);
+              if (searchResult.length > 0) {
+                this.article = searchResult[0];
               }
-              //this.article = result;
+              //this.article = searchResult;
             }));
           }
 

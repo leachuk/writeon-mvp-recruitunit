@@ -150,7 +150,7 @@
               return this.searchRecruiter(searchJson);
             } else if (tokenRoles.indexOf("developer") != -1){
               var searchJson = {
-                "authorName": requestedUsername
+                "authorEmail": requestedUsername
               };
               return this.searchDeveloper(searchJson);
             }

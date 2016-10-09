@@ -10,7 +10,8 @@ angular.module('recruitunit.util',[])
             'DEVELOPER_ROLE': 'developer',
             'RECRUITER_ROLE': 'recruiter',
             'PATH_HOME': '/home',
-            'PATH_USER': '/user'
+            'PATH_USER': '/user/',
+            'PATH_COMPARISONRULESFORM': '/comparisonrules'
         };
 
         service.Util.setTitle = function(title){
@@ -45,9 +46,6 @@ angular.module('recruitunit.util',[])
         service.Util.persistUserAuth = function(token, username){
             window.localStorage.setItem("writeon.authtoken", token);
             window.localStorage.setItem("writeon.username", username);
-            //now redirect to users home page, where token is checked for
-            $location.path("/user/" + username);
-            //$location.path("/user/" + username).search({usercreated: "true"}); for reference to add param to url
         }
 
         service.Util.deleteUserAuth = function(){

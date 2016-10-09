@@ -82,22 +82,27 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil, 
     console.log("in signInUser");
     console.log(this.user);
 
-    loomApi.User.signInUser(this.user.email, this.user.password).then(angular.bind(this,function(result, status, headers, config){
+    loomApi.User.signInUser(this.user.email, this.user.password).then(angular.bind(this,function(result, status, headers, config) {
       console.log(result);
       console.log(status);
       console.log(headers);
       console.log(config);
+      var decodedToken = "";
 
-      result.success
-          ?
-          (recruitUnitUtil.Util.persistUserAuth(result.token, this.user.email),
-              this.initApp(),
-              this.user.password = "",
-              this.submitmessage = "")
-          :
-          (this.submitmessage = "Error. " + result.data.message,
-              recruitUnitUtil.Util.deleteUserAuth);
-      //console.log(this.submitmessage);
+      if (result.success) {
+        decodedToken = jwtHelper.decodeToken(result.token);
+        recruitUnitUtil.Util.persistUserAuth(result.token, this.user.email);
+        this.initApp();
+        this.user.password = "";
+        this.submitmessage = "";
+        if (decodedToken.isComparisonFormEnabled){
+          recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + this.user.email);
+        } else {
+          recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + this.user.email + recruitUnitUtil.Constants.PATH_COMPARISONRULESFORM);
+        }
+      } else {
+        recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_HOME);
+      }
     }));
   }
 
