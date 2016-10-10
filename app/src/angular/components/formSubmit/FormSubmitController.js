@@ -63,13 +63,13 @@
   //only activate controller if user role is 'recruiter'
   Controller.prototype.canActivate = function(recruitUnitUtil, jwtHelper) {
     var token = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token); //todo: handle no token
-    var userJobRole = token.jobRole;
+    var userRoles = token.roles;
     var tokenUsername = token.username;
 
     return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this,function(result) {
       if (result == false) {
         recruitUnitUtil.Util.redirectUserToPath("/home");// todo: get path from constant;
-      } else if (userJobRole != recruitUnitUtil.Constants.RECRUITER_ROLE) {
+      } else if (userRoles.indexOf(recruitUnitUtil.Constants.RECRUITER_ROLE) != -1) {//recruiters to only be allowed to submit forms
         recruitUnitUtil.Util.redirectUserToPath("/user/" + tokenUsername);
       } else if (result.success) {
         this.userName = tokenUsername;
