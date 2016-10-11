@@ -49,7 +49,7 @@
 
       var panelAnimation = this._mdPanel.newPanelAnimation();
       panelAnimation.openFrom({top:0, left:0});
-      panelAnimation.closeTo({top:0, left:0});
+      panelAnimation.closeTo({top:document.documentElement.clientHeight, left:0});
       panelAnimation.withAnimation(this._mdPanel.animation.SCALE);
 
       var config = {
