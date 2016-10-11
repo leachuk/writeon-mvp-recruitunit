@@ -3,7 +3,8 @@
 
   angular
     .module('app.user.userLandingController')
-    .controller('UserLandingController', Controller);
+    .controller('UserLandingController', Controller)
+    .controller('RequireComparisonFormDialogController', DialogController);
 
   Controller.$inject = [
     '$routeParams',
@@ -17,10 +18,10 @@
     'lodash',
     'moment',
     'recruitUnitUtil',
-    '$resource'
+    '$mdPanel'
   ];
 
-  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil) {
+  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil,$mdPanel) {
     console.log("in UserLandingController");
 
     recruitUnitUtil.Util.setTitle("User Landing Page");
@@ -34,6 +35,40 @@
     this.myContentListArray = [];
     this.myContentListPassCount = 0;
     this.myContentListFailCount = 0;
+
+    this.template = "src/angular/components/userLanding/requireComparisonFormDialog.html";
+    this._mdPanel = $mdPanel;
+    this.openFrom = 'button';
+    this.closeTo = 'button';
+
+    Controller.prototype.showPanel = function() {
+      console.log("in showPanel()");
+      var panelPosition = this._mdPanel.newPanelPosition()
+          .absolute()
+          .center();
+
+      var panelAnimation = this._mdPanel.newPanelAnimation();
+      panelAnimation.openFrom({top:0, left:0});
+      panelAnimation.closeTo({top:0, left:0});
+      panelAnimation.withAnimation(this._mdPanel.animation.SCALE);
+
+      var config = {
+        attachTo: angular.element(document.body),
+        controller: 'RequireComparisonFormDialogController',
+        controllerAs: 'requireComparisonFormDialog',
+        position: panelPosition,
+        animation: panelAnimation,
+        templateUrl: this.template,
+        hasBackdrop: true,
+        panelClass: 'demo-dialog-example',
+        zIndex: 150,
+        clickOutsideToClose: true,
+        escapeToClose: true,
+        focusOnOpen: true
+      }
+
+      this._mdPanel.open(config);
+    }
 
     Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
       console.log("in showFormDetailDialog");
@@ -162,6 +197,15 @@
     }
   }
 
+  function DialogController(mdPanelRef) {
+    this._mdPanelRef = mdPanelRef;
+  }
 
+  DialogController.prototype.closePanel = function() {
+    console.log("close panel");
+    var panelRef = this._mdPanelRef;
+
+    panelRef.close()
+  }
 
 })();

@@ -12,6 +12,7 @@
     '$mdDialog',
     '$location',
     '$window',
+    '$event',
     'loomApi',
     'recruitUnitUtil'
   ];
@@ -21,7 +22,7 @@
   //   { path: '/create', component: 'testCreate' }
   // ];
 
-  function Controller($routeParams, $http, $cookies, $mdDialog, $location, $window, loomApi, recruitUnitUtil) {
+  function Controller($routeParams, $http, $cookies, $mdDialog, $location, $window, $event, loomApi, recruitUnitUtil) {
     console.log("ComparisonRuleController instantiated");
 
     recruitUnitUtil.Util.setTitle("Manage Comparison Rules");
