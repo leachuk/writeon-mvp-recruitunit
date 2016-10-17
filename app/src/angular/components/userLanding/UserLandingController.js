@@ -21,20 +21,6 @@
     '$mdPanel'
   ];
 
-  DialogController.$inject = [
-    '$routeParams',
-    '$http',
-    '$cookies',
-    '$location',
-    '$router',
-    '$mdDialog',
-    '$window',
-    'loomApi',
-    'lodash',
-    'moment',
-    'recruitUnitUtil',
-    '$mdPanel'
-  ];
 
   function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil,$mdPanel) {
     console.log("in UserLandingController");
