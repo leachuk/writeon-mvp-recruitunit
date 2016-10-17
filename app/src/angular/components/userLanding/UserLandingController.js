@@ -21,6 +21,21 @@
     '$mdPanel'
   ];
 
+  DialogController.$inject = [
+    '$routeParams',
+    '$http',
+    '$cookies',
+    '$location',
+    '$router',
+    '$mdDialog',
+    '$window',
+    'loomApi',
+    'lodash',
+    'moment',
+    'recruitUnitUtil',
+    '$mdPanel'
+  ];
+
   function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil,$mdPanel) {
     console.log("in UserLandingController");
 
@@ -56,6 +71,10 @@
         attachTo: angular.element(document.body),
         controller: 'RequireComparisonFormDialogController',
         controllerAs: 'requireComparisonFormDialog',
+        locals: {
+          'useremail': this.useremail,
+          'navigateToUserRules': this.navigateToUserRules
+        },
         position: panelPosition,
         animation: panelAnimation,
         templateUrl: this.template,
@@ -76,7 +95,10 @@
       $mdDialog.show({
         controller: 'FormReadController',
         controllerAs: 'formRead',
-        locals: {'jobDetailFormId':id, 'isItemPass': isPartialPass || isPass ? true : false},
+        locals: {
+          'jobDetailFormId':id,
+          'isItemPass': isPartialPass || isPass ? true : false
+        },
         bindToController: true,
         templateUrl: 'src/angular/components/formRead/formReadDialog.html',
         parent: angular.element(document.body),
@@ -157,6 +179,10 @@
         }
       }));
     }
+
+    Controller.prototype.navigateToUserRules = function(useremail){
+      recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER +  useremail + recruitUnitUtil.Constants.PATH_COMPARISONRULESFORM);
+    }
   }
 
   Controller.prototype.canActivate = function($routeParams, recruitUnitUtil, jwtHelper) {
@@ -207,5 +233,6 @@
 
     panelRef.close()
   }
+
 
 })();
