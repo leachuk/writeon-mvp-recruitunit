@@ -26,7 +26,7 @@
   function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil,$mdPanel,jwtHelper) {
     console.log("in UserLandingController");
 
-    recruitUnitUtil.Util.setTitle("User Landing Page");
+    //recruitUnitUtil.Util.setTitle("User Landing Page");
 
     //this.usercreated = $location.search().usercreated; //ref to get param from url
     this.useremail = $routeParams.email;
@@ -42,15 +42,6 @@
     this._mdPanel = $mdPanel;
     this.openFrom = 'button';
     this.closeTo = 'button';
-
-    //if developer does not have a comparison test form already enabled, show alert
-    var decodedToken = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
-    if (decodedToken.isComparisonFormEnabled){
-      console.log("Users isComparisonFormEnabled is true");
-    } else {
-      console.log("Users isComparisonFormEnabled is false");
-      this.showPanel();
-    }
 
     Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
       console.log("in showFormDetailDialog");
@@ -147,6 +138,15 @@
       recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER +  useremail + recruitUnitUtil.Constants.PATH_COMPARISONRULESFORM);
     }
 
+    //check if the user has a comparison test form and is a developer. Show alert dialog if not
+    if (recruitUnitUtil.Util.getLocalUser().token !== null) {
+      var decodedToken = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
+      if (decodedToken.isComparisonFormEnabled) {
+        console.log("User has a comparison form enabled");
+      } else if (decodedToken.roles.indexOf(recruitUnitUtil.Constants.DEVELOPER_ROLE) != -1) {
+        this.showPanel();
+      }
+    }
   }
 
   Controller.prototype.showPanel = function() {
@@ -181,7 +181,6 @@
 
     this._mdPanel.open(config);
   }
-
 
   Controller.prototype.canActivate = function($routeParams, recruitUnitUtil, jwtHelper) {
     console.log("in UserLandingController canActivate");
