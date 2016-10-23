@@ -18,11 +18,12 @@
     'lodash',
     'moment',
     'recruitUnitUtil',
-    '$mdPanel'
+    '$mdPanel',
+    'jwtHelper'
   ];
 
 
-  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil,$mdPanel) {
+  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil,$mdPanel,jwtHelper) {
     console.log("in UserLandingController");
 
     recruitUnitUtil.Util.setTitle("User Landing Page");
@@ -42,37 +43,13 @@
     this.openFrom = 'button';
     this.closeTo = 'button';
 
-    Controller.prototype.showPanel = function() {
-      console.log("in showPanel()");
-      var panelPosition = this._mdPanel.newPanelPosition()
-          .absolute()
-          .center();
-
-      var panelAnimation = this._mdPanel.newPanelAnimation();
-      panelAnimation.openFrom({top:0, left:0});
-      panelAnimation.closeTo({top:document.documentElement.clientHeight, left:0});
-      panelAnimation.withAnimation(this._mdPanel.animation.SCALE);
-
-      var config = {
-        attachTo: angular.element(document.body),
-        controller: 'RequireComparisonFormDialogController',
-        controllerAs: 'requireComparisonFormDialog',
-        locals: {
-          'useremail': this.useremail,
-          'navigateToUserRules': this.navigateToUserRules
-        },
-        position: panelPosition,
-        animation: panelAnimation,
-        templateUrl: this.template,
-        hasBackdrop: true,
-        panelClass: 'demo-dialog-example',
-        zIndex: 150,
-        clickOutsideToClose: true,
-        escapeToClose: true,
-        focusOnOpen: true
-      }
-
-      this._mdPanel.open(config);
+    //if developer does not have a comparison test form already enabled, show alert
+    var decodedToken = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
+    if (decodedToken.isComparisonFormEnabled){
+      console.log("Users isComparisonFormEnabled is true");
+    } else {
+      console.log("Users isComparisonFormEnabled is false");
+      this.showPanel();
     }
 
     Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
@@ -169,7 +146,42 @@
     Controller.prototype.navigateToUserRules = function(useremail){
       recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER +  useremail + recruitUnitUtil.Constants.PATH_COMPARISONRULESFORM);
     }
+
   }
+
+  Controller.prototype.showPanel = function() {
+    console.log("in showPanel()");
+    var panelPosition = this._mdPanel.newPanelPosition()
+        .absolute()
+        .center();
+
+    var panelAnimation = this._mdPanel.newPanelAnimation();
+    panelAnimation.openFrom({top:0, left:0});
+    panelAnimation.closeTo({top:document.documentElement.clientHeight, left:0});
+    panelAnimation.withAnimation(this._mdPanel.animation.SCALE);
+
+    var config = {
+      attachTo: angular.element(document.body),
+      controller: 'RequireComparisonFormDialogController',
+      controllerAs: 'requireComparisonFormDialog',
+      locals: {
+        'useremail': this.useremail,
+        'navigateToUserRules': this.navigateToUserRules
+      },
+      position: panelPosition,
+      animation: panelAnimation,
+      templateUrl: this.template,
+      hasBackdrop: true,
+      panelClass: 'demo-dialog-example',
+      zIndex: 150,
+      clickOutsideToClose: true,
+      escapeToClose: true,
+      focusOnOpen: true
+    }
+
+    this._mdPanel.open(config);
+  }
+
 
   Controller.prototype.canActivate = function($routeParams, recruitUnitUtil, jwtHelper) {
     console.log("in UserLandingController canActivate");

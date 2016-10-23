@@ -79,19 +79,14 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil, 
       console.log(status);
       console.log(headers);
       console.log(config);
-      var decodedToken = "";
 
       if (result.success) {
-        decodedToken = jwtHelper.decodeToken(result.token);
         recruitUnitUtil.Util.persistUserAuth(result.token, this.user.email);
         this.initApp();
         this.user.password = "";
         this.submitmessage = "";
-        if (decodedToken.isComparisonFormEnabled){
-          recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + this.user.email);
-        } else {
-          recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + this.user.email + recruitUnitUtil.Constants.PATH_COMPARISONRULESFORM);
-        }
+
+        recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + this.user.email);
       } else {
         recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_HOME);
       }
