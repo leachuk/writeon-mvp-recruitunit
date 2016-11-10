@@ -31,6 +31,7 @@
     //this.usercreated = $location.search().usercreated; //ref to get param from url
     this.useremail = $routeParams.email;
     this.username = "";
+    this.userguid = "";
     this.roles = "";
     this.id = "";
     this.status = "";
@@ -198,9 +199,11 @@
         } else if (tokenUsername != requestedUsername) {
           recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + tokenUsername);
         } else if (result.success) {
+            //set user details returned from the jwt
             this.roles = result.data.roles;
             this.id = result.data.id;
             this.username = result.data.displayName;
+            this.userGuid = result.data.userGuid;
             if (tokenRoles.indexOf("recruiter") != -1){
               var searchJson = {
                 "authorEmail": requestedUsername
