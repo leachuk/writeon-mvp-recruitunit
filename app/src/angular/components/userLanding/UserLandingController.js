@@ -92,19 +92,14 @@
     }
 
     Controller.prototype.searchDeveloper = function(searchJson){
-      var comparisonRulesDocId = "";
+      //var comparisonRulesDocId = "";
       var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
-      var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
+      //var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
       var localToken = recruitUnitUtil.Util.getLocalUser().token;
 
-      loomApi.Article.search(controllerId, rulesModel, searchJson, localToken).then(function (result) {
-        console.log("get search:");
-        console.log(result);
-        if (result.length > 0) {
-          comparisonRulesDocId = result[0].id;//todo: handle no id
-          return loomApi.Article.listMyTestContent(controllerId, comparisonRulesDocId, localToken);
-        }
-      }).then(angular.bind(this, function (listMyTestContentResult) {
+      loomApi.Article.getUserTestResults(controllerId, searchJson, localToken).then(angular.bind(this, function (listMyTestContentResult) {
+        console.log("getUserTestResults:");
+        console.log(listMyTestContentResult);
         if (typeof listMyTestContentResult !== 'undefined') {
           this.myContentListArray = lodash.sortBy(listMyTestContentResult, 'document.createdDate').reverse();
           this.myContentListPassCount = lodash.filter(listMyTestContentResult, {'testResult': {'isPass': true}}).length + lodash.filter(listMyTestContentResult, {'testResult': {'isPartialPass': true}}).length;
@@ -122,7 +117,7 @@
       //var jobItemModel = "server/models/RecruitUnit.Job.All.js";
       var localToken = recruitUnitUtil.Util.getLocalUser().token;
 
-      loomApi.Article.getUserTestResults(controllerId, searchJson.authorEmail, localToken).then(angular.bind(this, function (listMyTestContentResult) {
+      loomApi.Article.getUserTestResults(controllerId, searchJson, localToken).then(angular.bind(this, function (listMyTestContentResult) {
         console.log("getUserTestResults:");
         console.log(listMyTestContentResult);
         if (typeof listMyTestContentResult !== 'undefined') {
@@ -206,12 +201,12 @@
             this.userGuid = result.data.userGuid;
             if (tokenRoles.indexOf("recruiter") != -1){
               var searchJson = {
-                "authorEmail": requestedUsername
+                "authorEmail": tokenUsername
               };
               return this.searchRecruiter(searchJson);
             } else if (tokenRoles.indexOf("developer") != -1){
               var searchJson = {
-                "authorEmail": requestedUsername
+                "submitTo": this.userGuid
               };
               return this.searchDeveloper(searchJson);
             }
