@@ -69,7 +69,7 @@
     return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this,function(result) {
       if (result == false) {
         recruitUnitUtil.Util.redirectUserToPath("/home");// todo: get path from constant;
-      } else if (userRoles.indexOf(recruitUnitUtil.Constants.RECRUITER_ROLE) != -1) {//recruiters to only be allowed to submit forms
+      } else if (userRoles.indexOf(recruitUnitUtil.Constants.RECRUITER_ROLE) == -1) {//recruiters to only be allowed to submit forms
         recruitUnitUtil.Util.redirectUserToPath("/user/" + tokenUsername);
       } else if (result.success) {
         this.userName = tokenUsername;
