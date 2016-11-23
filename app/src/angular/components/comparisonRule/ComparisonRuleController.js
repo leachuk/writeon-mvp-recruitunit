@@ -21,7 +21,6 @@
 
     recruitUnitUtil.Util.setTitle("Manage Comparison Rules");
 
-    this.formId = "aa7ecbe9092c948606d4b8a8f0001807"; //todo: pass in the id of the users comparison document. Will need a way to initialise a single new document for the user if one doesn't already exist.
     this.article = {"skills": []}; //Need to initialise for md-chips, otherwise an exception is thrown
 
     var localUser = recruitUnitUtil.Util.getLocalUser();
@@ -32,7 +31,7 @@
     var searchJson = {};
     searchJson.authorEmail = localUser.email;
 
-    this.article = {
+    this.article = { //initialise comparison rules article model
       "roleType": {
         "value": ["contract", "permanent"],
         "disabled": false,
