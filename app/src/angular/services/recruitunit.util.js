@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('recruitunit.util',[])
-.factory('recruitUnitUtil', ['$resource', '$location', '$window', 'loomApi', function ($resource, $location, $window, loomApi) {
+.factory('recruitUnitUtil', ['$resource', '$location', '$window', 'loomApi', 'jwtHelper', function ($resource, $location, $window, loomApi, jwtHelper) {
 
     //Util Service
     var service = {};
@@ -62,6 +62,16 @@ angular.module('recruitunit.util',[])
         var localUser = this.getLocalUser();
 
         return (typeof localUser.email !== 'undefined' && localUser.email !== null) && (typeof localUser.token !== 'undefined' && localUser.token !== null);
+    }
+
+    service.Util.getUserRoles = function(){
+        var roles = "";
+        if (this.isLocalUserAvailable()){
+            var token = jwtHelper.decodeToken(this.getLocalUser().token);
+            roles = token.roles;
+        }
+
+        return roles;
     }
 
     return service;

@@ -56,6 +56,7 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil, 
 
   AppController.prototype.initApp = function() {
     this.user.isLoggedIn = this.isLocalUserLoggedIn();
+    this.user.isDeveloper = recruitUnitUtil.Util.getUserRoles().indexOf(recruitUnitUtil.Constants.DEVELOPER_ROLE) != -1;
     if (this.user.isLoggedIn){
       this.user.email = recruitUnitUtil.Util.getLocalUser().email;
     }
