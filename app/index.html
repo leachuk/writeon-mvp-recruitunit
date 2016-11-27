@@ -83,23 +83,25 @@
 
 				<div ng-if="app.user.isLoggedIn" ng-cloak layout="row" layout-align="end center" flex>{{app.user.email}}<md-button ng-click="app.signOutUser()">Logout</md-button></div>
 				<div ng-if="!app.user.isLoggedIn" ng-cloak layout="row" layout-align="end center" flex>
-					<div>
-						<md-input-container flex>
-							<label>Email</label>
-							<input ng-model="app.user.email"
-								   type="text">
-						</md-input-container>
-					</div>
-					<div>
-						<md-input-container flex>
-							<label>Password</label>
-							<input ng-model="app.user.password"
-								   type="text">
-						</md-input-container>
-					</div>
-					<div>
-						<md-button ng-click="app.signInUser()">Login</md-button>
-					</div>
+					<form ng-submit="app.signInUser()" layout="row" layout-align="end center" flex>
+						<div>
+							<md-input-container flex>
+								<label>Email</label>
+								<input ng-model="app.user.email"
+									   type="text">
+							</md-input-container>
+						</div>
+						<div>
+							<md-input-container flex>
+								<label>Password</label>
+								<input ng-model="app.user.password"
+									   type="password">
+							</md-input-container>
+						</div>
+						<div>
+							<md-button type="submit">Login</md-button>
+						</div>
+					</form>
 				</div>
 
 			</div>
