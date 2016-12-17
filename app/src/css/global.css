@@ -241,3 +241,9 @@ md-chips.chipsDisabled .md-chip {
   background: #DBDBDB;
   color: #EEEEEE;
 }
+
+/* comparison list overrides */
+md-list-item.md-no-proxy.md-button, md-list-item .md-no-style.md-button{
+  padding-left: 0px;
+  padding-top: 10px;
+}
