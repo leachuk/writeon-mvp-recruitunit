@@ -74,6 +74,17 @@ angular.module('recruitunit.util',[])
         return roles;
     }
 
+    service.Util.isLocalUserLoggedIn = function(){
+        var localUser = this.getLocalUser();
+        var isLoggedIn = false;
+        if (this.isLocalUserAvailable()){ //check if details are set
+            console.log("The local user details are present");
+            isLoggedIn = !jwtHelper.isTokenExpired(localUser.token);
+        }
+
+        return isLoggedIn;
+    }
+
     return service;
 
 }]);

@@ -55,7 +55,7 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil, 
   ]);
 
   AppController.prototype.initApp = function() {
-    this.user.isLoggedIn = this.isLocalUserLoggedIn();
+    this.user.isLoggedIn = recruitUnitUtil.Util.isLocalUserLoggedIn();
     this.user.isDeveloper = recruitUnitUtil.Util.getUserRoles().indexOf(recruitUnitUtil.Constants.DEVELOPER_ROLE) != -1;
     if (this.user.isLoggedIn){
       this.user.email = recruitUnitUtil.Util.getLocalUser().email;
@@ -98,17 +98,6 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil, 
     console.log("in signOutUser");
     recruitUnitUtil.Util.deleteUserAuth();
     recruitUnitUtil.Util.redirectUserToPath("/home");
-  }
-
-  AppController.prototype.isLocalUserLoggedIn = function(){
-    var localUser = recruitUnitUtil.Util.getLocalUser();
-    var isLoggedIn = false;
-    if (recruitUnitUtil.Util.isLocalUserAvailable()){ //check if details are set
-      console.log("The local user details are present");
-      isLoggedIn = !jwtHelper.isTokenExpired(localUser.token);
-    }
-
-    return isLoggedIn;
   }
 
 }
