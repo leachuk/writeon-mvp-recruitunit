@@ -39,6 +39,7 @@
     this.myContentListPassCount = 0;
     this.myContentListFailCount = 0;
     this.userFormUrl = "";
+    this.isDeveloper = false;
 
     this.template = "src/angular/components/userLanding/requireComparisonFormDialog.html";
     this._mdPanel = $mdPanel;
@@ -116,7 +117,7 @@
     Controller.prototype.searchRecruiter = function(searchJson){
       var comparisonRulesDocId = "";
       var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
-      var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
+      //var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
       //var jobItemModel = "server/models/RecruitUnit.Job.All.js";
       var localToken = recruitUnitUtil.Util.getLocalUser().token;
 
@@ -212,6 +213,7 @@
               };
               return this.searchRecruiter(searchJson);
             } else if (tokenRoles.indexOf("developer") != -1){
+              this.isDeveloper = true;
               var searchJson = {
                 "submitTo": this.userGuid
               };
