@@ -38,11 +38,14 @@
     this.myContentListArray = [];
     this.myContentListPassCount = 0;
     this.myContentListFailCount = 0;
+    this.userFormUrl = "";
 
     this.template = "src/angular/components/userLanding/requireComparisonFormDialog.html";
     this._mdPanel = $mdPanel;
     this.openFrom = 'button';
     this.closeTo = 'button';
+
+
 
     Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
       console.log("in showFormDetailDialog");
@@ -187,6 +190,8 @@
       var tokenRoles = token.roles;
       var requestedUsername = $routeParams.email;
 
+      var serverUrl = recruitUnitUtil.Constants.APP_PROTOCOL + recruitUnitUtil.Constants.APP_HOST + ":" + recruitUnitUtil.Constants.APP_PORT;
+
       return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this, function (result) {
         if (result == false) {
           recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_HOME);// todo: get path from constant;
@@ -199,6 +204,8 @@
             this.id = result.data.id;
             this.username = result.data.displayName;
             this.userGuid = result.data.userGuid;
+            this.userFormUrl = serverUrl + recruitUnitUtil.Constants.PATH_USER + this.userGuid + "/form";
+
             if (tokenRoles.indexOf("recruiter") != -1){
               var searchJson = {
                 "authorEmail": tokenUsername

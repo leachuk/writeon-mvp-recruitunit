@@ -6,12 +6,17 @@ angular.module('recruitunit.util',[])
     //Util Service
     var service = {};
     service.Util = {};
+    //hacky config provider. Angular 2 now provides a proper solution which should be used once upgraded. Out of scope here.
     service.Constants = { //I know, not really constant,  but it'll do given the lack of alternative!
+        'APP_PROTOCOL': "http://",
+        'APP_HOST': '127.0.0.1',
+        'APP_PORT': '8080',
         'DEVELOPER_ROLE': 'developer',
         'RECRUITER_ROLE': 'recruiter',
         'PATH_HOME': '/home',
         'PATH_USER': '/user/',
-        'PATH_COMPARISONRULESFORM': '/comparisonrules'
+        'PATH_COMPARISONRULESFORM': '/comparisonrules',
+        'FOO': this.foo
     };
 
     service.Util.setTitle = function(title){
