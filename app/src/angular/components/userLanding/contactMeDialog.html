@@ -1,0 +1,20 @@
+<div role="dialog" aria-label="Notification" layout="column" layout-align="center center">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Notification</h2>
+        </div>
+    </md-toolbar>
+
+    <div class="demo-dialog-content">
+        <p>Display your email address to the recruiter so they can follow up on this job?</p>
+    </div>
+
+    <div layout="row" class="demo-dialog-button">
+        <md-button md-autofocus flex class="md-primary" ng-click="contactMeDialog.confirmContactMe()">
+            Confirm
+        </md-button>
+        <md-button md-autofocus flex class="md-primary" ng-click="contactMeDialog.closePanel()">
+            Cancel
+        </md-button>
+    </div>
+</div>

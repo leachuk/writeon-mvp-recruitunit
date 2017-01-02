@@ -4,7 +4,8 @@
   angular
     .module('app.user.userLandingController')
     .controller('UserLandingController', Controller)
-    .controller('RequireComparisonFormDialogController', DialogController);
+    .controller('RequireComparisonFormDialogController', DialogController)
+    .controller('ContactMeDialogController', DialogController);
 
   Controller.$inject = [
     '$routeParams',
@@ -41,7 +42,8 @@
     this.userFormUrl = "";
     this.isDeveloper = false;
 
-    this.template = "src/angular/components/userLanding/requireComparisonFormDialog.html";
+    this.comparisonFormTemplate = "src/angular/components/userLanding/requireComparisonFormDialog.html";
+    this.contactMeTemplate = "src/angular/components/userLanding/contactMeDialog.html";
     this._mdPanel = $mdPanel;
     this.openFrom = 'button';
     this.closeTo = 'button';
@@ -170,7 +172,37 @@
       },
       position: panelPosition,
       animation: panelAnimation,
-      templateUrl: this.template,
+      templateUrl: this.comparisonFormTemplate,
+      hasBackdrop: true,
+      panelClass: 'demo-dialog-example',
+      zIndex: 150,
+      clickOutsideToClose: true,
+      escapeToClose: true,
+      focusOnOpen: true
+    }
+
+    this._mdPanel.open(config);
+  }
+
+  Controller.prototype.showContactMeDialog = function($event, id) {
+    console.log("in showContactMeDialog()");
+    var panelPosition = this._mdPanel.newPanelPosition()
+        .absolute()
+        .center();
+
+    var panelAnimation = this._mdPanel.newPanelAnimation();
+    panelAnimation.openFrom({top:0, left:0});
+    panelAnimation.closeTo({top:document.documentElement.clientHeight, left:0});
+    panelAnimation.withAnimation(this._mdPanel.animation.SCALE);
+
+    var config = {
+      attachTo: angular.element(document.body),
+      controller: 'ContactMeDialogController',
+      controllerAs: 'contactMeDialog',
+      locals: {},
+      position: panelPosition,
+      animation: panelAnimation,
+      templateUrl: this.contactMeTemplate,
       hasBackdrop: true,
       panelClass: 'demo-dialog-example',
       zIndex: 150,
@@ -233,6 +265,13 @@
 
   DialogController.prototype.closePanel = function() {
     console.log("close panel");
+    var panelRef = this._mdPanelRef;
+
+    panelRef.close()
+  }
+
+  DialogController.prototype.confirmContactMe = function() {
+    console.log("confirm contact me");
     var panelRef = this._mdPanelRef;
 
     panelRef.close()
