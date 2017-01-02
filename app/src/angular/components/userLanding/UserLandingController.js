@@ -40,15 +40,13 @@
     this.myContentListFailCount = 0;
     this.userFormUrl = "";
     this.isDeveloper = false;
-    this.isDisplayDevEmail = false;
 
     this.comparisonFormTemplate = "src/angular/components/userLanding/requireComparisonFormDialog.html";
-    this.contactMeTemplate = "src/angular/components/userLanding/contactMeDialog.html";
+    this.enableContactMeTemplate = "src/angular/components/userLanding/enableContactMeDialog.html";
+    this.disableContactMeTemplate = "src/angular/components/userLanding/disableContactMeDialog.html";
     this._mdPanel = $mdPanel;
     this.openFrom = 'button';
     this.closeTo = 'button';
-
-
 
     Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
       console.log("in showFormDetailDialog");
@@ -184,8 +182,8 @@
     this._mdPanel.open(config);
   }
 
-  Controller.prototype.showContactMeDialog = function($event, id, loomApi) {
-    console.log("in showContactMeDialog()");
+  Controller.prototype.toggleContactMeDialog = function($event, id, displayDevEmail) {
+    console.log("in toggleContactMeDialog()");
     var panelPosition = this._mdPanel.newPanelPosition()
         .absolute()
         .center();
@@ -201,12 +199,13 @@
       controllerAs: 'contactMeDialog',
       locals: {
         'docId' : id,
-        parent : this
+        'isDisplayDevEmail': displayDevEmail,
+        parent : this //access parent scope
       },
       bindToController: true,
       position: panelPosition,
       animation: panelAnimation,
-      templateUrl: this.contactMeTemplate,
+      templateUrl: this.enableContactMeTemplate,
       hasBackdrop: true,
       panelClass: 'demo-dialog-example',
       zIndex: 150,
@@ -266,9 +265,12 @@
   function DialogController(mdPanelRef, loomApi, recruitUnitUtil) {
     this._mdPanelRef = mdPanelRef;
 
-    DialogController.prototype.confirmContactMe = function(docId) {
+
+    DialogController.prototype.toggleContactMe = function(docId) {
       console.log("confirmContactMe docId:" + docId);
       console.log(loomApi);
+
+      this.isDisplayDevEmail = displayDevEmailBool;
 
       var panelRef = this._mdPanelRef;
       var localToken = recruitUnitUtil.Util.getLocalUser().token;
@@ -276,7 +278,7 @@
       loomApi.Article.toggleDevEmailDisplay(docId, localToken).then(angular.bind(this,function(result){
         console.log("toggleDevEmailDisplay result:");
         console.log(result);
-        this.parent.isDisplayDevEmail = result.displayDevEmail; //target parent scope
+        this.isDisplayDevEmail = result.displayDevEmail;
       }));
 
       panelRef.close()

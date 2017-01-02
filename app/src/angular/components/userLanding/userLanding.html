@@ -2,8 +2,6 @@
 
 <p ng-if="userLanding.isDeveloper">My form url: {{userLanding.userFormUrl}}</p>
 
-<p>display dev email: {{userLanding.isDisplayDevEmail}}</p>
-
 <div layout-align="center start" layout="row">
 
     <md-card class="md-whiteframe-z4 buttondemoBasicUsage" flex="66">
@@ -50,9 +48,12 @@
                         <div layout="column" class="md-list-item-text" flex="20">
                             <p>Submitted <i>{{userLanding.formatUnixDateToNow(item.document.createdDate)}}</i></p>
                         </div>
-                        <div layout="column" class="" flex="15" layout-align="center center">
-                            <md-button class="md-raised" ng-click="userLanding.showContactMeDialog($event, item.document.id)">
-                                <p>Contact Me</p>
+                        <div layout="column" class="" flex="20" layout-align="center center">
+                            <md-button ng-if="item.document.displayDevEmail" class="md-raised md-primary" ng-click="userLanding.toggleContactMeDialog($event, item.document.id, item.document.displayDevEmail)">
+                                <p>Disable Contact</p>
+                            </md-button>
+                            <md-button ng-if="!item.document.displayDevEmail" class="md-raised" ng-click="userLanding.toggleContactMeDialog($event, item.document.id)">
+                                <p>Enable Contact</p>
                             </md-button>
                         </div>
                         <div layout="column" class="" flex="10" layout-align="center center">
