@@ -39,7 +39,7 @@
                                  class="result-icon"
                                  md-svg-icon="{{item.testResult.isPass || item.testResult.isPartialPass ? 'action:done' : 'content:clear'}}"
                                  ng-class="{'icon-pass':item.testResult.isPass, 'icon-fail':!item.testResult.isPass, 'partial-pass':item.testResult.isPartialPass}"></md-icon>
-                        <div layout="column" class="md-list-item-text" flex="60">
+                        <div layout="column" class="md-list-item-text" flex="50">
                             <button class="md-no-style md-button" type="button" ng-click="userLanding.showFormDetailDialog($event, item.document.id, item.testResult.isPass, item.testResult.isPartialPass)">
                                 <p class="job-description">{{item.document.jobDescription}}</p>
                             </button>
@@ -47,6 +47,11 @@
                         </div>
                         <div layout="column" class="md-list-item-text" flex="20">
                             <p>Submitted <i>{{userLanding.formatUnixDateToNow(item.document.createdDate)}}</i></p>
+                        </div>
+                        <div layout="column" class="" flex="15" layout-align="center center">
+                            <md-button class="md-raised" ng-click="userLanding.showFormDetailDialog($event, item.document.id, item.testResult.isPass, item.testResult.isPartialPass)">
+                                <p>Contact Me</p>
+                            </md-button>
                         </div>
                         <div layout="column" class="" flex="10" layout-align="center center">
                             <md-menu>

@@ -22,19 +22,19 @@ md-toolbar h1 {
 
 /* Sidenav area */
 
-md-list .md-button {
+md-sidenav md-list .md-button {
   color: inherit;
   font-weight: 500;
   text-align: left;
   width: 95%;
 }
-  md-list .md-button.selected {
-    color: #03a9f4;
-  }
+md-list .md-button.selected {
+  color: #03a9f4;
+}
 
-  md-sidenav  md-list {
-    padding: 0px 0px 8px 0px;
-  }
+md-sidenav  md-list {
+  padding: 0px 0px 8px 0px;
+}
 
 
 /* Primary content area */
