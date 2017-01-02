@@ -23,7 +23,6 @@
     'jwtHelper'
   ];
 
-
   function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil,$mdPanel,jwtHelper) {
     console.log("in UserLandingController");
 
@@ -41,6 +40,7 @@
     this.myContentListFailCount = 0;
     this.userFormUrl = "";
     this.isDeveloper = false;
+    this.isDisplayDevEmail = false;
 
     this.comparisonFormTemplate = "src/angular/components/userLanding/requireComparisonFormDialog.html";
     this.contactMeTemplate = "src/angular/components/userLanding/contactMeDialog.html";
@@ -184,7 +184,7 @@
     this._mdPanel.open(config);
   }
 
-  Controller.prototype.showContactMeDialog = function($event, id) {
+  Controller.prototype.showContactMeDialog = function($event, id, loomApi) {
     console.log("in showContactMeDialog()");
     var panelPosition = this._mdPanel.newPanelPosition()
         .absolute()
@@ -197,9 +197,13 @@
 
     var config = {
       attachTo: angular.element(document.body),
-      controller: 'ContactMeDialogController',
+      controller: DialogController,
       controllerAs: 'contactMeDialog',
-      locals: {},
+      locals: {
+        'docId' : id,
+        parent : this
+      },
+      bindToController: true,
       position: panelPosition,
       animation: panelAnimation,
       templateUrl: this.contactMeTemplate,
@@ -259,8 +263,24 @@
     }
   }
 
-  function DialogController(mdPanelRef) {
+  function DialogController(mdPanelRef, loomApi, recruitUnitUtil) {
     this._mdPanelRef = mdPanelRef;
+
+    DialogController.prototype.confirmContactMe = function(docId) {
+      console.log("confirmContactMe docId:" + docId);
+      console.log(loomApi);
+
+      var panelRef = this._mdPanelRef;
+      var localToken = recruitUnitUtil.Util.getLocalUser().token;
+
+      loomApi.Article.toggleDevEmailDisplay(docId, localToken).then(angular.bind(this,function(result){
+        console.log("toggleDevEmailDisplay result:");
+        console.log(result);
+        this.parent.isDisplayDevEmail = result.displayDevEmail; //target parent scope
+      }));
+
+      panelRef.close()
+    }
   }
 
   DialogController.prototype.closePanel = function() {
@@ -270,12 +290,7 @@
     panelRef.close()
   }
 
-  DialogController.prototype.confirmContactMe = function() {
-    console.log("confirm contact me");
-    var panelRef = this._mdPanelRef;
 
-    panelRef.close()
-  }
 
 
 })();
