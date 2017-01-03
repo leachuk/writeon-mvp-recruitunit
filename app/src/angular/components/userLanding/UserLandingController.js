@@ -200,7 +200,6 @@
       locals: {
         'docId' : id,
         'isDisplayDevEmail': displayDevEmail,
-        parent : this, //access parent scope
         itemScope : repeatScope
       },
       bindToController: true,
@@ -269,7 +268,6 @@
 
     DialogController.prototype.toggleContactMe = function(docId, repeatScope) {
       console.log("confirmContactMe docId:" + docId);
-      console.log(repeatScope.item.document);
 
       var panelRef = this._mdPanelRef;
       var localToken = recruitUnitUtil.Util.getLocalUser().token;
@@ -277,7 +275,6 @@
       loomApi.Article.toggleDevEmailDisplay(docId, localToken).then(angular.bind(this,function(result){
         console.log("toggleDevEmailDisplay result:");
         console.log(result);
-        this.isDisplayDevEmail = result.displayDevEmail;
         repeatScope.item.document.displayDevEmail = result.displayDevEmail;
       }));
 
