@@ -182,12 +182,12 @@
     this._mdPanel.open(config);
   }
 
-  Controller.prototype.toggleContactMeDialog = function($event, id, displayDevEmail) {
+  Controller.prototype.toggleContactMeDialog = function($event, id, displayDevEmail, repeatScope) {
     console.log("in toggleContactMeDialog()");
+
     var panelPosition = this._mdPanel.newPanelPosition()
         .absolute()
         .center();
-
     var panelAnimation = this._mdPanel.newPanelAnimation();
     panelAnimation.openFrom({top:0, left:0});
     panelAnimation.closeTo({top:document.documentElement.clientHeight, left:0});
@@ -200,7 +200,8 @@
       locals: {
         'docId' : id,
         'isDisplayDevEmail': displayDevEmail,
-        parent : this //access parent scope
+        parent : this, //access parent scope
+        itemScope : repeatScope
       },
       bindToController: true,
       position: panelPosition,
@@ -266,11 +267,9 @@
     this._mdPanelRef = mdPanelRef;
 
 
-    DialogController.prototype.toggleContactMe = function(docId) {
+    DialogController.prototype.toggleContactMe = function(docId, repeatScope) {
       console.log("confirmContactMe docId:" + docId);
-      console.log(loomApi);
-
-      this.isDisplayDevEmail = displayDevEmailBool;
+      console.log(repeatScope.item.document);
 
       var panelRef = this._mdPanelRef;
       var localToken = recruitUnitUtil.Util.getLocalUser().token;
@@ -279,6 +278,7 @@
         console.log("toggleDevEmailDisplay result:");
         console.log(result);
         this.isDisplayDevEmail = result.displayDevEmail;
+        repeatScope.item.document.displayDevEmail = result.displayDevEmail;
       }));
 
       panelRef.close()
