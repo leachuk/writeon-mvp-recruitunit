@@ -200,6 +200,7 @@
       locals: {
         'docId' : id,
         'isDisplayDevEmail': displayDevEmail,
+        'isDeveloper' : this.isDeveloper,
         itemScope : repeatScope
       },
       bindToController: true,
