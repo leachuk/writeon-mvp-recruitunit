@@ -143,7 +143,7 @@
         var localToken = recruitUnitUtil.Util.getLocalUser().token;
 
         return loomApi.User.getDevEmailFromDocId(docId, localToken).then(angular.bind(this,function(result){
-          return result.email;
+          return typeof result.email !== "undefined" ? result.email : result.message;
         }));
       }
     }
