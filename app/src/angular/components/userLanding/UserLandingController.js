@@ -138,6 +138,16 @@
       recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER +  useremail + recruitUnitUtil.Constants.PATH_COMPARISONRULESFORM);
     }
 
+    Controller.prototype.getDeveloperEmailAddress = function(docId, isDeveloper, displayDevEmail){
+      if (!isDeveloper && displayDevEmail){
+        var localToken = recruitUnitUtil.Util.getLocalUser().token;
+
+        return loomApi.User.getDevEmailFromDocId(docId, localToken).then(angular.bind(this,function(result){
+          return result.email;
+        }));
+      }
+    }
+
     //check if the user has a comparison test form and is a developer. Show alert dialog if not
     if (recruitUnitUtil.Util.getLocalUser().token !== null) {
       var decodedToken = jwtHelper.decodeToken(recruitUnitUtil.Util.getLocalUser().token);
@@ -201,6 +211,7 @@
         'docId' : id,
         'isDisplayDevEmail': displayDevEmail,
         'isDeveloper' : this.isDeveloper,
+        'developerEmailAddress' : this.getDeveloperEmailAddress(id, this.isDeveloper, displayDevEmail),
         itemScope : repeatScope
       },
       bindToController: true,

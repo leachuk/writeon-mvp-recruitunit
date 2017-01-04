@@ -10,7 +10,7 @@
         <p ng-if="contactMeDialog.isDisplayDevEmail">Don't display your email address to the recruiter?</p>
     </div>
     <div ng-if="!contactMeDialog.isDeveloper" class="demo-dialog-content">
-        <p ng-if="contactMeDialog.isDisplayDevEmail">This sounds interesting. Please contact me at <span style="font-weight:bold;">foo@bar.com</span></p>
+        <p ng-if="contactMeDialog.isDisplayDevEmail">This sounds interesting. Please contact me at <span style="font-weight:bold;">{{contactMeDialog.developerEmailAddress}}</span></p>
     </div>
 
     <div layout="row" class="demo-dialog-button">
