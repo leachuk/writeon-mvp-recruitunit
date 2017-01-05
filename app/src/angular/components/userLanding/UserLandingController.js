@@ -95,33 +95,11 @@
       $location.path("/user/" + this.useremail + "/form/" + id);
     }
 
-    Controller.prototype.searchDeveloper = function(searchJson){
-      //var comparisonRulesDocId = "";
-      var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
-      //var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
-      var localToken = recruitUnitUtil.Util.getLocalUser().token;
-
-      loomApi.Article.getUserTestResults(controllerId, searchJson, localToken).then(angular.bind(this, function (listMyTestContentResult) {
-        console.log("getUserTestResults:");
-        console.log(listMyTestContentResult);
-        if (typeof listMyTestContentResult !== 'undefined') {
-          this.myContentListArray = lodash.sortBy(listMyTestContentResult, 'document.createdDate').reverse();
-          this.myContentListPassCount = lodash.filter(listMyTestContentResult, {'testResult': {'isPass': true}}).length + lodash.filter(listMyTestContentResult, {'testResult': {'isPartialPass': true}}).length;
-          this.myContentListFailCount = listMyTestContentResult.length - this.myContentListPassCount;
-
-          return true; //return canActivate state once results are available
-        }
-      }));
-    }
-
-    Controller.prototype.searchRecruiter = function(searchJson){
+    Controller.prototype.searchUser = function(searchJson){
       var comparisonRulesDocId = "";
-      var controllerId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
-      //var rulesModel = "server/models/RecruitUnit.ComparisonTest.js";
-      //var jobItemModel = "server/models/RecruitUnit.Job.All.js";
       var localToken = recruitUnitUtil.Util.getLocalUser().token;
 
-      loomApi.Article.getUserTestResults(controllerId, searchJson, localToken).then(angular.bind(this, function (listMyTestContentResult) {
+      loomApi.Article.getUserTestResults(searchJson, localToken).then(angular.bind(this, function (listMyTestContentResult) {
         console.log("getUserTestResults:");
         console.log(listMyTestContentResult);
         if (typeof listMyTestContentResult !== 'undefined') {
@@ -258,13 +236,13 @@
               var searchJson = {
                 "authorEmail": tokenUsername
               };
-              return this.searchRecruiter(searchJson);
+              return this.searchUser(searchJson);
             } else if (tokenRoles.indexOf("developer") != -1){
               this.isDeveloper = true;
               var searchJson = {
                 "submitTo": this.userGuid
               };
-              return this.searchDeveloper(searchJson);
+              return this.searchUser(searchJson);
             }
         }
 
