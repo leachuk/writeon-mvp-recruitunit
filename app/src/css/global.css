@@ -89,13 +89,25 @@ md-button.menuBtn > md-icon {
   max-width: 500px;
 }
 
-/* Card */
+/* Homepage Card */
 md-card-title .md-card-h1{
-  text-transform: capitalize;
   position: relative;
-  top: -40px;
+  top: -100px;
   left: 10px;
   color: #f9f9f9;
+}
+
+md-card.recruitunit md-card-title{
+  padding: 0;
+  margin: 24px 16px 16px;
+  overflow: hidden;
+  max-height: 255px;
+}
+
+md-card.recruitunit div.cardheading-fab{
+  position: relative;
+  left: 60px;
+  top: 25px;
 }
 
 .totals-table {

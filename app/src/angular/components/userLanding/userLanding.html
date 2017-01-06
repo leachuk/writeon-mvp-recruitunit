@@ -1,15 +1,19 @@
-<h1>User Landing</h1>
-
-<p ng-if="userLanding.isDeveloper">My form url: {{userLanding.userFormUrl}}</p>
-
 <div layout-align="center start" layout="row">
 
-    <md-card class="md-whiteframe-z4 buttondemoBasicUsage" flex="66">
-
+    <md-card class="md-whiteframe-z4 buttondemoBasicUsage recruitunit" flex="66">
+        <div class="cardheading-fab">
+            <md-button class="md-fab md-scale md-fab-top-right" aria-label="Insert Drive" style="right:100px;">
+                <md-icon md-svg-src="img/icons/ic_insert_drive_file_24px.svg"></md-icon>
+                <md-tooltip md-direction="bottom">
+                    User profile
+                </md-tooltip>
+            </md-button>
+        </div>
         <md-card-title>
             <md-card-title-text>
-                <img src="http://lorempixel.com/g/600/200/" alt="image caption">
+                <img src="/assets/homepage-header-background-2.png" alt="image caption">
                 <span class="md-headline md-card-h1">{{userLanding.username}}</span>
+                <span class="md-headline md-card-h1" ng-if="userLanding.isDeveloper">Form url: {{userLanding.userFormUrl}}</span>
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
