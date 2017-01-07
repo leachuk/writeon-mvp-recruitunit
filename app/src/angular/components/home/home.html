@@ -1,23 +1,16 @@
-<!--<div>-->
-    <!--<img style="position:absolute; width:100%;" src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">-->
-<!--</div>-->
-<div class="gradient"  layout-align="center start" layout="row">
-    <md-card class="md-whiteframe-z4 buttondemoBasicUsage" flex="66">
+<div>
+    <img style="position:absolute; width:100%;" src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">
+</div>
+<div class="radialgradient"  layout-align="center start" layout="row">
+    <md-card class="md-whiteframe-z4 recruitunit-homepage" flex="40">
 
-        <md-card-title>
-            <md-card-title-text>
-                <img src="/assets/homepage-header-background-2.png" alt="image caption">
-                <span class="md-headline md-card-h1">Sign Up</span>
-                <span class="md-subhead">Create a user with the simple form below to start taking advantage of Recruit Unit</span>
-            </md-card-title-text>
-        </md-card-title>
         <md-card-content>
             <form name="createUser">
                 <div layout="row">
-                    <div flex="10" layout="row" layout-align="center center">
+                    <div flex="20" layout="row" layout-align="left center" class="row-label">
                         <span>User Name</span>
                     </div>
-                    <div flex="90">
+                    <div flex="80">
                         <section layout="row">
                             <md-input-container flex>
                                 <label>name</label>
@@ -27,10 +20,10 @@
                     </div>
                 </div>
                 <div layout="row">
-                    <div flex="10" layout="row" layout-align="center center">
+                    <div flex="20" layout="row" layout-align="left center" class="row-label">
                         <span>Email Address</span>
                     </div>
-                    <div flex="90">
+                    <div flex="80">
                         <section layout="row">
                             <md-input-container flex>
                                 <label>email</label>
@@ -41,10 +34,10 @@
                     </div>
                 </div>
                 <div layout="row">
-                    <div flex="10" layout="row" layout-align="center center">
+                    <div flex="20" layout="row" layout-align="left center" class="row-label">
                         <span>Role</span>
                     </div>
-                    <div flex="90">
+                    <div flex="80">
                         <section layout="row">
                             <md-radio-group ng-model="home.user.jobRole">
                                 <md-radio-button ng-repeat="role in home.roles" ng-value="role" aria-label="role">
@@ -55,10 +48,10 @@
                     </div>
                 </div>
                 <div layout="row">
-                    <div flex="10" layout="row" layout-align="center center">
+                    <div flex="20" layout="row" layout-align="left center" class="row-label">
                         <span>Password</span>
                     </div>
-                    <div flex="90">
+                    <div flex="80">
                         <section layout="row">
                             <md-input-container flex>
                                 <label>password</label>
@@ -69,8 +62,8 @@
                     </div>
                 </div>
                 <div layout="row">
-                    <div flex="10" layout="row" layout-align="center center"></div>
-                    <div flex="90">
+                    <div flex="20" layout="row" layout-align="center center"></div>
+                    <div flex="80">
                         <section layout="row" layout-align="start center">
                             <md-button class="md-raised md-primary" ng-click="home.createNewUser()">Sign me up</md-button>
                         </section>

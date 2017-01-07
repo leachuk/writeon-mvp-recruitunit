@@ -11,6 +11,12 @@ html, body {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxsaW5lYXJHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMCUiIHkyPSIxMDAlIj48c3RvcCBzdG9wLWNvbG9yPSIjYmYwMDQ5IiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMCIvPjxzdG9wIHN0b3AtY29sb3I9IiNjYjMxYTYiIHN0b3Atb3BhY2l0eT0iMSIgb2Zmc2V0PSIwLjQ3MjAwMDAwMDAwMDAwMDAzIi8+PHN0b3Agc3RvcC1jb2xvcj0iI2ZlZmVmZSIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjEiLz48L2xpbmVhckdyYWRpZW50PjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxIiBoZWlnaHQ9IjEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
 }
 
+.radialgradient {
+  background-color: #fca5db;
+  /* IE9, iOS 3.2+ */
+  background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIHZpZXdCb3g9IjAgMCAxIDEiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjxyYWRpYWxHcmFkaWVudCBpZD0idnNnZyIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiIGN4PSI1MCUiIGN5PSI1MCUiIHI9IjUwJSI+PHN0b3Agc3RvcC1jb2xvcj0iI2Y5NDliNiIgc3RvcC1vcGFjaXR5PSIxIiBvZmZzZXQ9IjAiLz48c3RvcCBzdG9wLWNvbG9yPSIjZmZmZmZmIiBzdG9wLW9wYWNpdHk9IjEiIG9mZnNldD0iMC45OTQwMDAwMDAwMDAwMDAxIi8+PC9yYWRpYWxHcmFkaWVudD48cmVjdCB4PSItNTAiIHk9Ii01MCIgd2lkdGg9IjEwMSIgaGVpZ2h0PSIxMDEiIGZpbGw9InVybCgjdnNnZykiIC8+PC9zdmc+);
+}
+
 /* Toolbar area */
 
 .menu {
@@ -207,20 +213,23 @@ md-content {
   background: transparent;
 }
 .blue { background: #A2C9F6;}
-.buttondemoBasicUsage {
+.recruitunit-homepage {
   z-index: 50;
 }
-.buttondemoBasicUsage section {
+.recruitunit-homepage section {
   border-radius: 3px;
-  margin: 1em;
+  /*margin: 0.2em;*/
   position: relative !important;
-  padding-bottom: 5px;
-  margin-top: 30px;}
-.buttondemoBasicUsage md-content {
+  /*padding-bottom: 5px;*/
+  /*margin-top: 30px;*/}
+.recruitunit-homepage div.row-label {
+  margin-bottom: 1em;
+}
+.recruitunit-homepage md-content {
   margin-right: 7px; }
-.buttondemoBasicUsage section .md-button {
+.recruitunit-homepage section .md-button {
   margin: 16px 10px 16px 10px;}
-.buttondemoBasicUsage .label {
+.recruitunit-homepage .label {
   position: absolute;
   bottom: 5px;
   left: 7px;
