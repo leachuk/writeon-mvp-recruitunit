@@ -92,7 +92,7 @@ md-button.menuBtn > md-icon {
 /* Homepage Card */
 md-card-title .md-card-h1{
   position: relative;
-  top: -100px;
+  top: -40px;
   left: 10px;
   color: #f9f9f9;
 }

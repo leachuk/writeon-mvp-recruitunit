@@ -317,7 +317,6 @@
       // IE: The clipboard feature may be disabled by an administrator. By
       // default a prompt is shown the first time the clipboard is
       // used (per session).
-
       var text = testFormUrl;
       if (window.clipboardData && window.clipboardData.setData) {
         // IE specific code path to prevent textarea being shown while dialog is visible.
