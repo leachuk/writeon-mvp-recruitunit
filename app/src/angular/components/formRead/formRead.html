@@ -38,7 +38,19 @@
                 <div flex="10" layout="row" layout-align="center center">
                     <span>Pay Bracket Between</span>
                 </div>
-                <div flex="45">
+                <div flex="20">
+                    <section layout="row">
+                        <md-input-container flex>
+                            <label>Pay as per</label>
+                            <md-select ng-disabled="true" ng-model="formRead.article.roleType" ng-model-options="{trackBy: '$value'}">
+                                <md-option ng-repeat="option in formRead.payFrequencyOptions track by option.id" ng-value="option.id">
+                                    {{option.value}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </section>
+                </div>
+                <div flex="35">
                     <section layout="row">
                         <md-input-container flex>
                             <label>Lower bound</label>
@@ -46,7 +58,7 @@
                         </md-input-container>
                     </section>
                 </div>
-                <div flex="45">
+                <div flex="35">
                     <section layout="row">
                         <md-input-container flex>
                             <label>Upper bound</label>

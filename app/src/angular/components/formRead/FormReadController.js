@@ -24,6 +24,10 @@
 
     this.formId = $routeParams.id == null ? this.jobDetailFormId : $routeParams.id;
     this.article = {"skills": []}; //Need to initialise for md-chips, otherwise an exception is thrown
+    this.payFrequencyOptions = [
+      {id: "Permanent", value: "annual salary"},
+      {id: "Contract", value: "daily rate"}
+    ];
 
     var modelId = "server/services/recruitunit/articles/recruitUnitContentService.controller.js";
     var model = "server/models/RecruitUnit.Job.All.js";

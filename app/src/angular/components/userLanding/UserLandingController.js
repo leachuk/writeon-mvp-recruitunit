@@ -51,13 +51,17 @@
 
     Controller.prototype.showFormDetailDialog = function($event, id, isPass, isPartialPass){
       console.log("in showFormDetailDialog");
-      console.log("   form id:" + id);
+      console.log("form id:" + id);
       $mdDialog.show({
         controller: 'FormReadController',
         controllerAs: 'formRead',
         locals: {
           'jobDetailFormId':id,
-          'isItemPass': isPartialPass || isPass ? true : false
+          'isItemPass': isPartialPass || isPass ? true : false,
+          'payFrequencyOptions': [
+            {id: "Permanent", value: "annual salary"},
+            {id: "Contract", value: "daily rate"}
+          ]
         },
         bindToController: true,
         templateUrl: 'src/angular/components/formRead/formReadDialog.html',

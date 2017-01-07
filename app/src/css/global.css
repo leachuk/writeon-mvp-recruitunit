@@ -259,3 +259,8 @@ md-list-item.md-no-proxy.md-button, md-list-item .md-no-style.md-button{
   padding-left: 0px;
   padding-top: 10px;
 }
+
+/* formReadDialog form overrides */
+.recruitunit-read .md-select-value .md-select-icon{
+  display: none;
+}

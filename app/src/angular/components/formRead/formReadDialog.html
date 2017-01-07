@@ -1,5 +1,5 @@
 <md-dialog aria-label="Job Opportunity {{formRead.jobDetailFormId}}"  ng-cloak>
-    <form>
+    <form class="recruitunit-read">
         <md-toolbar class="{{formRead.isItemPass ? '' : 'md-warn md-hue-3'}}">
             <div class="md-toolbar-tools" ng-switch on="formRead.isItemPass">
                 <h2 ng-switch-when="false"><md-icon md-svg-icon="social:mood_bad" aria-label="Happy face"></md-icon> Failed - {{formRead.article.jobDescription}}</h2>
@@ -65,7 +65,19 @@
                             <div flex="20" layout="row" layout-align="start center">
                                 <span>Pay Bracket Between</span>
                             </div>
-                            <div flex="40">
+                            <div flex="20">
+                                <section layout="row">
+                                    <md-input-container flex>
+                                        <label>Pay as per</label>
+                                        <md-select ng-disabled="true" ng-model="formRead.article.roleType" ng-model-options="{trackBy: '$value'}">
+                                            <md-option ng-repeat="option in formRead.payFrequencyOptions track by option.id" ng-value="option.id">
+                                                {{option.value}}
+                                            </md-option>
+                                        </md-select>
+                                    </md-input-container>
+                                </section>
+                            </div>
+                            <div flex="30">
                                 <section layout="row">
                                     <md-input-container flex>
                                         <label>Lower bound</label>
@@ -73,7 +85,7 @@
                                     </md-input-container>
                                 </section>
                             </div>
-                            <div flex="40">
+                            <div flex="30">
                                 <section layout="row">
                                     <md-input-container flex>
                                         <label>Upper bound</label>

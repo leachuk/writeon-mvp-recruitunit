@@ -35,6 +35,10 @@
         this.user = result;
       }));
     }
+    this.payFrequencyOptions = [
+      {id: "Permanent", value: "annual salary"},
+      {id: "Contract", value: "daily rate"}
+    ];
     this.article = {
       "jobDescription" : "",
       "roleType": "",
