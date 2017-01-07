@@ -1,0 +1,22 @@
+<div role="dialog" aria-label="Notification" layout="column" layout-align="center center">
+    <md-toolbar>
+        <div class="md-toolbar-tools">
+            <h2>Notification</h2>
+        </div>
+    </md-toolbar>
+
+    <div class="demo-dialog-content">
+        <p>Pass this URL to your recruiter so they can submit your RecruitUnit test form.</p>
+        <p style="font-weight:bold;">{{unitTestFormDialog.testFormUrl}}</p>
+        <p>This will enable you to painlessly check if the potential job they submit matches your requirements.</p>
+    </div>
+
+    <div layout="row" class="demo-dialog-button">
+        <md-button md-autofocus flex class="md-primary" ng-click="unitTestFormDialog.copyUnitTestFormUrl(unitTestFormDialog.testFormUrl)">
+            Copy URL to clipboard
+        </md-button>
+        <md-button md-autofocus flex class="md-primary" ng-click="unitTestFormDialog.closePanel()">
+            Cancel
+        </md-button>
+    </div>
+</div>
