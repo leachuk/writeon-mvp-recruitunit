@@ -11,7 +11,6 @@ var recruitUnitApp = angular.module('recruitUnitApp', [
   'angular-jwt',
   'app.homeController',
   'app.user.userLandingController',
-  'app.testCreate',
   'app.user.formSubmitController',
   'app.user.formReadController',
   'app.user.comparisonRuleController',
