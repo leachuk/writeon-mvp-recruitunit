@@ -261,6 +261,7 @@ md-list-item.md-no-proxy.md-button, md-list-item .md-no-style.md-button{
 }
 
 /* formReadDialog form overrides */
-.recruitunit-read .md-select-value .md-select-icon{
+.readjobfromrecruiter  .md-select-value .md-select-icon,
+.submitjobfromrecruiter .md-select-value .md-select-icon{
   display: none;
 }
