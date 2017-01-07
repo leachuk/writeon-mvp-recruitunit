@@ -20,15 +20,21 @@
 
   function Controller($routeParams, $location, loomApi, recruitUnitUtil, jwtHelper) {
     console.log("FormSubmitController instantiated");
-
     recruitUnitUtil.Util.setTitle("Submit Form Page");
-    var authToken = recruitUnitUtil.Util.getLocalUser().token;
 
+    var authToken = recruitUnitUtil.Util.getLocalUser().token;
+    var token = jwtHelper.decodeToken(authToken);
+    var tokenUsername = token.username;
+    var tokenRoles = token.roles;
+    this.isDeveloper = tokenRoles.indexOf(recruitUnitUtil.Constants.RECRUITER_ROLE) == -1;
     this.authenticatedUser = recruitUnitUtil.Util.getLocalUser();
     this.submitTo = $routeParams.guid;
-    loomApi.User.getUserFromGuid($routeParams.guid, authToken).then(angular.bind(this,function(result){
-      this.user = result;
-    }));
+
+    if(!this.isDeveloper) {
+      loomApi.User.getUserFromGuid($routeParams.guid, authToken).then(angular.bind(this, function (result) {
+        this.user = result;
+      }));
+    }
     this.article = {
       "jobDescription" : "",
       "roleType": "",
@@ -69,8 +75,6 @@
     return recruitUnitUtil.Util.isUserAuthenticated(tokenUsername, recruitUnitUtil.Util.getLocalUser().token).then(angular.bind(this,function(result) {
       if (result == false) {
         recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_HOME);
-      } else if (userRoles.indexOf(recruitUnitUtil.Constants.RECRUITER_ROLE) == -1) {//recruiters to only be allowed to submit forms
-        recruitUnitUtil.Util.redirectUserToPath(recruitUnitUtil.Constants.PATH_USER + tokenUsername);
       } else if (result.success) {
         this.userName = tokenUsername;
         return true;

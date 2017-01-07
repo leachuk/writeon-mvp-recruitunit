@@ -1,6 +1,10 @@
 <h1>Submit a RecruitUnit Form</h1>
-<p>submit to id: {{formSubmit.user.data.userGuid}}</p>
-<p>user name: {{formSubmit.user.data.displayName}}</p>
+<div ng-if="!formSubmit.isDeveloper">
+    <p>user name: {{formSubmit.user.data.displayName}}</p>
+</div>
+<div ng-if="formSubmit.isDeveloper">
+    <p>Note. Only a recruiter is authorised to submit this form.</p>
+</div>
 
 <md-content layout="row" class="md-padding buttondemoBasicUsage">
     <div flex="10"></div>
@@ -93,6 +97,7 @@
                 <div flex="90">
                     <section layout="row" layout-align="start center">
                         <md-button class="md-raised md-primary"
+                                   ng-disabled="formSubmit.isDeveloper"
                                    ng-click="formSubmit.submitJobToCandidate()">Submit</md-button>
                     </section>
                 </div>
