@@ -46,8 +46,15 @@ form.recruitunit-login md-input-container {
   background-color: #B0C3CF;
   background-image: url(/assets/signup-background.png);
   background-repeat: round;
+
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 
+.features-tiles md-grid-tile p{
+  padding: 5px;
+}
+.blue { background: #8cacce;}
 
 /* Toolbar area */
 .menu {
@@ -239,34 +246,6 @@ span.name {
   font-size:1.1em;
   padding-left:5px;
 }
-
-md-content {
-  background: transparent;
-}
-.blue { background: #A2C9F6;}
-.recruitunit-homepage {
-  z-index: 50;
-}
-.recruitunit-homepage section {
-  border-radius: 3px;
-  /*margin: 0.2em;*/
-  position: relative !important;
-  /*padding-bottom: 5px;*/
-  /*margin-top: 30px;*/}
-.recruitunit-homepage div.row-label {
-  margin-bottom: 1em;
-}
-.recruitunit-homepage md-content {
-  margin-right: 7px; }
-.recruitunit-homepage section .md-button {
-  margin: 16px 10px 16px 10px;}
-.recruitunit-homepage .label {
-  position: absolute;
-  bottom: 5px;
-  left: 7px;
-  font-size: 14px;
-  opacity: 0.54; 
-  top: 40%;}
 
 .move-up {
   width: 100%;
