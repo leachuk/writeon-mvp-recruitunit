@@ -46,7 +46,8 @@
                             <button class="md-no-style md-button" type="button" ng-click="userLanding.showFormDetailDialog($event, item.document.id, item.testResult.isPass, item.testResult.isPartialPass)">
                                 <p class="job-description">{{item.document.jobDescription | limitTo:70}}<span ng-if="item.document.jobDescription.length > 70">...</span></p>
                             </button>
-                            <p><i>{{item.document.payBracketLower}}</i> to <i>{{item.document.payBracketUpper}}</i> per year</p>
+                            <p ng-if="item.document.roleType == 'Contract'"><i>{{item.document.payBracketLower}}</i> to <i>{{item.document.payBracketUpper}}</i> per day</p>
+                            <p ng-if="item.document.roleType == 'Permanent'"><i>{{item.document.payBracketLower}}</i> to <i>{{item.document.payBracketUpper}}</i> per year</p>
                         </div>
                         <div layout="column" class="md-list-item-text" layout-fill flex="20">
                             <p>Submitted <i>{{userLanding.formatUnixDateToNow(item.document.createdDate)}}</i></p>
