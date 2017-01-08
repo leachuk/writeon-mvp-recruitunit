@@ -2,15 +2,15 @@
     <img style="position:absolute; width:100%;" src="http://lorempixel.com/g/600/200/" class="md-card-image" alt="image caption">
 </div>
 <div class="radialgradient"  layout-align="center start" layout="row">
-    <md-card class="md-whiteframe-z4 recruitunit-homepage" flex="40">
+    <md-card class="md-whiteframe-z4 recruitunit-homepage" flex-gt-sm="50" flex-sm="66" flex="100">
 
         <md-card-content>
             <form name="createUser">
                 <div layout="row">
-                    <div flex="20" layout="row" layout-align="left center" class="row-label">
+                    <div flex="30" layout="row" layout-align="left center" class="row-label">
                         <span>User Name</span>
                     </div>
-                    <div flex="80">
+                    <div flex="70">
                         <section layout="row">
                             <md-input-container flex>
                                 <label>name</label>
@@ -20,10 +20,10 @@
                     </div>
                 </div>
                 <div layout="row">
-                    <div flex="20" layout="row" layout-align="left center" class="row-label">
+                    <div flex="30" layout="row" layout-align="left center" class="row-label">
                         <span>Email Address</span>
                     </div>
-                    <div flex="80">
+                    <div flex="70">
                         <section layout="row">
                             <md-input-container flex>
                                 <label>email</label>
@@ -34,10 +34,10 @@
                     </div>
                 </div>
                 <div layout="row">
-                    <div flex="20" layout="row" layout-align="left center" class="row-label">
+                    <div flex="30" layout="row" layout-align="left center" class="row-label">
                         <span>Role</span>
                     </div>
-                    <div flex="80">
+                    <div flex="70">
                         <section layout="row">
                             <md-radio-group ng-model="home.user.jobRole">
                                 <md-radio-button ng-repeat="role in home.roles" ng-value="role" aria-label="role">
@@ -48,10 +48,10 @@
                     </div>
                 </div>
                 <div layout="row">
-                    <div flex="20" layout="row" layout-align="left center" class="row-label">
+                    <div flex="30" layout="row" layout-align="left center" class="row-label">
                         <span>Password</span>
                     </div>
-                    <div flex="80">
+                    <div flex="70">
                         <section layout="row">
                             <md-input-container flex>
                                 <label>password</label>
