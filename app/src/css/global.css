@@ -55,7 +55,8 @@ form.recruitunit-login md-input-container {
 .features-padding md-grid-tile p{
   padding: 5px;
 }
-.blue { background: #8cacce;}
+.blue { background: #baddfe;}
+
 .background-rotated-y { /* flip all elements in the y axis */
   -moz-transform: scaleY(-1);
   -o-transform: scaleY(-1);
