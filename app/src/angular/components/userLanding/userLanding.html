@@ -44,7 +44,7 @@
                                  ng-class="{'icon-pass':item.testResult.isPass, 'icon-fail':!item.testResult.isPass, 'partial-pass':item.testResult.isPartialPass}"></md-icon>
                         <div layout="column" class="md-list-item-text" layout-fill flex="50">
                             <button class="md-no-style md-button" type="button" ng-click="userLanding.showFormDetailDialog($event, item.document.id, item.testResult.isPass, item.testResult.isPartialPass)">
-                                <p class="job-description">{{item.document.jobDescription}}</p>
+                                <p class="job-description">{{item.document.jobDescription | limitTo:70}}<span ng-if="item.document.jobDescription.length > 70">...</span></p>
                             </button>
                             <p><i>{{item.document.payBracketLower}}</i> to <i>{{item.document.payBracketUpper}}</i> per year</p>
                         </div>
@@ -53,18 +53,18 @@
                         </div>
                         <div ng-if="userLanding.isDeveloper"  layout="column" flex="20" layout-align="center center">
                             <md-button ng-if="item.document.displayDevEmail" class="md-raised md-primary" ng-click="userLanding.toggleContactMeDialog($event, item.document.id, item.document.displayDevEmail, this)">
-                                <p>Disable Contact</p>
+                                <span class="md-caption">Disable Contact</span>
                             </md-button>
                             <md-button ng-if="!item.document.displayDevEmail" class="md-raised" ng-click="userLanding.toggleContactMeDialog($event, item.document.id, item.document.displayDevEmail, this)">
-                                <p>Enable Contact</p>
+                                <span class="md-caption">Enable Contact</span>
                             </md-button>
                         </div>
                         <div ng-if="!userLanding.isDeveloper" layout="column" flex="15" layout-align="center center">
                             <md-button ng-if="item.document.displayDevEmail" layout-fill class="md-raised md-primary" ng-click="userLanding.toggleContactMeDialog($event, item.document.id, item.document.displayDevEmail, this)">
-                                <p>I'm Interested</p>
+                                <span class="md-caption">I'm Interested</span>
                             </md-button>
                             <md-button ng-if="!item.document.displayDevEmail" layout-fill ng-disabled="true" class="md-raised" ng-click="userLanding.toggleContactMeDialog($event, item.document.id, item.document.displayDevEmail, this)">
-                                <p>No Response</p>
+                                <span class="md-caption">No Response</span>
                             </md-button>
                         </div>
                         <div layout="column" class="" flex="10" layout-align="center center">

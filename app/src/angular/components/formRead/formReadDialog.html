@@ -2,8 +2,8 @@
     <form class="readjobfromrecruiter">
         <md-toolbar class="{{formRead.isItemPass ? '' : 'md-warn md-hue-3'}}">
             <div class="md-toolbar-tools" ng-switch on="formRead.isItemPass">
-                <h2 ng-switch-when="false"><md-icon md-svg-icon="social:mood_bad" aria-label="Happy face"></md-icon> Failed - {{formRead.article.jobDescription}}</h2>
-                <h2 ng-switch-default><md-icon md-svg-icon="social:mood" aria-label="Happy face"></md-icon> Passed - {{formRead.article.jobDescription}}</h2>
+                <h2 ng-switch-when="false"><md-icon md-svg-icon="social:mood_bad" aria-label="Happy face"></md-icon> Failed - {{formRead.article.jobDescription | limitTo:50}}<span ng-if="formRead.article.jobDescription.length > 50">...</span></h2>
+                <h2 ng-switch-default><md-icon md-svg-icon="social:mood" aria-label="Happy face"></md-icon> Passed - {{formRead.article.jobDescription | limitTo:50}}<span ng-if="formRead.article.jobDescription.length > 50">...</span></h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="formRead.cancelDialog()">
                     <md-icon md-svg-icon="content:clear" aria-label="Close dialog"></md-icon>
