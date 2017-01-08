@@ -83,7 +83,7 @@
 
 				<div ng-if="app.user.isLoggedIn" ng-cloak layout="row" layout-align="end center" flex>{{app.user.email}}<md-button ng-click="app.signOutUser()">Logout</md-button></div>
 				<div ng-if="!app.user.isLoggedIn" ng-cloak layout="row" layout-align="end center" flex>
-					<form ng-submit="app.signInUser()" layout="row" layout-align="end center" flex>
+					<form ng-submit="app.signInUser()" class="recruitunit-login" layout="row" layout-align="end center" flex>
 						<div>
 							<md-input-container flex>
 								<label>Email</label>
