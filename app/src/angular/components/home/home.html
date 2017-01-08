@@ -1,9 +1,14 @@
-<div>
-    <img style="position:absolute; width:100%;" src="/assets/signup-background.png" class="md-card-image" alt="image caption">
+<div class="heading" layout-align="center start" layout="row">
+    <div flex-gt-sm="50" flex-sm="66" flex="100">
+        <h1 class="md-display-3">Recruit Unit</h1>
+        <p class="md-body-1">Unit tests for job notifications. Connecting developers and recruiters through testable forms.</p>
+    </div>
 </div>
+<!--<div style="overflow: hidden;">-->
+    <!--<img style="position:absolute; width:100%;" src="/assets/signup-background.png" class="md-card-image">-->
+<!--</div>-->
 <div class="blue-grey-background"  layout-align="center start" layout="row">
     <md-card class="md-whiteframe-z4 recruitunit-homepage" flex-gt-sm="50" flex-sm="66" flex="100">
-
         <md-card-content>
             <form name="createUser">
                 <div layout="row">
@@ -62,9 +67,8 @@
                     </div>
                 </div>
                 <div layout="row">
-                    <div flex="20" layout="row" layout-align="center center"></div>
-                    <div flex="80">
-                        <section layout="row" layout-align="start center">
+                    <div flex="30" layout-align="left center">
+                        <section layout="row">
                             <md-button class="md-raised md-primary" ng-click="home.createNewUser()">Sign me up</md-button>
                         </section>
                     </div>
@@ -76,24 +80,39 @@
         </md-card-content>
     </md-card>
 </div>
-
-<md-grid-list md-cols-gt-md="3" md-cols-md="2" md-cols-sm="1" md-gutter="12px" md-row-height="2:1">
-    <md-grid-tile class="blue">
-        <md-grid-tile-header>
-            <h3>Heading</h3>
-        </md-grid-tile-header>
-        <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-    </md-grid-tile>
-    <md-grid-tile class="blue">
-        <md-grid-tile-header>
-            <h3>Heading</h3>
-        </md-grid-tile-header>
-        <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-    </md-grid-tile>
-    <md-grid-tile class="blue">
-        <md-grid-tile-header>
-            <h3>Heading</h3>
-        </md-grid-tile-header>
-        <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
-    </md-grid-tile>
-</md-grid-list>
+<div class="features-banner" layout-align="center start" layout="row">
+    <div flex-gt-sm="50" flex-sm="66" flex="100">
+        <h1 class="md-display-3">Features</h1>
+        <p class="md-body-1">Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus.</p>
+    </div>
+</div>
+<div class="features-tiles" layout="row" layout-align="center" flex>
+    <div flex-gt-md="100" flex-gt-sm="100" flex-sm="66" flex="100">
+        <md-grid-list md-cols-gt-md="4" md-cols-md="4" md-cols-sm="2" md-cols-xs="2" md-gutter="10px" md-row-height="2:1">
+            <md-grid-tile class="blue">
+                <md-grid-tile-header>
+                    <h3>Heading</h3>
+                </md-grid-tile-header>
+                <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+            </md-grid-tile>
+            <md-grid-tile class="blue">
+                <md-grid-tile-header>
+                    <h3>Heading</h3>
+                </md-grid-tile-header>
+                <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+            </md-grid-tile>
+            <md-grid-tile class="blue">
+                <md-grid-tile-header>
+                    <h3>Heading</h3>
+                </md-grid-tile-header>
+                <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+            </md-grid-tile>
+            <md-grid-tile class="blue">
+                <md-grid-tile-header>
+                    <h3>Heading</h3>
+                </md-grid-tile-header>
+                <p>Lorem Ipsum. Sit amet, consectetur adipiscing elit. Maecenas felis libero, pretium sed risus</p>
+            </md-grid-tile>
+    </md-grid-list>
+    </div>
+</div>

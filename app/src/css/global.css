@@ -6,16 +6,50 @@ html, body {
   padding: 0px;
 }
 
+/*Heading Banner*/
+.heading {
+  background-color: #8CACCE;
+  color: #282450;
+}
+.heading .md-display-3 {
+  line-height: 5px;
+}
+.heading .md-body-1 {
+  padding-left: 2px;
+}
+
+/*Signup Background*/
+.blue-grey-background {
+  background-color: #B0C3CF;
+  background-image: url(/assets/signup-background.png);
+  background-repeat: round;
+}
+
 form.recruitunit-login md-input-container {
   margin-top: 35px;
 }
 
-.blue-grey-background {
-  background-color: #B0C3CF;
+/* Feature Banner*/
+.features-banner {
+  background-color: #dcecf7;
+  color: #344884;
+}
+.features-banner .md-display-3 {
+  line-height: 5px;
+}
+.features-banner .md-body-1 {
+  padding-left: 2px;
 }
 
-/* Toolbar area */
+/*Feature Background and Tiles*/
+.features-tiles {
+  background-color: #B0C3CF;
+  background-image: url(/assets/signup-background.png);
+  background-repeat: round;
+}
 
+
+/* Toolbar area */
 .menu {
   background-color: transparent;
   border: none;
