@@ -26,7 +26,7 @@ form.recruitunit-login md-input-container {
 /*Signup Background*/
 .blue-grey-background {
   background-color: #B0C3CF;
-  background-image: url(/assets/signup-background.png);
+  background-image: url(/assets/signup-background-colour.png);
   background-repeat: round;
 }
 
@@ -48,18 +48,30 @@ form.recruitunit-login md-input-container {
 }
 
 /*Feature Background and Tiles*/
-.features-tiles {
-  background-color: #B0C3CF;
-  background-image: url(/assets/signup-background.png);
-  background-repeat: round;
-
+.features-padding {
   padding-top: 5px;
   padding-bottom: 10px;
 }
-.features-tiles md-grid-tile p{
+.features-padding md-grid-tile p{
   padding: 5px;
 }
 .blue { background: #8cacce;}
+.background-rotated-y { /* flip all elements in the y axis */
+  -moz-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  filter: FlipV;
+  -ms-filter: "FlipV";
+}
+.background-rotated-y p { /* flip p element back again so text is no longer reversed */
+  -moz-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+  filter: FlipV;
+  -ms-filter: "FlipV";
+}
 
 /* Custom Dialogs */
 .demo-md-panel {
