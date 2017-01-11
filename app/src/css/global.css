@@ -234,21 +234,29 @@ md-card.recruitunit div.cardheading-fab{
   top: 25px;
 }
 
-.totals-table {
+.totals-font-lg {
   font-size: 2em;
 }
+.totals-font-xs {
+  font-size: 1em;
+}
+
 .totals-table .totals-heading {
   color: #FFFFFF;
 }
 .totals-table .totals-result {
   color: #2D2D2D;
 }
-.totals-table .row {
+.totals-table-padding .row {
   margin: 5px 5px 0px 0px;
   padding: 20px 0px 20px 5px;
 }
-.totals-table .total{
+.totals-table .total {
   background-color: #c4c4c4;
+}
+.totals-table .total-sm {
+  background-color: #c4c4c4;
+  max-height: 20px;
 }
 .totals-table .pass{
   background-color: #008800;

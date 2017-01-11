@@ -16,7 +16,7 @@
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
-            <div layout="row" class="totals-table" flex>
+            <div hide show-gt-sm layout="row" class="totals-table totals-table-padding totals-font-lg" flex>
                 <div layout="row" class="total row" flex="33">
                     <div layout="column" layout-align="center center" class="totals-heading">Total</div>
                     <div layout="column" layout-align="center center" class="totals-result" flex>{{userLanding.myContentListArray.length}}</div>
@@ -29,6 +29,22 @@
                     </div>
                     <div layout="row" class="fail row" flex>
                         <md-icon layout="column" class="result-icon" md-svg-icon="content:clear"></md-icon>
+                        <div layout="column" class="totals-heading" flex>Fail</div>
+                        <div layout="column" flex="70" class="totals-result">{{userLanding.myContentListFailCount}}</div>
+                    </div>
+                </div>
+            </div>
+            <div hide-gt-sm layout="row" class="totals-table totals-font-sm" flex>
+                <div layout="column" flex>
+                    <div layout="row" class="total-sm row" flex="20">
+                        <div layout="column" class="totals-heading" flex>Total</div>
+                        <div layout="column" flex="70" class="totals-result">{{userLanding.myContentListArray.length}}</div>
+                    </div>
+                    <div layout="row" class="pass row" flex>
+                        <div layout="column" class="totals-heading" flex>Pass</div>
+                        <div layout="column" flex="70" class="totals-result">{{userLanding.myContentListPassCount}}</div>
+                    </div>
+                    <div layout="row" class="fail row" flex>
                         <div layout="column" class="totals-heading" flex>Fail</div>
                         <div layout="column" flex="70" class="totals-result">{{userLanding.myContentListFailCount}}</div>
                     </div>
