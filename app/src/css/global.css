@@ -268,10 +268,15 @@ md-card.recruitunit div.cardheading-fab{
 .totals-list p.job-description{
   line-height: 1.10em !important;
   color: #464646 !important;
+}
+.totals-list .text-sm {
+  font-size: 0.7em !important;
+}
+.totals-list .text-lg {
   font-size: 1.10em !important;
 }
 .totals-list .result-icon {
-  margin-right: 20px;
+  margin-right: 25px;
 }
 .totals-list .icon-pass {
   color: #17FF00;
