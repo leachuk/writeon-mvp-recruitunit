@@ -15,6 +15,7 @@
     '$router',
     '$mdDialog',
     '$window',
+    '$mdMedia',
     'loomApi',
     'lodash',
     'moment',
@@ -23,12 +24,13 @@
     'jwtHelper'
   ];
 
-  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,loomApi,lodash,moment,recruitUnitUtil,$mdPanel,jwtHelper) {
+  function Controller($routeParams,$http,$cookies,$location,$router,$mdDialog,$window,$mdMedia,loomApi,lodash,moment,recruitUnitUtil,$mdPanel,jwtHelper) {
     console.log("in UserLandingController");
 
     //recruitUnitUtil.Util.setTitle("User Landing Page");
 
     //this.usercreated = $location.search().usercreated; //ref to get param from url
+    this.$mdMedia = $mdMedia;
     this.useremail = $routeParams.email;
     this.username = "";
     this.userguid = "";

@@ -221,11 +221,22 @@ md-card-title .md-card-h1{
   color: #f9f9f9;
 }
 
-md-card.recruitunit md-card-title{
+md-card.recruitunit md-card-title.card-md{
   padding: 0;
-  margin: 24px 16px 16px;
+  margin: 16px 16px 0px;
+  /*overflow: hidden;*/
+  /*max-height: 255px;*/
+}
+md-card.recruitunit md-card-title.card-xs{
+  padding: 0;
   overflow: hidden;
-  max-height: 255px;
+  max-height: 100px;
+}
+md-card.recruitunit md-card-title-text.text-sm{
+  margin-bottom: -32px;
+}
+md-card.recruitunit md-card-title-text.text-md{
+  margin-bottom: -16px;
 }
 
 md-card.recruitunit div.cardheading-fab{
@@ -252,10 +263,10 @@ md-card.recruitunit div.cardheading-fab{
   padding: 20px 0px 20px 5px;
 }
 .totals-table .total {
-  background-color: #c4c4c4;
+  background-color: #4597ff;
 }
 .totals-table .total-sm {
-  background-color: #c4c4c4;
+  background-color: #4597ff;
   max-height: 20px;
 }
 .totals-table .pass{

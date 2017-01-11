@@ -9,10 +9,9 @@
                 </md-tooltip>
             </md-button>
         </div>
-        <md-card-title>
-            <md-card-title-text>
+        <md-card-title ng-class="{'card-xs':userLanding.$mdMedia('xs'), 'card-md':userLanding.$mdMedia('sm')}">
+            <md-card-title-text ng-class="{'text-sm':userLanding.$mdMedia('sm'), 'text-md':userLanding.$mdMedia('md')}">
                 <img src="/assets/homepage-header-background.png" alt="image caption">
-                <span class="md-headline md-card-h1">{{userLanding.username}}</span>
             </md-card-title-text>
         </md-card-title>
         <md-card-content>
