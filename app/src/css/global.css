@@ -79,7 +79,7 @@ form.recruitunit-login md-input-container {
   min-height: 500px;
 }
 
-.demo-dialog-example {
+.generic-dialog {
   background: white;
   border-radius: 4px;
   box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2),

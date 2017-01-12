@@ -70,7 +70,7 @@
         parent: angular.element(document.body),
         targetEvent: $event,
         clickOutsideToClose:true,
-        fullscreen: false
+        fullscreen: true
       }).then(function(answer) {
         //this.status = 'You said the information was "' + answer + '".';
       }, function() {
@@ -167,7 +167,7 @@
       animation: panelAnimation,
       templateUrl: this.comparisonFormTemplate,
       hasBackdrop: true,
-      panelClass: 'demo-dialog-example',
+      panelClass: 'generic-dialog',
       zIndex: 150,
       clickOutsideToClose: true,
       escapeToClose: true,
@@ -204,7 +204,7 @@
       animation: panelAnimation,
       templateUrl: this.enableContactMeTemplate,
       hasBackdrop: true,
-      panelClass: 'demo-dialog-example',
+      panelClass: 'generic-dialog',
       zIndex: 150,
       clickOutsideToClose: true,
       escapeToClose: true,
@@ -237,7 +237,7 @@
       animation: panelAnimation,
       templateUrl: this.unitTestFormTemplate,
       hasBackdrop: true,
-      panelClass: 'demo-dialog-example',
+      panelClass: 'generic-dialog',
       zIndex: 150,
       clickOutsideToClose: true,
       escapeToClose: true,
