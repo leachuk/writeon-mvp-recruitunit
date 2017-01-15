@@ -2,8 +2,8 @@
     <form class="readjobfromrecruiter">
         <md-toolbar class="{{formRead.isItemPass ? '' : 'md-warn md-hue-3'}}">
             <div class="md-toolbar-tools" ng-switch on="formRead.isItemPass">
-                <h2 ng-switch-when="false"><md-icon md-svg-icon="social:mood_bad" aria-label="Happy face"></md-icon> Failed - {{formRead.article.jobDescription | limitTo:50}}<span ng-if="formRead.article.jobDescription.length > 50">...</span></h2>
-                <h2 ng-switch-default><md-icon md-svg-icon="social:mood" aria-label="Happy face"></md-icon> Passed - {{formRead.article.jobDescription | limitTo:50}}<span ng-if="formRead.article.jobDescription.length > 50">...</span></h2>
+                <h2 ng-switch-when="false"><md-icon md-svg-icon="social:mood_bad" aria-label="Happy face"></md-icon> Failed - {{formRead.article.jobDescription | limitTo:40}}<span ng-if="formRead.article.jobDescription.length > 40">...</span></h2>
+                <h2 ng-switch-default><md-icon md-svg-icon="social:mood" aria-label="Happy face"></md-icon> Passed - {{formRead.article.jobDescription | limitTo:40}}<span ng-if="formRead.article.jobDescription.length > 40">...</span></h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="formRead.cancelDialog()">
                     <md-icon md-svg-icon="content:clear" aria-label="Close dialog"></md-icon>
@@ -15,7 +15,7 @@
                 <div flex>
                     <form name="readForm">
                         <div layout="row">
-                            <div flex="20" layout="row" layout-align="start center">
+                            <div hide show-gt-xs flex="20" layout="row" layout-align="start center">
                                 <span>Job Description</span>
                             </div>
                             <div flex>
@@ -31,7 +31,7 @@
                         </div>
 
                         <div layout="row">
-                            <div flex="20" layout="row" layout-align="start center">
+                            <div hide show-gt-xs flex="20" layout="row" layout-align="start center">
                                 <span>Submitted By</span>
                             </div>
                             <div flex>
@@ -48,7 +48,7 @@
 
 
                         <div layout="row">
-                            <div flex="20" layout="row" layout-align="start center">
+                            <div hide show-gt-xs flex="20" layout="row" layout-align="start center">
                                 <span>Role Type</span>
                             </div>
                             <div flex>
@@ -62,10 +62,10 @@
                         </div>
 
                         <div layout="row">
-                            <div flex="20" layout="row" layout-align="start center">
+                            <div hide show-gt-xs flex="20" layout="row" layout-align="start center">
                                 <span>Pay Bracket Between</span>
                             </div>
-                            <div flex="20">
+                            <div flex>
                                 <section layout="row">
                                     <md-input-container flex>
                                         <label>Pay as per</label>
@@ -96,7 +96,7 @@
                         </div>
 
                         <div layout="row">
-                            <div flex="20" layout="row" layout-align="start center">
+                            <div hide show-gt-xs flex="20" layout="row" layout-align="start center">
                                 <span>Location Description</span>
                             </div>
                             <div flex>
@@ -110,7 +110,7 @@
                         </div>
 
                         <div layout="row">
-                            <div flex="20" layout="row" layout-align="start center">
+                            <div hide show-gt-xs flex="20" layout="row" layout-align="start center">
                                 <span>Required Skills</span>
                             </div>
                             <div flex>
