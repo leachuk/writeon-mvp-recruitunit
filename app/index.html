@@ -22,7 +22,11 @@
 					<md-icon ng-click="app.toggleSideNav()" md-svg-icon="navigation:menu"></md-icon>
 				</md-button>
 
-				<div ng-if="app.user.isLoggedIn" ng-cloak layout="row" layout-align="end center" flex>{{app.user.email}}<md-button ng-click="app.signOutUser()">Logout</md-button></div>
+				<div ng-if="app.user.isLoggedIn" ng-cloak layout="row" layout-align="end center" flex>
+					<span hide show-gt-xs>{{app.user.email | limitTo:40}}</span>
+					<span hide-gt-xs class="username-xs">{{app.user.email | limitTo:21}}</span>
+					<md-button ng-click="app.signOutUser()">Logout</md-button>
+				</div>
 				<div ng-if="!app.user.isLoggedIn" ng-cloak layout="row" layout-align="end center" flex>
 					<form ng-submit="app.signInUser()" class="recruitunit-login" layout="row" layout-align="end center" flex>
 						<div>

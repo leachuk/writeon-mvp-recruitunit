@@ -140,6 +140,10 @@ md-toolbar h1 {
   margin: auto;
 }
 
+md-toolbar .username-xs {
+  font-size: 0.7em;
+}
+
 /* Sidenav area */
 
 md-sidenav md-list .md-button {
