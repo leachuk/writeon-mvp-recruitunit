@@ -57,8 +57,7 @@ function AppController($router, $mdComponentRegistry, loomApi, recruitUnitUtil, 
     this.user.isLoggedIn = recruitUnitUtil.Util.isLocalUserLoggedIn();
     this.user.isDeveloper = recruitUnitUtil.Util.getUserRoles().indexOf(recruitUnitUtil.Constants.DEVELOPER_ROLE) != -1;
     if (this.user.isLoggedIn){
-      //this.user.email = recruitUnitUtil.Util.getLocalUser().email;
-      this.user.email = "sdfdfasd.asdaasdasdasd@sdfkjsdfkjhsf.com.au";
+      this.user.email = recruitUnitUtil.Util.getLocalUser().email;
     }
   }
 
