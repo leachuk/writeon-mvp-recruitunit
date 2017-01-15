@@ -1,4 +1,4 @@
-<h1>Submit a RecruitUnit Form</h1>
+<h1>Submit Form</h1>
 <div ng-if="!formSubmit.isDeveloper">
     <p>Users name: {{formSubmit.user.data.displayName}}</p>
 </div>
@@ -7,11 +7,10 @@
 </div>
 
 <md-content layout="row" class="md-padding buttondemoBasicUsage">
-    <div flex="10"></div>
-    <div flex="80">
+    <div flex>
         <form name="submitJobFromRecruiter" class="submitjobfromrecruiter">
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
+                <div hide show-gt-xs flex="10" layout="row" layout-align="center center">
                     <span>Job Description</span>
                 </div>
                 <div flex="90">
@@ -26,7 +25,7 @@
             </div>
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
+                <div hide show-gt-xs flex="10" layout="row" layout-align="center center">
                     <span>Role Type</span>
                 </div>
                 <div flex="90">
@@ -40,10 +39,10 @@
             </div>
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
+                <div hide show-gt-xs flex="10" layout="row" layout-align="center center">
                     <span>Pay Bracket Between</span>
                 </div>
-                <div flex="20">
+                <div flex>
                     <section layout="row">
                         <md-input-container flex>
                             <label>Pay as per</label>
@@ -74,7 +73,7 @@
             </div>
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
+                <div hide show-gt-xs flex="10" layout="row" layout-align="center center">
                     <span>Location Description</span>
                 </div>
                 <div flex="90">
@@ -88,7 +87,7 @@
             </div>
 
             <div layout="row">
-                <div flex="10" layout="row" layout-align="center center">
+                <div hide show-gt-xs flex="10" layout="row" layout-align="center center">
                     <span>Required Skills Description</span>
                 </div>
                 <div flex="90">
@@ -119,5 +118,4 @@
             </div>
         </form>
     </div>
-    <div flex="10"></div>
 </md-content>

@@ -1,22 +1,16 @@
-<h1>Job Comparison Rules</h1>
+<h2>Job Comparison Rules</h2>
 
 <md-content layout="row" class="md-padding buttondemoBasicUsage">
-    <div flex="10"></div>
-    <div flex="80">
+    <div layout="row" layout-align="center center" flex>
         <form name="comparisonRuleForm">
-
-            <div layout="row">
-                <div layout="row" layout-padding layout-align="left center">
+            <fieldset class="standard">
+                <legend>
                     <md-checkbox ng-click="comparisonRule.disableRoleType()"
                                  ng-checked="!comparisonRule.article.roleType.disabled">
-                        Test against
                     </md-checkbox>
-
-                </div>
-                <div layout="row" layout-padding layout-align="left center">
-                    <span ng-class="comparisonRule.article.roleType.disabled ? 'disabled' : ''">Role Type</span>
-                </div>
-                <div flex>
+                    <span ng-class="comparisonRule.article.roleType.disabled ? 'disabled' : ''">Role Type Test</span>
+                </legend>
+                <div layout="row" layout-align="start center" flex>
                     <section layout="column" layout-sm="column" layout-align="center start">
                             <md-checkbox ng-click="comparisonRule.toggleRoleType('permanent')"
                                          ng-checked="comparisonRule.existsRoleType('permanent')"
@@ -31,80 +25,65 @@
                         </md-checkbox>
                     </section>
                 </div>
-            </div>
+            </fieldset>
 
-            <div layout="row">
-                <div layout="row" layout-padding layout-align="left center">
+            <fieldset class="standard">
+                <legend>
                     <md-checkbox ng-click="comparisonRule.disablePayBracketLower()"
                                  ng-checked="!comparisonRule.article.payBracketLower.disabled">
-                        Test against
+                        <span ng-class="comparisonRule.article.payBracketLower.disabled ? 'disabled' : ''">Pay Greater Than Test</span>
                     </md-checkbox>
-                </div>
-                <div layout="row" layout-padding layout-align="left center">
-                    <span ng-class="comparisonRule.article.payBracketLower.disabled ? 'disabled' : ''">Pay Greater Than</span>
-                </div>
-                <div flex>
-                    <section layout="row">
-                        <md-input-container flex>
-                            <label>Lowest acceptable amount</label>
-                            <input ng-model="comparisonRule.article.payBracketLower.value"
-                                   ng-disabled="comparisonRule.article.payBracketLower.disabled"
-                                   type="number">
-                        </md-input-container>
-                    </section>
-                </div>
-            </div>
+                </legend>
+                <section layout="row">
+                    <md-input-container flex>
+                        <label>Lowest acceptable amount</label>
+                        <input ng-model="comparisonRule.article.payBracketLower.value"
+                               ng-disabled="comparisonRule.article.payBracketLower.disabled"
+                               type="number">
+                    </md-input-container>
+                </section>
+            </fieldset>
 
-            <div layout="row">
-                <div layout="row" layout-padding layout-align="left center">
+            <fieldset class="standard">
+                <legend>
                     <md-checkbox ng-click="comparisonRule.disableLocationDescription()"
                                  ng-checked="!comparisonRule.article.locationDescription.disabled">
-                        Test against
+                        Location Contains Test
                     </md-checkbox>
-                </div>
-                <div layout="row" layout-padding layout-align="left center">
-                    <span ng-class="comparisonRule.article.locationDescription.disabled ? 'disabled' : ''">Location Contains</span>
-                </div>
-                <div flex>
-                    <section layout="column">
-                        <md-chips
-                                ng-model="comparisonRule.article.locationDescription.value"
-                                ng-class="comparisonRule.article.locationDescription.disabled ? 'chipsDisabled' : '' "
-                                readonly="comparisonRule.article.locationDescription.disabled"
-                                ng-disabled="true"
-                                placeholder="Add Locations to match against"
-                                delete-button-label="Remove Tag"
-                                delete-hint="Press delete to remove tag"
-                                secondary-placeholder="+ City">
-                        </md-chips>
-                    </section>
-                </div>
-            </div>
+                </legend>
+                <section layout="row">
+                    <md-chips
+                            ng-model="comparisonRule.article.locationDescription.value"
+                            ng-class="comparisonRule.article.locationDescription.disabled ? 'chipsDisabled' : '' "
+                            readonly="comparisonRule.article.locationDescription.disabled"
+                            ng-disabled="true"
+                            placeholder="Add Locations to match against"
+                            delete-button-label="Remove Tag"
+                            delete-hint="Press delete to remove tag"
+                            secondary-placeholder="+ City">
+                    </md-chips>
+                </section>
+            </fieldset>
 
-            <div layout="row">
-                <div layout="row" layout-padding layout-align="left center">
+            <fieldset class="standard">
+                <legend>
                     <md-checkbox ng-click="comparisonRule.disableSkills()"
                                  ng-checked="!comparisonRule.article.skills.disabled">
-                        Test against
+                        Required Skills Test
                     </md-checkbox>
-                </div>
-                <div layout="row" layout-padding layout-align="left center">
-                    <span ng-class="comparisonRule.article.skills.disabled ? 'disabled' : ''">Required Skills</span>
-                </div>
-                <div flex>
-                    <section layout="column">
-                        <md-chips
-                                ng-model="comparisonRule.article.skills.value"
-                                ng-class="comparisonRule.article.skills.disabled ? 'chipsDisabled' : '' "
-                                readonly="comparisonRule.article.skills.disabled"
-                                placeholder="Enter a tag"
-                                delete-button-label="Remove Tag"
-                                delete-hint="Press delete to remove tag"
-                                secondary-placeholder="+ Skill">
-                        </md-chips>
-                    </section>
-                </div>
-            </div>
+                </legend>
+                <section layout="row">
+                    <md-chips
+                            ng-model="comparisonRule.article.skills.value"
+                            ng-class="comparisonRule.article.skills.disabled ? 'chipsDisabled' : '' "
+                            readonly="comparisonRule.article.skills.disabled"
+                            placeholder="Enter a tag"
+                            delete-button-label="Remove Tag"
+                            delete-hint="Press delete to remove tag"
+                            secondary-placeholder="+ Skill">
+                    </md-chips>
+                </section>
+            </fieldset>
 
             <div layout="row">
                 <div flex="10" layout="row" layout-align="left center"></div>
@@ -122,5 +101,4 @@
             </div>
         </form>
     </div>
-    <div flex="10"></div>
 </md-content>
