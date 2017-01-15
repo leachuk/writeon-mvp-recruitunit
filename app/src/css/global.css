@@ -286,9 +286,6 @@ md-card.recruitunit div.cardheading-fab{
 .totals-list .text-lg {
   font-size: 1.10em !important;
 }
-.totals-list .result-icon {
-  margin-right: 25px;
-}
 .totals-list .icon-pass {
   color: #17FF00;
 }
@@ -297,6 +294,14 @@ md-card.recruitunit div.cardheading-fab{
 }
 .totals-list .icon-fail {
   color: #FF0000;
+}
+
+.totals-list .enable-email-display {
+  background-color: #feffa8;
+}
+
+.totals-list .md-button {
+  min-width: 0px;
 }
 
 /* Utils */

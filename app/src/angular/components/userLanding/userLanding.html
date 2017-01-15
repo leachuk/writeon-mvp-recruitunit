@@ -57,6 +57,11 @@
                                  class="result-icon"
                                  md-svg-icon="{{item.testResult.isPass || item.testResult.isPartialPass ? 'action:done' : 'content:clear'}}"
                                  ng-class="{'icon-pass':item.testResult.isPass, 'icon-fail':!item.testResult.isPass, 'partial-pass':item.testResult.isPartialPass}"></md-icon>
+                        <md-button ng-if="item.document.displayDevEmail" ng-click="userLanding.toggleContactMeDialog($event, item.document.id, item.document.displayDevEmail, this)">
+                            <md-icon layout="column"
+                                     class="result-icon"
+                                     md-svg-icon="{{item.document.displayDevEmail ? 'social:person_add' : ''}}"></md-icon>
+                        </md-button>
                         <div layout="column" class="md-list-item-text" layout-fill flex="50">
                             <button class="md-no-style md-button" type="button" ng-click="userLanding.showFormDetailDialog($event, item.document.id, item.testResult.isPass, item.testResult.isPartialPass)">
                                 <p hide show-gt-sm class="job-description text-lg">{{item.document.jobDescription | limitTo:70}}<span ng-if="item.document.jobDescription.length > 70">...</span></p>
